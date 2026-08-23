@@ -13,7 +13,6 @@
             background-color: #020617; /* slate-950 */
         }
 
-        /* Patrón de cuadrícula tecnológica */
         .tech-grid {
             background-image: 
                 linear-gradient(to right, rgba(51, 65, 85, 0.1) 1px, transparent 1px),
@@ -21,7 +20,6 @@
             background-size: 40px 40px;
         }
 
-        /* Gradientes de Neón de fondo */
         .neon-glow {
             position: absolute;
             width: 400px;
@@ -63,11 +61,10 @@
             transform: scale(1.02);
         }
 
-        @keyframes pulse-slow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+        .lang-btn.active {
+            color: #818cf8;
+            border-bottom: 2px solid #818cf8;
         }
-        .animate-pulse-slow { animation: pulse-slow 4s infinite; }
     </style>
 </head>
 <body class="text-slate-300 antialiased overflow-x-hidden">
@@ -75,14 +72,13 @@
     <!-- DECORATIVE ELEMENTS -->
     <div class="fixed inset-0 tech-grid z-0 pointer-events-none"></div>
     <div class="neon-glow top-[-100px] left-[-100px]"></div>
-    <div class="neon-glow bottom-[100px] right-[-100px]" style="background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);"></div>
 
     <!-- NAVIGATION -->
     <nav class="fixed top-0 w-full z-50 border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                    <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
                         <span class="text-white font-black text-xl">G</span>
                     </div>
                     <span class="text-2xl font-bold tracking-tighter text-white">
@@ -91,16 +87,20 @@
                 </div>
                 
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#ecosistema" class="text-sm font-medium hover:text-indigo-400 transition-colors">Ecosistema</a>
-                    <a href="#contacto" class="text-sm font-medium hover:text-indigo-400 transition-colors">Soporte</a>
-                    <button class="neon-border-button text-white px-6 py-2.5 rounded-full text-sm font-bold">
+                    <a href="#ecosistema" data-i18n="nav-eco" class="text-sm font-medium hover:text-indigo-400 transition-colors">Ecosistema</a>
+                    
+                    <!-- IDIOMA SELECTOR -->
+                    <div class="flex items-center gap-2 border-l border-slate-800 pl-8 ml-2">
+                        <i data-lucide="languages" class="w-4 h-4 text-slate-500"></i>
+                        <button onclick="setLanguage('es')" id="btn-es" class="lang-btn active text-xs font-bold uppercase tracking-widest px-1">ES</button>
+                        <span class="text-slate-700">/</span>
+                        <button onclick="setLanguage('en')" id="btn-en" class="lang-btn text-xs font-bold uppercase tracking-widest px-1">EN</button>
+                    </div>
+
+                    <button data-i18n="btn-demo" class="neon-border-button text-white px-6 py-2.5 rounded-full text-sm font-bold">
                         Solicitar Demo
                     </button>
                 </div>
-
-                <button id="menu-btn" class="md:hidden text-white">
-                    <i data-lucide="menu"></i>
-                </button>
             </div>
         </div>
     </nav>
@@ -109,27 +109,23 @@
     <section class="relative pt-44 pb-32 px-6">
         <div class="max-w-7xl mx-auto text-center">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-bold uppercase tracking-widest mb-8 animate-pulse">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-                </span>
-                V 2.0 Sistema Operativo Enterprise
+                <span data-i18n="hero-tag">V 2.0 Sistema Operativo Enterprise</span>
             </div>
             
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 tracking-tighter leading-none">
-                <span class="text-gradient">Software Operativo</span> <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Ágil y Futurista</span>
+                <span class="text-gradient" data-i18n="hero-title-1">Software Operativo</span> <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400" data-i18n="hero-title-2">Ágil y Futurista</span>
             </h1>
 
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12" data-i18n="hero-desc">
                 Controla la complejidad de tu negocio con GabSoftX. Diseñamos la capa digital para la gestión operativa en tiempo real.
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-6">
                 <button class="neon-border-button text-white px-10 py-4 rounded-2xl text-lg font-black flex items-center justify-center gap-3 group">
-                    Solicitar Demo <i data-lucide="zap" class="w-5 h-5 fill-current"></i>
+                    <span data-i18n="btn-demo">Solicitar Demo</span> <i data-lucide="zap" class="w-5 h-5 fill-current"></i>
                 </button>
-                <button class="glass-card text-white border border-slate-700 px-10 py-4 rounded-2xl text-lg font-bold hover:bg-slate-800 transition-all">
+                <button class="glass-card text-white border border-slate-700 px-10 py-4 rounded-2xl text-lg font-bold" data-i18n="btn-apps">
                     Explorar Apps
                 </button>
             </div>
@@ -139,69 +135,43 @@
     <!-- ECOSYSTEM SECTION -->
     <section id="ecosistema" class="py-24 px-6 relative">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-                <div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Ecosistema de Apps</h2>
-                    <p class="text-indigo-400 font-mono tracking-widest uppercase text-sm">Módulos de alto rendimiento</p>
-                </div>
-                <div class="h-[1px] flex-grow mx-8 bg-gradient-to-r from-indigo-500/50 to-transparent hidden md:block mb-4"></div>
-            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-16" data-i18n="eco-title">Ecosistema de Apps</h2>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- MAIN CARD: VEHICLE WASH -->
                 <div class="lg:col-span-2">
                     <div class="glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group">
-                        <!-- Brillo decorativo interno -->
-                        <div class="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/20 blur-[80px] group-hover:bg-indigo-600/30 transition-all"></div>
-                        
                         <div class="relative z-10">
                             <div class="flex items-center gap-4 mb-8">
-                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
+                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center text-white">
                                     <i data-lucide="car-front" class="w-10 h-10"></i>
                                 </div>
-                                <div>
-                                    <h3 class="text-3xl font-bold text-white">Gestor de Autolavado</h3>
-                                    <span class="text-indigo-400 text-xs font-mono">ESTADO: OPERATIVO</span>
-                                </div>
+                                <h3 class="text-3xl font-bold text-white" data-i18n="app1-name">Gestor de Autolavado</h3>
                             </div>
 
-                            <p class="text-slate-400 text-lg mb-10 max-w-xl italic">
-                                La plataforma líder para la digitalización de flujos en centros de estética automotriz y lavaderos de alto tráfico.
+                            <p class="text-slate-400 text-lg mb-10 max-w-xl italic" data-i18n="app1-desc">
+                                La plataforma líder para la digitalización de flujos en centros de estética automotriz.
                             </p>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                                 <div class="flex gap-4">
                                     <div class="text-indigo-500"><i data-lucide="layers" class="w-6 h-6"></i></div>
                                     <div>
-                                        <h4 class="text-white font-bold mb-1">Modos de Interfaz</h4>
-                                        <p class="text-sm text-slate-500">Separación lógica entre operarios de piso y control administrativo.</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4">
-                                    <div class="text-indigo-500"><i data-lucide="activity" class="w-6 h-6"></i></div>
-                                    <div>
-                                        <h4 class="text-white font-bold mb-1">Flujo en Tiempo Real</h4>
-                                        <p class="text-sm text-slate-500">Monitoreo de tiempos de servicio y cuellos de botella.</p>
+                                        <h4 class="text-white font-bold mb-1" data-i18n="feat1-t">Modos de Interfaz</h4>
+                                        <p class="text-sm text-slate-500" data-i18n="feat1-d">Separación lógica entre operarios y administración.</p>
                                     </div>
                                 </div>
                                 <div class="flex gap-4">
                                     <div class="text-indigo-500"><i data-lucide="bar-chart-3" class="w-6 h-6"></i></div>
                                     <div>
-                                        <h4 class="text-white font-bold mb-1">Control de Ingresos</h4>
-                                        <p class="text-sm text-slate-500">Auditoría de caja, métodos de pago y cierres automáticos.</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4">
-                                    <div class="text-indigo-500"><i data-lucide="cpu" class="w-6 h-6"></i></div>
-                                    <div>
-                                        <h4 class="text-white font-bold mb-1">Fidelización AI</h4>
-                                        <p class="text-sm text-slate-500">Módulo inteligente para retención de clientes recurrentes.</p>
+                                        <h4 class="text-white font-bold mb-1" data-i18n="feat2-t">Control de Ingresos</h4>
+                                        <p class="text-sm text-slate-500" data-i18n="feat2-d">Auditoría de caja y cierres automáticos.</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <button class="bg-white text-slate-950 px-8 py-4 rounded-xl font-black hover:bg-indigo-400 transition-colors flex items-center gap-3">
-                                LANZAR DEMO <i data-lucide="external-link" class="w-5 h-5"></i>
+                            <button class="bg-white text-slate-950 px-8 py-4 rounded-xl font-black flex items-center gap-3">
+                                <span data-i18n="btn-demo">Solicitar Demo</span> <i data-lucide="external-link" class="w-5 h-5"></i>
                             </button>
                         </div>
                     </div>
@@ -209,92 +179,88 @@
 
                 <!-- PRÓXIMAMENTE -->
                 <div class="flex flex-col gap-8">
-                    <div class="glass-card flex-1 rounded-[2.5rem] p-8 border-dashed border-slate-700 flex flex-col justify-center group">
-                        <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-slate-500 mb-6 group-hover:text-purple-400 transition-colors">
+                    <div class="glass-card flex-1 rounded-[2.5rem] p-8 border-dashed border-slate-700 flex flex-col justify-center">
+                        <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-slate-500 mb-6">
                             <i data-lucide="boxes" class="w-6 h-6"></i>
                         </div>
                         <h4 class="text-xl font-bold text-slate-200 mb-2 italic">Inventory X</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed">Gestión síncrona de almacenes y suministros industriales.</p>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-                            <span class="text-[10px] font-mono text-purple-500 uppercase tracking-tighter">En desarrollo...</span>
-                        </div>
+                        <span class="text-[10px] font-mono text-purple-500 uppercase tracking-tighter" data-i18n="coming-soon">Próximamente</span>
                     </div>
-
-                    <div class="glass-card flex-1 rounded-[2.5rem] p-8 border-dashed border-slate-700 flex flex-col justify-center group">
-                        <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-slate-500 mb-6 group-hover:text-indigo-400 transition-colors">
+                    <div class="glass-card flex-1 rounded-[2.5rem] p-8 border-dashed border-slate-700 flex flex-col justify-center">
+                        <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-slate-500 mb-6">
                             <i data-lucide="settings-2" class="w-6 h-6"></i>
                         </div>
                         <h4 class="text-xl font-bold text-slate-200 mb-2 italic">Workshop Control</h4>
-                        <p class="text-slate-500 text-sm leading-relaxed">Terminal operativo para talleres de mantenimiento y reparación.</p>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-                            <span class="text-[10px] font-mono text-indigo-500 uppercase tracking-tighter">En desarrollo...</span>
-                        </div>
+                        <span class="text-[10px] font-mono text-indigo-500 uppercase tracking-tighter" data-i18n="coming-soon">Próximamente</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer id="contacto" class="relative py-20 px-6 border-t border-slate-900 bg-slate-950">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-6 h-6 bg-indigo-600 rounded flex items-center justify-center text-white font-bold text-xs">G</div>
-                        <span class="text-xl font-bold text-white tracking-tighter">GabSoftX</span>
-                    </div>
-                    <p class="text-slate-500 max-w-sm text-sm">
-                        Ingeniería de software para la frontera operativa. Potenciando negocios reales con herramientas digitales del futuro.
-                    </p>
-                </div>
-                <div>
-                    <h5 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Tecnología</h5>
-                    <ul class="space-y-4 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Infraestructura Cloud</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Seguridad de Datos</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Integración API</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-white font-bold mb-6 text-sm uppercase tracking-widest">Empresa</h5>
-                    <ul class="space-y-4 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Sobre GabSoftX</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Contacto</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Soporte Técnico</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-slate-900">
-                <p class="text-slate-600 text-xs font-mono uppercase tracking-widest">
-                    &copy; <span id="year"></span> GABSOFTX _ ALL RIGHTS RESERVED
-                </p>
-                <div class="flex gap-6">
-                    <i data-lucide="twitter" class="w-4 h-4 text-slate-600 hover:text-white cursor-pointer"></i>
-                    <i data-lucide="github" class="w-4 h-4 text-slate-600 hover:text-white cursor-pointer"></i>
-                    <i data-lucide="linkedin" class="w-4 h-4 text-slate-600 hover:text-white cursor-pointer"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        // Inicializar Iconos
-        lucide.createIcons();
+        // 1. DICCIONARIO DE TRADUCCIONES
+        const translations = {
+            es: {
+                "nav-eco": "Ecosistema",
+                "btn-demo": "Solicitar Demo",
+                "btn-apps": "Explorar Apps",
+                "hero-tag": "V 2.0 Sistema Operativo Enterprise",
+                "hero-title-1": "Software Operativo",
+                "hero-title-2": "Ágil y Futurista",
+                "hero-desc": "Controla la complejidad de tu negocio con GabSoftX. Diseñamos la capa digital para la gestión operativa en tiempo real.",
+                "eco-title": "Ecosistema de Apps",
+                "app1-name": "Gestor de Autolavado",
+                "app1-desc": "La plataforma líder para la digitalización de flujos en centros de estética automotriz.",
+                "feat1-t": "Modos de Interfaz",
+                "feat1-d": "Separación lógica entre operarios y administración.",
+                "feat2-t": "Control de Ingresos",
+                "feat2-d": "Auditoría de caja y cierres automáticos.",
+                "coming-soon": "Próximamente"
+            },
+            en: {
+                "nav-eco": "Ecosystem",
+                "btn-demo": "Request Demo",
+                "btn-apps": "Explore Apps",
+                "hero-tag": "V 2.0 Enterprise Operating System",
+                "hero-title-1": "Operational Software",
+                "hero-title-2": "Agile & Futuristic",
+                "hero-desc": "Master your business complexity with GabSoftX. We design the digital layer for real-time operational management.",
+                "eco-title": "App Ecosystem",
+                "app1-name": "Car Wash Manager",
+                "app1-desc": "The leading platform for workflow digitalization in automotive detailing centers.",
+                "feat1-t": "Interface Modes",
+                "feat1-d": "Logical separation between floor staff and administration.",
+                "feat2-t": "Revenue Control",
+                "feat2-d": "Cash auditing and automated end-of-day reports.",
+                "coming-soon": "Coming Soon"
+            }
+        };
 
-        // Menú Móvil Simple
-        const menuBtn = document.getElementById('menu-btn');
-        menuBtn.addEventListener('click', () => {
-            alert('Menú de navegación móvil - Implementar según sea necesario');
+        // 2. FUNCIÓN PARA CAMBIAR IDIOMA
+        function setLanguage(lang) {
+            // Actualizar textos
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                el.innerText = translations[lang][key];
+            });
+
+            // Actualizar estilo de botones
+            document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.remove("active"));
+            document.getElementById(`btn-${lang}`).classList.add("active");
+
+            // Guardar preferencia
+            localStorage.setItem("preferredLang", lang);
+        }
+
+        // 3. INICIALIZACIÓN
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+            const savedLang = localStorage.getItem("preferredLang") || "es";
+            setLanguage(savedLang);
         });
-
-        // Año Actual
-        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
