@@ -42,30 +42,127 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="max-w-6xl mx-auto px-4 py-20 text-center relative">
-      <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs px-3.5 py-1.5 rounded-full mb-6 backdrop-blur-sm">
-        <i data-lucide="shield-check" class="w-4 h-4"></i>
-        <span data-es="Sistemas de gestión para empresas operativas" data-en="Management systems for operational companies">Sistemas de gestión para empresas operativas</span>
-      </div>
+    <!-- HERO SECTION -->
+<section class="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden bg-[#0A0D14]">
+  
+  <!-- Retícula de fondo atenuada (opacidad reducida para no competir con el contenido) -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+
+  <!-- Resplandor ambiental de fondo -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+    
+    <!-- COLUMNA IZQUIERDA: Mensaje + CTAs -->
+    <div class="lg:col-span-7 text-center lg:text-left space-y-6">
       
-      <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-        <span data-es="Software Operativo Ágil" data-en="Agile Operational Software">Software Operativo Ágil</span> <br>
-        <span class="bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-300 bg-clip-text text-transparent" data-es="para Negocios Reales" data-en="for Real Businesses">para Negocios Reales</span>
+      <!-- Insignia de estado/público -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-medium tracking-wide">
+        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+        Plataforma de Gestión Operativa en Tiempo Real
+      </div>
+
+      <!-- Titular Principal con Beneficio Concreto -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+        Controla toda tu operación <br class="hidden sm:inline"/>
+        <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent">
+          sin perder el control del ingreso.
+        </span>
       </h1>
-      
-      <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto mb-8" data-es="En GabSoftX creamos herramientas que entienden el ritmo de tu negocio. Optimiza flujos de trabajo, controla ingresos y fideliza clientes con tecnología de alta precisión." data-en="At GabSoftX we create tools tailored to your business operations. Optimize workflows, track revenue, and boost customer loyalty with precision software.">
-        En GabSoftX creamos herramientas que entienden el ritmo de tu negocio. Optimiza flujos de trabajo, controla ingresos y fideliza clientes con tecnología de alta precisión.
+
+      <!-- Subtítulo Enfocado en Resultados -->
+      <p class="text-lg sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
+        Automatiza la asignación de turnos, monitorea la productividad de tu equipo y consulta métricas financieras al instante desde cualquier dispositivo.
       </p>
-      
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="#contacto" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-6 py-3 rounded-lg shadow-lg shadow-indigo-600/30 transition flex items-center gap-2" data-es="Solicitar Demo &rarr;" data-en="Request Demo &rarr;">
-          Solicitar Demo &rarr;
+
+      <!-- CTAs (Llamadas a la acción) -->
+      <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+        <!-- CTA Principal enfocado -->
+        <a href="#contacto" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-base shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-[1.02] active:scale-95 transition-all duration-200 text-center">
+          Agenda una demo de 20 min
         </a>
-        <a href="#soluciones" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 font-medium px-6 py-3 rounded-lg transition" data-es="Ver Ecosistema" data-en="View Ecosystem">
-          Ver Ecosistema
+        
+        <!-- CTA Secundario -->
+        <a href="#ecosistema" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-semibold text-base transition-all duration-200 text-center">
+          Ver cómo funciona
         </a>
       </div>
-    </section>
+
+      <!-- Prueba de Confianza Micro -->
+      <div class="pt-4 flex items-center justify-center lg:justify-start gap-6 text-xs text-slate-400">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          Implementación personalizada
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          Soporte directo en español
+        </span>
+      </div>
+
+    </div>
+
+    <!-- COLUMNA DERECHA: Mockup de Interfaz del Software -->
+    <div class="lg:col-span-5 w-full">
+      <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl p-1 bg-gradient-to-b from-slate-700/60 to-slate-800/20 border border-slate-700/50 shadow-2xl shadow-blue-950/50">
+        
+        <!-- Marco simulado de dashboard SaaS -->
+        <div class="bg-[#0F172A] rounded-xl overflow-hidden p-4 sm:p-5 border border-slate-800/80 space-y-4">
+          
+          <!-- Cabecera de la ventana -->
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+              <span class="text-xs text-slate-400 ml-2 font-mono">dashboard.gabsoftx.app</span>
+            </div>
+            <span class="text-[10px] bg-blue-500/20 text-blue-300 font-semibold px-2 py-0.5 rounded">En vivo</span>
+          </div>
+
+          <!-- Métricas en tiempo real -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800">
+              <p class="text-[11px] text-slate-400">Servicios Hoy</p>
+              <p class="text-xl font-bold text-white mt-1">48 <span class="text-xs font-normal text-emerald-400">+12%</span></p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800">
+              <p class="text-[11px] text-slate-400">Ingreso Estimado</p>
+              <p class="text-xl font-bold text-white mt-1">$1.420.000</p>
+            </div>
+          </div>
+
+          <!-- Componente de actividad simulada -->
+          <div class="bg-slate-900/90 p-3.5 rounded-lg border border-slate-800 space-y-2.5">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-300 font-medium">Turnos en preparación</span>
+              <span class="text-xs text-blue-400">4 activos</span>
+            </div>
+            
+            <!-- Barra de progreso simulada -->
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-full w-[70%] rounded-full"></div>
+            </div>
+
+            <!-- Lista rápida -->
+            <div class="space-y-1.5 pt-1 text-xs">
+              <div class="flex items-center justify-between p-2 rounded bg-slate-800/40 border border-slate-800">
+                <span class="text-slate-300">Automóvil - Lavado General</span>
+                <span class="text-emerald-400 font-mono">Completado</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-800/40 border border-slate-800">
+                <span class="text-slate-300">Camioneta - Detallado Interior</span>
+                <span class="text-amber-400 font-mono">En Proceso</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <!-- Soluciones / Ecosistema -->
     <section id="soluciones" class="max-w-6xl mx-auto px-4 py-12">
