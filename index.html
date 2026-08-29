@@ -307,5 +307,49 @@
       currentYearEl.textContent = new Date().getFullYear();
     }
   </script>
+<!-- SDK de Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL = 'https://pdtrnsfcurcjxzshlphm.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ';
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  document.getElementById('clientRegisterForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Guardando...</span>';
+
+    const clientData = {
+      full_name: document.getElementById('nombre').value.trim(),
+      phone: document.getElementById('telefono').value.trim(),
+      plate: document.getElementById('placa').value.trim().toUpperCase(),
+      vehicle_type: document.getElementById('tipoVehiculo').value,
+      email: document.getElementById('email').value.trim() || null,
+      created_at: new Date().toISOString()
+    };
+
+    try {
+      const { data, error } = await supabase
+        .from('clients')
+        .insert([clientData]);
+
+      if (error) throw error;
+
+      alert('¡Registro exitoso! Tus datos han sido ingresados correctamente.');
+      e.target.reset();
+    } catch (err) {
+      console.error('Error al registrar cliente:', err);
+      alert('Ocurrió un error al guardar los datos. Intenta de nuevo.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
+  });
+</script>
 </body>
 </html>
