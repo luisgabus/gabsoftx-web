@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GabSoftX - Software Operativo Ágil</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Fijamos versión específica de Lucide Icons para estabilidad -->
+  <!-- Versión específica de Lucide Icons para estabilidad -->
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <style>
     .bg-grid {
@@ -159,7 +159,7 @@
               Digitaliza el acceso, valida autorizaciones al instante y mantiene la trazabilidad completa en la entrada.
             </p>
           </div>
-          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20informacion%20del%20Modulo%20de%20Ingreso" target="_blank" rel="noopener noreferrer" class="mt-4 block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg text-sm transition" data-es="Ver Demostración →" data-en="View Demo →">Ver Demostración →</a>
+          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20me%20interesa%20consultar%20sobre%20el%20%5BM%C3%B3dulo%20de%20Control%20de%20Ingreso%5D." target="_blank" rel="noopener noreferrer" class="mt-4 block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg text-sm transition" data-es="Ver Demostración →" data-en="View Demo →">Ver Demostración →</a>
         </div>
 
         <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition duration-300 flex flex-col justify-between">
@@ -173,7 +173,7 @@
               Asigna cargas de trabajo en tiempo real, monitorea estados de servicio y optimiza los tiempos de espera.
             </p>
           </div>
-          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20informacion%20del%20Modulo%20de%20Turnos" target="_blank" rel="noopener noreferrer" class="mt-4 block text-center bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium py-2 rounded-lg text-sm transition border border-slate-700" data-es="Ver Demostración →" data-en="View Demo →">Ver Demostración →</a>
+          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20me%20interesa%20consultar%20sobre%20el%20%5BM%C3%B3dulo%20de%20Gesti%C3%B3n%20de%20Turnos%5D." target="_blank" rel="noopener noreferrer" class="mt-4 block text-center bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium py-2 rounded-lg text-sm transition border border-slate-700" data-es="Ver Demostración →" data-en="View Demo →">Ver Demostración →</a>
         </div>
 
         <div class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition duration-300 flex flex-col justify-between">
@@ -187,12 +187,12 @@
               Visualiza caja diaria, volumen de servicios ejecutados y exporta reportes clave sin depender de hojas de cálculo.
             </p>
           </div>
-          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20informacion%20del%20Modulo%20de%20Analitica" target="_blank" rel="noopener noreferrer" class="mt-4 block text-center bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium py-2 rounded-lg text-sm transition border border-slate-700" data-es="Ver Demostración →" data-en="View Demo →">Ver Demostración →</a>
+          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20me%20interesa%20consultar%20sobre%20el%20%5BM%C3%B3dulo%20de%20Anal%C3%ADtica%5D." target="_blank" rel="noopener noreferrer" class="mt-4 block text-center bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium py-2 rounded-lg text-sm transition border border-slate-700" data-es="Ver Demostración →" data-en="View Demo →">Ver Demostración →</a>
         </div>
       </div>
     </section>
 
-   <!-- Sección de Contacto Ágil -->
+    <!-- Sección de Contacto Ágil -->
     <section id="demo" class="py-16 bg-slate-900/60 text-white relative z-10 border-t border-slate-800/80">
       <div class="max-w-xl mx-auto px-4">
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm text-center">
@@ -245,15 +245,14 @@
     </div>
   </footer>
 
-  <!-- SDK de Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- Lógica Principal (Iconos, Idioma y Supabase) -->
+  <!-- Script Único de Control de UI -->
   <script>
+    // Inicialización segura de iconos Lucide
     if (window.lucide) {
       lucide.createIcons();
     }
 
+    // Switch de Idioma (Español / Inglés)
     function switchLanguage(lang) {
       const elements = document.querySelectorAll('[data-es][data-en]');
       elements.forEach(el => {
@@ -273,55 +272,14 @@
       localStorage.setItem('gabsoftx-language', lang);
     }
 
+    // Cargar idioma guardado
     const savedLanguage = localStorage.getItem('gabsoftx-language') || 'es';
     switchLanguage(savedLanguage);
 
+    // Año actual dinámico en el Footer
     const currentYearEl = document.getElementById('current-year');
     if (currentYearEl) {
       currentYearEl.textContent = new Date().getFullYear();
-    }
-
-    // Inicialización de Supabase
-    const SUPABASE_URL = 'https://pdtrnsfcurcjxzshlphm.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // Registro de prospectos B2B
-    const clientForm = document.getElementById('clientRegisterForm');
-    if (clientForm) {
-      clientForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const submitBtn = e.target.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Enviando solicitud...</span>';
-
-        const leadData = {
-          full_name: document.getElementById('nombre').value.trim(),
-          business_name: document.getElementById('empresa').value.trim(),
-          phone: document.getElementById('telefono').value.trim(),
-          email: document.getElementById('email').value.trim(),
-          created_at: new Date().toISOString()
-        };
-
-        try {
-          const { data, error } = await supabase
-            .from('leads')
-            .insert([leadData]);
-
-          if (error) throw error;
-
-          alert('¡Solicitud enviada con éxito! Nos pondremos en contacto contigo a la brevedad.');
-          e.target.reset();
-        } catch (err) {
-          console.error('Error al registrar prospecto:', err);
-          alert('Ocurrió un error al enviar la solicitud. Intenta nuevamente.');
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnText;
-        }
-      });
     }
   </script>
 </body>
