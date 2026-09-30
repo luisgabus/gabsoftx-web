@@ -349,6 +349,61 @@
     </div>
   </div>
 
+  <!-- MODAL DE POLÍTICA DE PRIVACIDAD -->
+  <div id="privacyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col relative border border-slate-700 shadow-2xl animate-in fade-in zoom-in-95">
+      
+      <!-- Botón de cierre -->
+      <button onclick="closePrivacyModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Cabecera del Modal -->
+      <div class="px-6 py-5 sm:px-8 sm:py-6 border-b border-slate-800/80 shrink-0">
+        <h3 class="text-xl font-bold text-white" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</h3>
+        <p class="text-xs text-slate-400 mt-1" data-es="Última actualización: Septiembre 2026" data-en="Last updated: September 2026">Última actualización: Septiembre 2026</p>
+      </div>
+
+      <!-- Contenido Legal con Scroll -->
+      <div class="px-6 py-6 sm:px-8 sm:py-8 overflow-y-auto text-sm text-slate-300 space-y-5">
+        
+        <div>
+          <h4 class="text-white font-semibold mb-2">1. Información que recopilamos</h4>
+          <p class="leading-relaxed">En GabSoftX recopilamos información personal únicamente cuando interactúas de forma directa con nuestros formularios de registro y auto-alta. Esto incluye tu nombre completo, número de teléfono (WhatsApp) y el nombre de tu negocio. No recolectamos información financiera ni tarjetas de crédito durante el periodo de demostración (Trial).</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">2. Uso de la información</h4>
+          <p class="leading-relaxed">Los datos suministrados se utilizan exclusivamente para provisionar tu entorno de pruebas (Demo), crear el subdominio temporal de tu negocio en nuestra infraestructura y brindarte soporte técnico o comercial a través de los canales de contacto autorizados.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">3. Seguridad y Aislamiento de Datos</h4>
+          <p class="leading-relaxed">Operamos bajo una estricta arquitectura Multi-Inquilino (Multi-Tenant). Implementamos políticas de seguridad de nivel de fila (Row Level Security) en nuestros servidores (Supabase) para garantizar matemáticamente que la información generada en tu instancia operativa sea inaccesible para otros usuarios o negocios en la plataforma.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">4. Retención y Eliminación</h4>
+          <p class="leading-relaxed">Los entornos de prueba y sus datos asociados tienen una vigencia de 15 días. Finalizado este periodo sin una confirmación de suscripción, los registros operativos podrán ser depurados de nuestras bases de datos activas para optimización del sistema.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">5. Derechos del Titular</h4>
+          <p class="leading-relaxed">Como titular de los datos, tienes derecho a conocer, actualizar, rectificar o solicitar la eliminación de tu información personal de nuestros servidores en cualquier momento, enviando una solicitud directa a <strong>info@gabsoftx.com</strong> o mediante nuestra línea de soporte por WhatsApp.</p>
+        </div>
+
+      </div>
+      
+      <!-- Footer del Modal -->
+      <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
+        <button onclick="closePrivacyModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700">
+          Entendido
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Footer Expandido -->
   <footer class="border-t border-slate-800 bg-slate-900/50 py-12 relative z-10 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-6">
@@ -378,8 +433,7 @@
         <div>
           <h4 class="font-bold text-white mb-3 text-sm" data-es="Legal" data-en="Legal">Legal</h4>
           <ul class="space-y-2 text-xs text-slate-400">
-            <li><a href="#" class="hover:text-white transition-colors" data-es="Privacidad" data-en="Privacy">Privacidad</a></li>
-            <li><a href="#" class="hover:text-white transition-colors" data-es="Términos" data-en="Terms">Términos</a></li>
+<li><button onclick="openPrivacyModal()" class="hover:text-white transition-colors text-left" data-es="Privacidad" data-en="Privacy">Privacidad</button></li>            <li><a href="#" class="hover:text-white transition-colors" data-es="Términos" data-en="Terms">Términos</a></li>
             <li><a href="#" class="hover:text-white transition-colors" data-es="Cookies" data-en="Cookies">Cookies</a></li>
           </ul>
         </div>
@@ -398,7 +452,7 @@
             </li>
             <li class="flex items-center gap-2">
               <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-              <span data-es="Manizales, Colombia" data-en="Manizales, Colombia">Manizales, Colombia</span>
+              <span data-es="Pereira,Colombia" data-en="Pereira, Colombia">Pereira,Colombia</span>
             </li>
           </ul>
         </div>
@@ -477,6 +531,14 @@
       document.querySelector('button[onclick*="openModal"]')?.focus();
     }
 
+    function openPrivacyModal() {
+      document.getElementById('privacyModal').classList.remove('hidden');
+    }
+
+    function closePrivacyModal() {
+      document.getElementById('privacyModal').classList.add('hidden');
+    }
+    
     // Cerrar modal con tecla Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !document.getElementById('demoModal').classList.contains('hidden')) {
