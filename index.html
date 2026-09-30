@@ -3,866 +3,272 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>GabSoftX | Gestión operativa para negocios</title>
-
-  <meta
-    name="description"
-    content="GabSoftX centraliza el control de ingresos, la gestión de equipos y la analítica operativa para negocios de distintos sectores."
-  >
-
+  <title>GabSoftX | Gestión Operativa y SaaS Multi-Inquilino</title>
+  <meta name="description" content="GabSoftX centraliza el control de ingresos, la gestión de equipos y la analítica operativa en tiempo real para negocios modernos.">
   <meta name="theme-color" content="#090D16">
 
-  <!-- Tailwind CDN: adecuado para prototipo. Para producción, compilar Tailwind localmente. -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons, versión fijada -->
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <!-- Google Fonts: Plus Jakarta Sans para estética ejecutiva moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
       color-scheme: dark;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
+      background-color: #090D16;
+      color: #f8fafc;
     }
-
     .bg-grid {
-      background-size: 40px 40px;
-      background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
-
-    .card-asistente {
-      width: calc(100% - 2rem);
-      max-width: 680px;
-      margin: 40px auto 50px;
-      padding: 40px 24px;
-      box-sizing: border-box;
-      text-align: center;
-      border: 1px solid #1f2937;
-      border-radius: 16px;
-      background-color: #111827;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
-
-    .asistente-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 20px;
-      border-radius: 12px;
-      color: #10b981;
-      background-color: rgba(16, 185, 129, 0.1);
-    }
-
-    .card-asistente h2 {
-      margin: 0 0 12px;
-      color: #ffffff;
-      font-size: 1.65rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    .asistente-subtitle {
-      max-width: 480px;
-      margin: 0 auto 28px;
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .btn-primary-chat {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      max-width: 380px;
-      padding: 14px 28px;
-      box-sizing: border-box;
-      border-radius: 10px;
-      color: #ffffff !important;
-      background-color: #059669;
-      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-primary-chat:hover {
-      background-color: #10b981;
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-      transform: translateY(-2px);
-    }
-
-    .btn-primary-chat:focus-visible,
-    .btn-outline-whatsapp:focus-visible,
-    .btn-secondary-mail:focus-visible {
-      outline: 3px solid rgba(110, 231, 183, 0.9);
-      outline-offset: 3px;
-    }
-
-    .asistente-badge {
-      margin: 16px 0 0;
-      color: #9ca3af;
-      font-size: 0.825rem;
-      letter-spacing: 0.3px;
-    }
-
-    .footer-cta-section {
-      width: 100%;
-      padding: 40px 20px;
-      box-sizing: border-box;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      text-align: center;
-    }
-
-    .footer-cta-section h2 {
-      margin: 0 0 10px;
-      color: #ffffff;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .footer-cta-subtitle {
-      max-width: 520px;
-      margin: 0 auto 30px;
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .footer-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    .btn-outline-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 22px;
-      box-sizing: border-box;
-      border: 1.5px solid #10b981;
-      border-radius: 8px;
-      color: #10b981 !important;
-      background-color: transparent;
-      font-size: 0.925rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .btn-outline-whatsapp:hover {
-      border-color: #34d399;
-      color: #34d399 !important;
-      background-color: rgba(16, 185, 129, 0.1);
-    }
-
-    .btn-secondary-mail {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 22px;
-      box-sizing: border-box;
-      border: 1px solid #374151;
-      border-radius: 8px;
-      color: #e5e7eb !important;
-      background-color: #1f2937;
-      font-size: 0.925rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .btn-secondary-mail:hover {
-      color: #ffffff !important;
-      background-color: #374151;
-    }
-
-    @media (max-width: 640px) {
-      .card-asistente {
-        width: calc(100% - 2rem);
-        padding: 32px 20px;
-      }
-
-      .card-asistente h2 {
-        font-size: 1.4rem;
-      }
-
-      .footer-actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .btn-outline-whatsapp,
-      .btn-secondary-mail {
-        width: 100%;
-        max-width: 320px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
+    .glass-card:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
     }
   </style>
 </head>
 
-<body class="min-h-screen bg-[#090D16] bg-grid font-sans antialiased text-slate-100 flex flex-col justify-between">
+<body class="min-h-screen bg-grid flex flex-col justify-between selection:bg-blue-500 selection:text-white">
 
-  <!-- Navegación principal -->
-  <nav class="sticky top-0 z-50 border-b border-slate-800/80 bg-[#090D16]/80 backdrop-blur-md" aria-label="Navegación principal">
-    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
-      <a
-        href="#inicio"
-        class="bg-gradient-to-r from-indigo-400 via-blue-400 to-cyan-400 bg-clip-text text-2xl font-bold tracking-tight text-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16]"
-        aria-label="GabSoftX, ir al inicio"
-      >
-        GabSoftX
+  <!-- Navegación Principal -->
+  <nav class="sticky top-0 z-50 border-b border-slate-800/80 bg-[#090D16]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="#inicio" class="flex items-center gap-2 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="command" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+          GabSoftX
+        </span>
       </a>
 
-      <div class="flex items-center gap-3 sm:gap-6">
-        <a
-          href="#soluciones"
-          class="hidden text-sm font-medium text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16] sm:inline-block"
-          data-es="Ecosistema"
-          data-en="Ecosystem"
-        >
-          Ecosistema
-        </a>
+      <div class="flex items-center gap-4 sm:gap-6">
+        <a href="#soluciones" class="hidden sm:inline-block text-sm font-medium text-slate-300 hover:text-white transition-colors">Ecosistema</a>
+        <a href="#contacto" class="hidden sm:inline-block text-sm font-medium text-slate-300 hover:text-white transition-colors">Contacto</a>
 
-        <a
-          href="#contacto"
-          class="hidden text-sm font-medium text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16] sm:inline-block"
-          data-es="Contacto"
-          data-en="Contact"
-        >
-          Contacto
-        </a>
-
-        <div class="flex items-center gap-2 rounded-full border border-slate-700/60 bg-slate-900/90 px-3 py-1 text-xs font-semibold" aria-label="Selector de idioma">
-          <i data-lucide="languages" class="h-3.5 w-3.5 text-indigo-400" aria-hidden="true"></i>
-
-          <button
-            id="btn-es"
-            type="button"
-            aria-label="Cambiar idioma a español"
-            aria-pressed="true"
-            class="font-bold text-indigo-400 underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
-          >
-            ES
-          </button>
-
-          <span class="text-slate-600" aria-hidden="true">/</span>
-
-          <button
-            id="btn-en"
-            type="button"
-            aria-label="Switch language to English"
-            aria-pressed="false"
-            class="text-slate-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
-          >
-            EN
-          </button>
+        <!-- Selector de Idioma -->
+        <div class="flex items-center gap-1.5 rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-xs font-semibold">
+          <i data-lucide="globe" class="h-3.5 w-3.5 text-blue-400"></i>
+          <button id="btn-es" type="button" class="font-bold text-blue-400 underline">ES</button>
+          <span class="text-slate-600">/</span>
+          <button id="btn-en" type="button" class="text-slate-400 hover:text-white">EN</button>
         </div>
 
-        <a
-          href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20agendar%20una%20demo"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white shadow-lg shadow-indigo-600/30 transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16] sm:px-4"
-          data-es="Solicitar Demo"
-          data-en="Request Demo"
-        >
-          Solicitar Demo
+        <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20agendar%20una%20demo" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-500 transition-all">
+          <span data-es="Solicitar Demo" data-en="Request Demo">Solicitar Demo</span>
         </a>
       </div>
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <main id="inicio">
+    <section class="relative min-h-[90vh] flex items-center justify-center px-6 py-20 overflow-hidden">
+      <!-- Luces ambientales difuminadas de fondo -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none"></div>
+      <div class="absolute bottom-10 right-10 w-[350px] h-[350px] bg-indigo-600/10 blur-[100px] rounded-full pointer-events-none"></div>
 
-    <!-- Hero -->
-    <section class="relative flex min-h-[85vh] items-center justify-center overflow-hidden px-4 py-16">
-      <div class="pointer-events-none absolute top-1/3 left-1/2 h-[350px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-600/20 blur-[140px]" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute top-1/2 right-10 h-[300px] w-[300px] rounded-full bg-blue-500/15 blur-[100px]" aria-hidden="true"></div>
-
-      <div class="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12">
-        <div class="space-y-6 text-center lg:col-span-7 lg:text-left">
-          <div class="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-950/80 px-3.5 py-1.5 text-xs font-medium tracking-wide text-indigo-300 shadow-inner">
-            <span class="h-2 w-2 rounded-full bg-indigo-400 animate-pulse" aria-hidden="true"></span>
-            <span
-              data-es="Plataforma de Gestión Operativa en Tiempo Real"
-              data-en="Real-Time Operational Management Platform"
-            >
-              Plataforma de Gestión Operativa en Tiempo Real
-            </span>
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-950/40 px-4 py-1.5 text-xs font-medium text-blue-300 backdrop-blur-sm">
+            <span class="h-2 w-2 rounded-full bg-blue-400 animate-pulse"></span>
+            <span data-es="Plataforma SaaS Multi-Inquilino de Alto Rendimiento" data-en="High-Performance Multi-Tenant SaaS Platform">Plataforma SaaS Multi-Inquilino de Alto Rendimiento</span>
           </div>
 
-          <h1 class="text-4xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            <span data-es="Controla toda tu operación" data-en="Control your entire operation">
-              Controla toda tu operación
-            </span>
-
-            <br class="hidden sm:inline">
-
-            <span
-              class="bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent"
-              data-es="sin perder visibilidad de tu negocio."
-              data-en="without losing visibility of your business."
-            >
-              sin perder visibilidad de tu negocio.
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+            <span data-es="Controla toda tu operación" data-en="Control your entire operation">Controla toda tu operación</span>
+            <br>
+            <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent" data-es="con visibilidad absoluta." data-en="with absolute visibility.">
+              con visibilidad absoluta.
             </span>
           </h1>
 
- <p class="max-w-2xl text-lg font-normal leading-relaxed text-slate-300 sm:text-xl"
-        data-es="Centraliza procesos, organiza equipos y consulta métricas operativas en tiempo real desde cualquier dispositivo."
-        data-en="Centralize processes, organize teams, and access real-time operational metrics from any device.">
-        Centraliza procesos, organiza equipos y consulta métricas operativas en tiempo real desde cualquier dispositivo.
-      </p>
+          <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed" data-es="Centraliza procesos, gestiona suscripciones de inquilinos y supervisa métricas financieras y operativas en tiempo real." data-en="Centralize processes, manage tenant subscriptions, and supervise financial and operational metrics in real time.">
+            Centraliza procesos, gestiona suscripciones de inquilinos y supervisa métricas financieras y operativas en tiempo real.
+          </p>
 
-           <div class="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row lg:justify-start">
-            <a
-              href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20agendar%20una%20demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-7 py-4 text-center text-base font-semibold text-white shadow-lg shadow-indigo-600/30 transition-all duration-200 hover:scale-[1.02] hover:shadow-indigo-600/50 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16] sm:w-auto"
-              data-es="Agenda una demo de 20 min"
-              data-en="Book a 20-minute demo"
-            >
-              Agenda una demo de 20 min
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20agendar%20una%20demo" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-center shadow-xl shadow-blue-600/30 hover:scale-[1.02] active:scale-95 transition-all">
+              <span data-es="Agenda una demo de 20 min" data-en="Book a 20-minute demo">Agenda una demo de 20 min</span>
             </a>
-
-            <a
-              href="#soluciones"
-              class="w-full rounded-xl border border-slate-700/80 bg-slate-900/90 px-7 py-4 text-center text-base font-semibold text-slate-200 backdrop-blur-sm transition-all duration-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16] sm:w-auto"
-              data-es="Explorar el ecosistema"
-              data-en="Explore the ecosystem"
-            >
-              Explorar el ecosistema
+            <a href="#soluciones" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-slate-200 font-semibold text-center hover:bg-slate-800/80 transition-all">
+              <span data-es="Explorar Ecosistema" data-en="Explore Ecosystem">Explorar Ecosistema</span>
             </a>
           </div>
 
-          <div class="flex items-center justify-center gap-6 pt-4 text-xs text-slate-300 lg:justify-start">
-            <span class="flex items-center gap-1.5">
-              <span class="font-bold text-emerald-400" aria-hidden="true">✓</span>
-              <span data-es="Adaptable a distintos sectores" data-en="Adaptable to multiple industries">
-                Adaptable a distintos sectores
-              </span>
-            </span>
-
-            <span class="flex items-center gap-1.5">
-              <span class="font-bold text-emerald-400" aria-hidden="true">✓</span>
-              <span data-es="Soporte directo en español" data-en="Direct support in Spanish">
-                Soporte directo en español
-              </span>
-            </span>
+          <div class="flex items-center justify-center lg:justify-start gap-6 pt-2 text-xs text-slate-400">
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Arquitectura RLS Segura</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Kill Switch en Vivo</span>
           </div>
         </div>
 
-        <!-- Mockup -->
-        <div class="w-full lg:col-span-5">
-          <div class="relative mx-auto max-w-md rounded-2xl border border-indigo-500/20 bg-gradient-to-b from-indigo-500/30 via-slate-700/40 to-slate-900/80 p-1 shadow-[0_0_50px_-12px_rgba(79,70,229,0.3)] backdrop-blur-xl lg:max-w-none">
-            <div class="space-y-4 overflow-hidden rounded-xl border border-slate-800 bg-[#0D1322] p-4 sm:p-5">
-              <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
-                <div class="flex min-w-0 items-center gap-2">
-                  <span class="h-3 w-3 shrink-0 rounded-full bg-rose-500/80" aria-hidden="true"></span>
-                  <span class="h-3 w-3 shrink-0 rounded-full bg-amber-500/80" aria-hidden="true"></span>
-                  <span class="h-3 w-3 shrink-0 rounded-full bg-emerald-500/80" aria-hidden="true"></span>
-                  <span class="ml-2 truncate font-mono text-xs text-slate-400">dashboard.gabsoftx.app</span>
+        <!-- Mockup Visual Dinámico (Estilo Panel Enterprise) -->
+        <div class="lg:col-span-5">
+          <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl glass-card p-2 shadow-2xl">
+            <div class="bg-slate-950/90 rounded-xl p-5 border border-slate-800/80 space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                  <span class="ml-2 font-mono text-xs text-slate-400">superadmin.gabsoftx.app</span>
                 </div>
-
-                <span
-                  class="ml-2 shrink-0 rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400"
-                  data-es="En vivo"
-                  data-en="Live"
-                >
-                  En vivo
-                </span>
+                <span class="px-2 py-0.5 text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded">Sistema Activo</span>
               </div>
 
               <div class="grid grid-cols-2 gap-3">
-                <div class="rounded-lg border border-slate-800 bg-slate-900/90 p-3">
-                  <p class="text-[11px] text-slate-300" data-es="Servicios hoy" data-en="Services today">
-                    Servicios hoy
-                  </p>
-                  <p class="mt-1 text-xl font-bold text-white">
-                    48 <span class="text-xs font-normal text-emerald-400">+12%</span>
-                  </p>
+                <div class="bg-slate-900/90 border border-slate-800/80 p-3 rounded-xl">
+                  <p class="text-xs text-slate-400">Negocios Activos</p>
+                  <p class="text-xl font-bold text-white mt-1">12 <span class="text-xs font-normal text-emerald-400">100% Operativos</span></p>
                 </div>
-
-                <div class="rounded-lg border border-slate-800 bg-slate-900/90 p-3">
-                  <p class="text-[11px] text-slate-300" data-es="Ingreso estimado" data-en="Estimated revenue">
-                    Ingreso estimado
-                  </p>
-                  <p class="mt-1 text-xl font-bold text-white">$1.420.000</p>
+                <div class="bg-slate-900/90 border border-slate-800/80 p-3 rounded-xl">
+                  <p class="text-xs text-slate-400">Ingresos Mensuales</p>
+                  <p class="text-xl font-bold text-white mt-1">$360.000</p>
                 </div>
               </div>
 
-              <div class="space-y-2.5 rounded-lg border border-slate-800 bg-slate-900/90 p-3.5">
-                <div class="flex items-center justify-between gap-2 text-xs">
-                  <span class="font-medium text-slate-200" data-es="Operaciones en curso" data-en="Operations in progress">
-                    Operaciones en curso
-                  </span>
-                  <span class="shrink-0 font-semibold text-indigo-400" data-es="4 activas" data-en="4 active">
-                    4 activas
-                  </span>
+              <div class="bg-slate-900/90 border border-slate-800/80 p-4 rounded-xl space-y-3">
+                <div class="flex justify-between text-xs font-medium">
+                  <span class="text-slate-300">Estado de Seguridad Global</span>
+                  <span class="text-blue-400">Protegido</span>
                 </div>
-
-                <div class="h-2 w-full overflow-hidden rounded-full bg-slate-800">
-                  <div class="h-full w-[70%] rounded-full bg-gradient-to-r from-blue-500 to-indigo-500"></div>
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                  <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-full w-full"></div>
                 </div>
-
-                <div class="space-y-1.5 pt-1 text-xs">
-                  <div class="flex items-center justify-between gap-2 rounded border border-slate-700/50 bg-slate-800/50 p-2">
-                    <span class="min-w-0 truncate text-slate-300" data-es="Servicio operativo A" data-en="Operational service A">
-                      Servicio operativo A
-                    </span>
-                    <span class="shrink-0 font-mono text-emerald-400" data-es="Completado" data-en="Completed">
-                      Completado
-                    </span>
-                  </div>
-
-                  <div class="flex items-center justify-between gap-2 rounded border border-slate-700/50 bg-slate-800/50 p-2">
-                    <span class="min-w-0 truncate text-slate-300" data-es="Servicio operativo B" data-en="Operational service B">
-                      Servicio operativo B
-                    </span>
-                    <span class="shrink-0 font-mono text-amber-400" data-es="En proceso" data-en="In progress">
-                      En proceso
-                    </span>
-                  </div>
+                <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1">
+                  <span>RLS y Kill Switch sincronizados</span>
+                  <span class="text-emerald-400 font-mono">OK</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- Ecosistema de módulos -->
-    <section
-      id="soluciones"
-      aria-labelledby="soluciones-title"
-      class="relative z-10 w-full max-w-6xl mx-auto overflow-hidden px-4 py-20 sm:py-24"
-    >
-      <div class="mx-auto mb-12 max-w-3xl text-center sm:mb-14">
-        <span
-          class="inline-flex items-center rounded-full border border-indigo-500/25 bg-indigo-500/10 px-3 py-1 text-xs font-semibold tracking-wide text-indigo-300"
-          data-es="PLATAFORMA MULTISECTORIAL"
-          data-en="MULTI-INDUSTRY PLATFORM"
-        >
-          PLATAFORMA MULTISECTORIAL
-        </span>
-
-        <h2
-          id="soluciones-title"
-          class="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl"
-          data-es="Una plataforma para operar con más control"
-          data-en="One platform for more controlled operations"
-        >
-          Una plataforma para operar con más control
-        </h2>
-
-        <p
-          class="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg"
-          data-es="Centraliza procesos, equipos y datos operativos en una solución adaptable a distintos tipos de negocio."
-          data-en="Centralize processes, teams, and operational data in a solution adaptable to different types of businesses."
-        >
-          Centraliza procesos, equipos y datos operativos en una solución adaptable a distintos tipos de negocio.
-        </p>
+    <!-- Sección de Soluciones / Demos -->
+    <section id="soluciones" class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="text-xs font-semibold tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full uppercase">Ecosistema Multi-Inquilino</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white" data-es="Soluciones especializadas por sector" data-en="Specialized solutions by industry">Soluciones especializadas por sector</h2>
+        <p class="text-slate-400 text-base" data-es="Explora las aplicaciones operativas adaptadas a las necesidades reales de cada mercado." data-en="Explore operational applications tailored to real market needs.">Explora las aplicaciones operativas adaptadas a las necesidades reales de cada mercado.</p>
       </div>
 
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
-
-        <!-- Módulo: Control de ingresos -->
-        <article class="group flex min-w-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-black/10 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-indigo-500/60 hover:bg-slate-900/80 sm:p-7">
-          <div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-indigo-500/25 bg-indigo-500/10 text-indigo-400 transition duration-300 group-hover:bg-indigo-500/15" aria-hidden="true">
-              <i data-lucide="shield-check" class="h-6 w-6"></i>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        
+        <!-- Card CarWash -->
+        <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+              <i data-lucide="car" class="w-6 h-6"></i>
             </div>
-
-            <span
-              class="mt-5 inline-flex rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-300"
-              data-es="CONTROL ESENCIAL"
-              data-en="ESSENTIAL CONTROL"
-            >
-              CONTROL ESENCIAL
-            </span>
-
-            <h3
-              class="mt-4 text-xl font-bold leading-snug text-white"
-              data-es="Controla cada ingreso con trazabilidad"
-              data-en="Control every entry with traceability"
-            >
-              Controla cada ingreso con trazabilidad
-            </h3>
-
-            <p
-              class="mt-3 break-words text-sm leading-relaxed text-slate-300"
-              data-es="Registra accesos, valida autorizaciones y consulta el historial operativo desde un solo lugar."
-              data-en="Register access, validate authorizations, and review operational history from one place."
-            >
-              Registra accesos, valida autorizaciones y consulta el historial operativo desde un solo lugar.
-            </p>
-
-            <p
-              class="mt-4 border-l-2 border-emerald-400/70 pl-3 text-sm leading-relaxed text-slate-400"
-              data-es="Reduce errores en recepción y evita perder información clave."
-              data-en="Reduce reception errors and prevent the loss of critical information."
-            >
-              Reduce errores en recepción y evita perder información clave.
-            </p>
+            <h3 class="text-xl font-bold text-white">CarWash Pro Management</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">Plataforma integral para centros de lavado automotriz con control de turnos, comisiones de personal, inventario y seguridad por inquilino.</p>
           </div>
-
- <a
-  href="https://exact-screenshot-six.vercel.app"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="mt-6 group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
->
-  
-Probar Demo CarWash
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right transition-transform duration-200 group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-</a>
-        </article>
-
-        <!-- Módulo: Turnos y personal -->
-        <article class="group flex min-w-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-black/10 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-blue-500/60 hover:bg-slate-900/80 sm:p-7">
-          <div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-500/25 bg-blue-500/10 text-blue-400 transition duration-300 group-hover:bg-blue-500/15" aria-hidden="true">
-              <i data-lucide="clock-3" class="h-6 w-6"></i>
-            </div>
-
-            <span
-              class="mt-5 inline-flex rounded-full border border-blue-500/20 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-300"
-              data-es="OPERACIÓN ÁGIL"
-              data-en="AGILE OPERATIONS"
-            >
-              OPERACIÓN ÁGIL
-            </span>
-
-            <h3
-              class="mt-4 text-xl font-bold leading-snug text-white"
-              data-es="Coordina turnos y equipos en tiempo real"
-              data-en="Coordinate shifts and teams in real time"
-            >
-              Coordina turnos y equipos en tiempo real
-            </h3>
-
-            <p
-              class="mt-3 break-words text-sm leading-relaxed text-slate-300"
-              data-es="Asigna cargas de trabajo, visualiza el estado de cada servicio y organiza a tu equipo desde una sola vista."
-              data-en="Assign workloads, view the status of each service, and organize your team from a single view."
-            >
-              Asigna cargas de trabajo, visualiza el estado de cada servicio y organiza a tu equipo desde una sola vista.
-            </p>
-
-            <p
-              class="mt-4 border-l-2 border-blue-400/70 pl-3 text-sm leading-relaxed text-slate-400"
-              data-es="Menos tiempos muertos, más visibilidad sobre la operación."
-              data-en="Less idle time and greater visibility into operations."
-            >
-              Menos tiempos muertos, más visibilidad sobre la operación.
-            </p>
-          </div>
-
-          <a
-href="https://nail-world-app.vercel.app"            
-target="_blank"
-            rel="noopener noreferrer"
-aria-label="Probar el demo en vivo de la aplicación Nail World"
-            class="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-blue-500/35 bg-blue-500/10 px-4 py-3 text-center text-sm font-semibold text-blue-200 transition duration-200 hover:border-blue-400/60 hover:bg-blue-500/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16] active:scale-[0.98]"
-          >
-            <span data-es="Probar el Demo Nail World" data-en="Try the Nail's World demo">Probar el Demo Nail World</span>
-            <i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i>
+          <a href="https://exact-screenshot-six.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 text-sm font-semibold transition-all">
+            <span>Probar Demo CarWash</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
         </article>
 
-        <!-- Módulo: Métricas -->
-        <article class="group flex min-w-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-lg shadow-black/10 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-cyan-500/60 hover:bg-slate-900/80 sm:p-7">
-          <div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/25 bg-cyan-500/10 text-cyan-400 transition duration-300 group-hover:bg-cyan-500/15" aria-hidden="true">
-              <i data-lucide="bar-chart-3" class="h-6 w-6"></i>
+        <!-- Card NailWorld -->
+        <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
             </div>
-
-            <span
-              class="mt-5 inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-xs font-semibold text-cyan-300"
-              data-es="ANALÍTICA OPERATIVA"
-              data-en="OPERATIONAL ANALYTICS"
-            >
-              ANALÍTICA OPERATIVA
-            </span>
-
-            <h3
-              class="mt-4 text-xl font-bold leading-snug text-white"
-              data-es="Historial y gestión del mantenimiento"
-              data-en="Maintenance history and management"
-            >
-              Historial y gestión de mantenimientos
-            </h3>
-
-            <p
-              class="mt-3 break-words text-sm leading-relaxed text-slate-300"
-              data-es="Registra mantenimientos, repuestos instalados y próximas revisiones. Accede al historial completo de cada vehículo con solo su placa."
-              data-en="Record maintenance, installed parts, and upcoming revisions. Access the complete history of any vehicle just by entering its license plate."
-            >
-              Consulta ingresos, volumen de servicios y datos clave para entender el desempeño de tu negocio sin depender de hojas de cálculo.
-            </p>
-
-            <p
-              class="mt-4 border-l-2 border-cyan-400/70 pl-3 text-sm leading-relaxed text-slate-400"
-              data-es="Fideliza a tus clientes, proyecta orden, eficiencia y confianza en cada servicio."
-              data-en="Leave the notebook behind. Build customer loyalty by projecting order, transparency, and total trust in every service."
-            >
-              Convierte la información operativa en decisiones más rápidas.
-            </p>
+            <h3 class="text-xl font-bold text-white">Nail World Studio</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">Sistema optimizado para salones de belleza y estética, enfocado en agenda de citas, control de profesionales y gestión de ingresos.</p>
           </div>
-
-          <a
-            href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20conocer%20el%20m%C3%B3dulo%20de%20M%C3%A9tricas%20y%20Anal%C3%ADtica%20Operativa."
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Consultar el módulo de Métricas y Analítica Operativa por WhatsApp"
-            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-cyan-500/35 bg-cyan-500/10 px-4 py-3 text-center text-sm font-semibold text-cyan-200 transition duration-200 hover:border-cyan-400/60 hover:bg-cyan-500/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16] active:scale-[0.98]"
-          >
-            <span data-es="Probar Demo MotoTaller" data-en="Try MotoWorkshop Demo">Consultar este módulo</span>
-            <i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i>
+          <a href="https://nail-world-app.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 text-sm font-semibold transition-all">
+            <span>Probar Demo Nail World</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
         </article>
-      </div>
 
-      <!--
-        Activa este bloque solo cuando tengas testimonios, logos de clientes
-        o métricas verificables tras el lanzamiento.
-
-      <div class="mt-14 rounded-2xl border border-slate-800 bg-slate-900/50 p-6 text-center sm:p-8">
-        <p class="text-sm font-medium text-slate-300">
-          Empresas de distintos sectores ya optimizan su operación con GabSoftX.
-        </p>
       </div>
-      -->
     </section>
 
-    <!-- Asistente por WhatsApp -->
-    <section aria-labelledby="asistente-title" class="px-0">
-      <div class="card-asistente">
-        <div class="asistente-icon" aria-hidden="true">
-          <i data-lucide="messages-square" class="h-6 w-6"></i>
+    <!-- Sección de Contacto Directo / WhatsApp -->
+    <section id="contacto" class="max-w-5xl mx-auto px-6 py-12">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 text-center space-y-6 relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <h2 class="text-2xl sm:text-3xl font-bold text-white" data-es="¿Listo para optimizar la gestión de tu negocio?" data-en="Ready to optimize your business management?">¿Listo para optimizar la gestión de tu negocio?</h2>
+        <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto" data-es="Contáctanos de forma inmediata para recibir asesoría técnica y evaluar una solución a la medida." data-en="Contact us immediately for technical advice and evaluate a tailored solution.">Contáctanos de forma inmediata para recibir asesoría técnica y evaluar una solución a la medida.</p>
+        
+        <div class="flex flex-wrap justify-center gap-4 pt-2">
+          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20iniciar%20una%20consultor%C3%ADa." target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/25 flex items-center gap-2 transition-all">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            <span>Iniciar chat por WhatsApp</span>
+          </a>
+          <a href="mailto:contacto@gabsoftx.com" class="px-6 py-3.5 rounded-xl glass-card hover:bg-slate-800 text-slate-200 font-semibold text-sm flex items-center gap-2 transition-all">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+            <span>Enviar correo electrónico</span>
+          </a>
         </div>
-
-        <h2
-          id="asistente-title"
-          data-es="Habla con nuestro asistente de soluciones"
-          data-en="Talk to our solutions assistant"
-        >
-          Habla con nuestro asistente de soluciones
-        </h2>
-
-        <p
-          class="asistente-subtitle"
-          data-es="Obtén información sobre módulos, cotizaciones y demostraciones por WhatsApp."
-          data-en="Get information about modules, quotes, and demos through WhatsApp."
-        >
-          Obtén información sobre módulos, cotizaciones y demostraciones por WhatsApp.
-        </p>
-
-        <a
-          class="btn-primary-chat"
-          href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20me%20gustar%C3%ADa%20iniciar%20una%20consultor%C3%ADa."
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Iniciar una conversación de consultoría con GabSoftX por WhatsApp"
-        >
-          <i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i>
-          <span data-es="Iniciar chat de consultoría" data-en="Start a consultation chat">
-            Iniciar chat de consultoría
-          </span>
-        </a>
-
-        <p
-          class="asistente-badge"
-          data-es="Respuesta inmediata · Atención 24/7"
-          data-en="Immediate response · 24/7 support"
-        >
-          Respuesta inmediata · Atención 24/7
-        </p>
-      </div>
-    </section>
-
-    <!-- CTA empresarial -->
-    <section class="footer-cta-section" aria-labelledby="asesoria-title">
-      <h2
-        id="asesoria-title"
-        data-es="¿Necesitas una atención personalizada para tu empresa?"
-        data-en="Need personalized support for your company?"
-      >
-        ¿Necesitas una atención personalizada para tu empresa?
-      </h2>
-
-      <p
-        class="footer-cta-subtitle"
-        data-es="Analizamos las necesidades operativas de tu negocio y te presentamos una propuesta a la medida."
-        data-en="We analyze your business operational needs and present a tailored proposal."
-      >
-        Analizamos las necesidades operativas de tu negocio y te presentamos una propuesta a la medida.
-      </p>
-
-      <div class="footer-actions">
-        <a
-          class="btn-outline-whatsapp"
-          href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20busco%20asesor%C3%ADa%20personalizada%20para%20mi%20empresa."
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Solicitar asesoría personalizada por WhatsApp"
-        >
-          <i data-lucide="message-circle" class="h-[18px] w-[18px]" aria-hidden="true"></i>
-          <span data-es="Solicitar asesoría humana" data-en="Request human advice">
-            Solicitar asesoría humana
-          </span>
-        </a>
-
-        <a
-          class="btn-secondary-mail"
-          href="mailto:contacto@gabsoftx.com?subject=Solicitud%20de%20Propuesta%20Comercial"
-          aria-label="Enviar requerimientos comerciales por correo electrónico"
-        >
-          <i data-lucide="mail" class="h-[18px] w-[18px]" aria-hidden="true"></i>
-          <span data-es="Enviar requerimientos por correo" data-en="Send requirements by email">
-            Enviar requerimientos por correo
-          </span>
-        </a>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer id="contacto" class="relative z-10 border-t border-slate-800/80 bg-slate-950 py-12">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2
-             <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800/80 pt-8 text-xs text-slate-400 sm:flex-row">
-        <div>
-          <span class="font-bold text-slate-300">GabSoftX</span>
-          <span aria-hidden="true"> — </span>
-          <span
-            data-es="Desarrollando el futuro de la gestión operativa."
-            data-en="Building the future of operational management."
-          >
-            Desarrollando el futuro de la gestión operativa.
-          </span>
-        </div>
-
-        <p>
-          &copy; <span id="current-year"></span> GabSoftX.
-          <span data-es="Todos los derechos reservados." data-en="All rights reserved.">
-            Todos los derechos reservados.
-          </span>
-        </p>
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div>
+        <span class="font-bold text-slate-200">GabSoftX</span> — <span data-es="Desarrollo de software y gestión operativa." data-en="Software development and operational management.">Desarrollo de software y gestión operativa.</span>
+      </div>
+      <div>
+        &copy; <span id="current-year"></span> GabSoftX. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span>
       </div>
     </div>
   </footer>
 
+  <!-- Script de Interactividad (Idioma y Lucide Icons) -->
   <script>
     function switchLanguage(lang) {
-      const selectedLanguage = lang === "en" ? "en" : "es";
-      const elements = document.querySelectorAll("[data-es][data-en]");
-
-      elements.forEach((element) => {
-        element.textContent =
-          selectedLanguage === "en"
-            ? element.dataset.en
-            : element.dataset.es;
+      const selectedLang = lang === "en" ? "en" : "es";
+      document.querySelectorAll("[data-es][data-en]").forEach(el => {
+        el.textContent = selectedLang === "en" ? el.dataset.en : el.dataset.es;
       });
 
       const btnEs = document.getElementById("btn-es");
       const btnEn = document.getElementById("btn-en");
-
-      if (btnEs && btnEn) {
-        btnEs.className =
-          selectedLanguage === "es"
-            ? "font-bold text-indigo-400 underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
-            : "text-slate-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300";
-
-        btnEn.className =
-          selectedLanguage === "en"
-            ? "font-bold text-indigo-400 underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
-            : "text-slate-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300";
-
-        btnEs.setAttribute("aria-pressed", String(selectedLanguage === "es"));
-        btnEn.setAttribute("aria-pressed", String(selectedLanguage === "en"));
+      if(btnEs && btnEn) {
+        btnEs.className = selectedLang === "es" ? "font-bold text-blue-400 underline" : "text-slate-400 hover:text-white";
+        btnEn.className = selectedLang === "en" ? "font-bold text-blue-400 underline" : "text-slate-400 hover:text-white";
       }
-
-      document.documentElement.lang = selectedLanguage;
-
-      try {
-        localStorage.setItem("gabsoftx-language", selectedLanguage);
-      } catch (error) {
-        console.warn("No fue posible guardar la preferencia de idioma.", error);
-      }
-    }
-
-    function initializeLanguage() {
-      let savedLanguage = "es";
-
-      try {
-        savedLanguage = localStorage.getItem("gabsoftx-language") || "es";
-      } catch (error) {
-        console.warn("No fue posible leer la preferencia de idioma.", error);
-      }
-
-      switchLanguage(savedLanguage);
-    }
-
-    function initializeIcons() {
-      if (window.lucide) {
-        window.lucide.createIcons();
-      }
-    }
-
-    function setCurrentYear() {
-      const currentYearElement = document.getElementById("current-year");
-
-      if (currentYearElement) {
-        currentYearElement.textContent = new Date().getFullYear();
-      }
+      document.documentElement.lang = selectedLang;
+      try { localStorage.setItem("gabsoftx-lang", selectedLang); } catch(e){}
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      const btnEs = document.getElementById("btn-es");
-      const btnEn = document.getElementById("btn-en");
+      document.getElementById("btn-es")?.addEventListener("click", () => switchLanguage("es"));
+      document.getElementById("btn-en")?.addEventListener("click", () => switchLanguage("en"));
+      
+      const savedLang = localStorage.getItem("gabsoftx-lang") || "es";
+      switchLanguage(savedLang);
 
-      if (btnEs) {
-        btnEs.addEventListener("click", () => switchLanguage("es"));
-      }
+      const yearEl = document.getElementById("current-year");
+      if(yearEl) yearEl.textContent = new Date().getFullYear();
 
-      if (btnEn) {
-        btnEn.addEventListener("click", () => switchLanguage("en"));
-      }
-
-      initializeLanguage();
-      setCurrentYear();
-      initializeIcons();
+      if(window.lucide) window.lucide.createIcons();
     });
   </script>
 </body>
