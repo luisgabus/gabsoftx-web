@@ -22,6 +22,18 @@
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title: 'GabSoftX Landing Page',
+      page_location: window.location.href
+    });
+  </script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons (carga diferida) -->
@@ -220,7 +232,7 @@
             <h3 class="text-xl font-bold text-white">CarWash Pro Management</h3>
             <p class="text-sm text-slate-300 leading-relaxed" data-es="Plataforma integral para centros de lavado con control de turnos, comisiones e inventario protegido por inquilino." data-en="Comprehensive platform for car wash centers with shift control, commissions, and tenant-protected inventory.">Plataforma integral para centros de lavado con control de turnos, comisiones e inventario protegido por inquilino.</p>
           </div>
-          <a href="https://exact-screenshot-six.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-200 hover:text-white border border-blue-500/40 text-sm font-semibold transition-all">
+          <a href="https://exact-screenshot-six.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-200 hover:text-white border border-blue-500/40 text-sm font-semibold transition-all" onclick="gtag('event', 'demo_link_click', { demo_type: 'CarWash', link_location: 'solutions_section' });">
             <span data-es="Explorar Demo CarWash" data-en="Explore CarWash Demo">Explorar Demo CarWash</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
@@ -235,7 +247,7 @@
             <h3 class="text-xl font-bold text-white">Nail World Studio</h3>
             <p class="text-sm text-slate-300 leading-relaxed" data-es="Sistema optimizado para salones de belleza enfocado en agenda de citas, profesionales y gestión de ingresos." data-en="Optimized system for beauty salons focused on appointment scheduling, professionals, and revenue management.">Sistema optimizado para salones de belleza enfocado en agenda de citas, profesionales y gestión de ingresos.</p>
           </div>
-          <a href="https://nail-world-app.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-200 hover:text-white border border-indigo-500/40 text-sm font-semibold transition-all">
+          <a href="https://nail-world-app.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-200 hover:text-white border border-indigo-500/40 text-sm font-semibold transition-all" onclick="gtag('event', 'demo_link_click', { demo_type: 'NailWorld', link_location: 'solutions_section' });">
             <span data-es="Explorar Demo Nail World" data-en="Explore Nail World Demo">Explorar Demo Nail World</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
@@ -253,7 +265,7 @@
             </div>
             <p class="text-sm text-slate-300 leading-relaxed" data-es="Módulo especializado en gestión de mantenimientos, historial por placa y órdenes de servicio técnico." data-en="Specialized module for maintenance management, license plate history, and technical service orders.">Módulo especializado en gestión de mantenimientos, historial por placa y órdenes de servicio técnico.</p>
           </div>
-          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20MotoTaller." target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-200 hover:text-white border border-cyan-500/40 text-sm font-semibold transition-all">
+          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20MotoTaller." target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-200 hover:text-white border border-cyan-500/40 text-sm font-semibold transition-all" onclick="gtag('event', 'whatsapp_click', { interest: 'MotoTaller' });">
             <span data-es="Consultar este módulo" data-en="Inquire about this module">Consultar este módulo</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
@@ -436,6 +448,14 @@
         title.textContent = isEnglish ? 'Nail World Auto-setup' : 'Auto-alta Nail World';
       }
       
+      // Track evento de apertura de modal
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'modal_open', { 
+          demo_type: type,
+          page_location: window.location.href 
+        });
+      }
+      
       // Resetear estado del modal
       document.getElementById('stepForm').classList.remove('hidden');
       document.getElementById('stepSuccess').classList.add('hidden');
@@ -510,6 +530,15 @@
       // Ocultar errores previos
       generalError.classList.add('hidden');
       
+      // Track evento de submit
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', { 
+          demo_type: selectedDemoType,
+          business_name: bizName,
+          form_location: 'onboarding_modal'
+        });
+      }
+      
       // Estado de loading
       btn.disabled = true;
       btnSpinner.classList.remove('hidden');
@@ -540,6 +569,16 @@
 
         if (error) {
           console.error('Supabase error:', error);
+          
+          // Track error de formulario
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_error', { 
+              error_type: error.code || 'unknown',
+              error_message: error.message,
+              demo_type: selectedDemoType
+            });
+          }
+          
           throw error;
         }
 
@@ -547,6 +586,15 @@
         generatedDemoUrl = selectedDemoType === 'CarWash' 
           ? `https://exact-screenshot-six.vercel.app?business_id=${data.id}` 
           : `https://nail-world-app.vercel.app?business_id=${data.id}`;
+
+        // Track éxito de creación de demo
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'demo_created', { 
+            demo_type: selectedDemoType,
+            business_name: bizName,
+            business_id: data.id
+          });
+        }
 
         // Mostrar paso de éxito
         document.getElementById('stepForm').classList.add('hidden');
@@ -556,6 +604,13 @@
         // Configurar botón de redirección
         const redirectBtn = document.getElementById('redirectBtn');
         redirectBtn.onclick = () => {
+          // Track clic en redirección
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'demo_redirect', { 
+              demo_type: selectedDemoType,
+              demo_url: generatedDemoUrl
+            });
+          }
           window.location.href = generatedDemoUrl;
         };
 
@@ -600,6 +655,14 @@
       if(btnEs && btnEn) {
         btnEs.className = selectedLang === "es" ? "font-bold text-blue-400 underline" : "text-slate-400 hover:text-white";
         btnEn.className = selectedLang === "en" ? "font-bold text-blue-400 underline" : "text-slate-400 hover:text-white";
+        
+        // Track cambio de idioma
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'language_change', { 
+            new_language: selectedLang,
+            previous_language: selectedLang === 'en' ? 'es' : 'en'
+          });
+        }
       }
       document.documentElement.lang = selectedLang;
       try { localStorage.setItem("gabsoftx-lang", selectedLang); } catch(e){}
