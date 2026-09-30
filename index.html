@@ -79,7 +79,6 @@
   <!-- Hero Section -->
   <main id="inicio">
     <section class="relative min-h-[90vh] flex items-center justify-center px-6 py-20 overflow-hidden">
-      <!-- Luces ambientales difuminadas de fondo -->
       <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none"></div>
       <div class="absolute bottom-10 right-10 w-[350px] h-[350px] bg-indigo-600/10 blur-[100px] rounded-full pointer-events-none"></div>
 
@@ -118,7 +117,7 @@
           </div>
         </div>
 
-        <!-- Mockup Visual Dinámico (Estilo Panel Enterprise) -->
+        <!-- Mockup Visual Dinámico -->
         <div class="lg:col-span-5">
           <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl glass-card p-2 shadow-2xl">
             <div class="bg-slate-950/90 rounded-xl p-5 border border-slate-800/80 space-y-4">
@@ -163,42 +162,60 @@
       </div>
     </section>
 
-    <!-- Sección de Soluciones / Demos -->
+    <!-- Sección de Soluciones / Demos (3 Tarjetas) -->
     <section id="soluciones" class="max-w-7xl mx-auto px-6 py-24">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <span class="text-xs font-semibold tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full uppercase">Ecosistema Multi-Inquilino</span>
+        <span class="text-xs font-semibold tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full uppercase" data-es="PLATAFORMA MULTISECTORIAL" data-en="MULTI-INDUSTRY PLATFORM">PLATAFORMA MULTISECTORIAL</span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white" data-es="Soluciones especializadas por sector" data-en="Specialized solutions by industry">Soluciones especializadas por sector</h2>
         <p class="text-slate-400 text-base" data-es="Explora las aplicaciones operativas adaptadas a las necesidades reales de cada mercado." data-en="Explore operational applications tailored to real market needs.">Explora las aplicaciones operativas adaptadas a las necesidades reales de cada mercado.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         
-        <!-- Card CarWash -->
+        <!-- Tarjeta 1: CarWash -->
         <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
               <i data-lucide="car" class="w-6 h-6"></i>
             </div>
             <h3 class="text-xl font-bold text-white">CarWash Pro Management</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">Plataforma integral para centros de lavado automotriz con control de turnos, comisiones de personal, inventario y seguridad por inquilino.</p>
+            <p class="text-sm text-slate-300 leading-relaxed" data-es="Plataforma integral para centros de lavado automotriz con control de turnos, comisiones de personal, inventario y seguridad por inquilino." data-en="Comprehensive platform for car wash centers with shift control, staff commissions, inventory, and tenant-based security.">Plataforma integral para centros de lavado automotriz con control de turnos, comisiones de personal, inventario y seguridad por inquilino.</p>
           </div>
           <a href="https://exact-screenshot-six.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 text-sm font-semibold transition-all">
-            <span>Probar Demo CarWash</span>
+            <span data-es="Probar Demo CarWash" data-en="Try CarWash Demo">Probar Demo CarWash</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
         </article>
 
-        <!-- Card NailWorld -->
+        <!-- Tarjeta 2: NailWorld -->
         <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
               <i data-lucide="sparkles" class="w-6 h-6"></i>
             </div>
             <h3 class="text-xl font-bold text-white">Nail World Studio</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">Sistema optimizado para salones de belleza y estética, enfocado en agenda de citas, control de profesionales y gestión de ingresos.</p>
+            <p class="text-sm text-slate-300 leading-relaxed" data-es="Sistema optimizado para salones de belleza y estética, enfocado en agenda de citas, control de profesionales y gestión de ingresos." data-en="Optimized system for beauty and aesthetic salons, focused on appointment scheduling, staff control, and revenue management.">Sistema optimizado para salones de belleza y estética, enfocado en agenda de citas, control de profesionales y gestión de ingresos.</p>
           </div>
           <a href="https://nail-world-app.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 text-sm font-semibold transition-all">
-            <span>Probar Demo Nail World</span>
+            <span data-es="Probar Demo Nail World" data-en="Try Nail World Demo">Probar Demo Nail World</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </article>
+
+        <!-- Tarjeta 3: MotoTaller / Próximo Módulo (Placeholder) -->
+        <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <i data-lucide="wrench" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold text-white">MotoTaller & Servicios</h3>
+              <span class="px-2 py-0.5 text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 rounded" data-es="Próximamente" data-en="Coming Soon">Próximamente</span>
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed" data-es="Módulo especializado en gestión de mantenimientos, historial por placa, control de repuestos y órdenes de servicio técnica." data-en="Specialized module for maintenance management, license plate history, parts control, and technical service orders.">Módulo especializado en gestión de mantenimientos, historial por placa, control de repuestos y órdenes de servicio técnica.</p>
+          </div>
+          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20el%20m%C3%B3dulo%20MotoTaller." target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-300 hover:text-white border border-cyan-500/30 text-sm font-semibold transition-all">
+            <span data-es="Consultar este módulo" data-en="Inquire about this module">Consultar este módulo</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
         </article>
