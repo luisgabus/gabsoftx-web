@@ -308,13 +308,14 @@
       const bizName = document.getElementById('bizName').value.trim();
       const ownerName = document.getElementById('ownerName').value.trim();
       const ownerPhone = document.getElementById('ownerPhone').value.trim();
-      const subdomain = 'demo-' + Math.random().toString(36.substring(2, 7));
+      
+      // Corrección del error de sintaxis en el generador aleatorio
+      const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
 
       btn.disabled = true;
       btnText.textContent = 'Generando entorno seguro...';
 
       try {
-        // Inserción automática en la tabla businesses de Supabase con estado inicial 'trial' (15 días)
         const { data, error } = await supabaseClient
           .from('businesses')
           .insert({
@@ -331,7 +332,6 @@
 
         if (error) throw error;
 
-        // Redirección automática al demo correspondiente con el ID del negocio creado
         const targetUrl = selectedDemoType === 'CarWash' 
           ? `https://exact-screenshot-six.vercel.app?business_id=${data.id}` 
           : `https://nail-world-app.vercel.app?business_id=${data.id}`;
@@ -349,7 +349,10 @@
     document.addEventListener("DOMContentLoaded", () => {
       const yearEl = document.getElementById("current-year");
       if(yearEl) yearEl.textContent = new Date().getFullYear();
-      if(window.lucide) window.lucide.createIcons();
+      
+      if(window.lucide) {
+        window.lucide.createIcons();
+      }
     });
   </script>
 </body>
