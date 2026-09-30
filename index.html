@@ -11,7 +11,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <!-- Google Fonts: Plus Jakarta Sans para estética ejecutiva moderna -->
+  <!-- Supabase JS Client para el auto-onboarding automático -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -21,14 +23,26 @@
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
-      background-color: #090D16;
+      background-color: #060911;
       color: #f8fafc;
+      position: relative;
     }
+    
+    /* EFECTO DE ILUMINACIÓN PERIMETRAL */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      box-shadow: inset 0 0 120px rgba(59, 130, 246, 0.08), inset 0 0 40px rgba(99, 102, 241, 0.05);
+      pointer-events: none;
+      z-index: 99;
+    }
+
     .bg-grid {
       background-size: 32px 32px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
     }
     .glass-card {
       background: rgba(15, 23, 42, 0.75);
@@ -44,6 +58,10 @@
 </head>
 
 <body class="min-h-screen bg-grid flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+
+  <!-- Luces ambientales esquineras adicionales -->
+  <div class="absolute top-0 left-0 w-96 h-96 bg-blue-600/10 blur-[150px] pointer-events-none"></div>
+  <div class="absolute top-1/3 right-0 w-96 h-96 bg-indigo-600/10 blur-[150px] pointer-events-none"></div>
 
   <!-- Navegación Principal -->
   <nav class="sticky top-0 z-50 border-b border-slate-800/80 bg-[#090D16]/90 backdrop-blur-md">
@@ -61,7 +79,6 @@
         <a href="#soluciones" class="hidden sm:inline-block text-sm font-medium text-slate-300 hover:text-white transition-colors">Ecosistema</a>
         <a href="#contacto" class="hidden sm:inline-block text-sm font-medium text-slate-300 hover:text-white transition-colors">Contacto</a>
 
-        <!-- Selector de Idioma -->
         <div class="flex items-center gap-1.5 rounded-full border border-slate-800 bg-slate-900/80 px-3 py-1 text-xs font-semibold">
           <i data-lucide="globe" class="h-3.5 w-3.5 text-blue-400"></i>
           <button id="btn-es" type="button" class="font-bold text-blue-400 underline">ES</button>
@@ -69,9 +86,9 @@
           <button id="btn-en" type="button" class="text-slate-400 hover:text-white">EN</button>
         </div>
 
-        <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20agendar%20una%20demo" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-500 transition-all">
+        <button onclick="openModal('CarWash')" class="hidden md:inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 hover:bg-blue-500 transition-all">
           <span data-es="Solicitar Demo" data-en="Request Demo">Solicitar Demo</span>
-        </a>
+        </button>
       </div>
     </div>
   </nav>
@@ -79,9 +96,6 @@
   <!-- Hero Section -->
   <main id="inicio">
     <section class="relative min-h-[90vh] flex items-center justify-center px-6 py-20 overflow-hidden">
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none"></div>
-      <div class="absolute bottom-10 right-10 w-[350px] h-[350px] bg-indigo-600/10 blur-[100px] rounded-full pointer-events-none"></div>
-
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
@@ -103,17 +117,17 @@
           </p>
 
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-            <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20agendar%20una%20demo" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-center shadow-xl shadow-blue-600/30 hover:scale-[1.02] active:scale-95 transition-all">
-              <span data-es="Agenda una demo de 20 min" data-en="Book a 20-minute demo">Agenda una demo de 20 min</span>
-            </a>
+            <button onclick="openModal('CarWash')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-center shadow-xl shadow-blue-600/30 hover:scale-[1.02] active:scale-95 transition-all">
+              <span data-es="Inicia tu Demo en 1 Click" data-en="Start your Demo in 1 Click">Inicia tu Demo en 1 Click</span>
+            </button>
             <a href="#soluciones" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-slate-200 font-semibold text-center hover:bg-slate-800/80 transition-all">
               <span data-es="Explorar Ecosistema" data-en="Explore Ecosystem">Explorar Ecosistema</span>
             </a>
           </div>
 
           <div class="flex items-center justify-center lg:justify-start gap-6 pt-2 text-xs text-slate-400">
-            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Arquitectura RLS Segura</span>
-            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Kill Switch en Vivo</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Auto-alta instantánea</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Sin tarjeta de crédito</span>
           </div>
         </div>
 
@@ -144,15 +158,11 @@
 
               <div class="bg-slate-900/90 border border-slate-800/80 p-4 rounded-xl space-y-3">
                 <div class="flex justify-between text-xs font-medium">
-                  <span class="text-slate-300">Estado de Seguridad Global</span>
-                  <span class="text-blue-400">Protegido</span>
+                  <span class="text-slate-300">Seguridad RLS & Kill Switch</span>
+                  <span class="text-emerald-400">Óptimo</span>
                 </div>
                 <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                   <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-full w-full"></div>
-                </div>
-                <div class="text-[11px] text-slate-400 flex items-center justify-between pt-1">
-                  <span>RLS y Kill Switch sincronizados</span>
-                  <span class="text-emerald-400 font-mono">OK</span>
                 </div>
               </div>
             </div>
@@ -162,47 +172,47 @@
       </div>
     </section>
 
-    <!-- Sección de Soluciones / Demos (3 Tarjetas) -->
+    <!-- Sección de Soluciones / Demos -->
     <section id="soluciones" class="max-w-7xl mx-auto px-6 py-24">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <span class="text-xs font-semibold tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full uppercase" data-es="PLATAFORMA MULTISECTORIAL" data-en="MULTI-INDUSTRY PLATFORM">PLATAFORMA MULTISECTORIAL</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white" data-es="Soluciones especializadas por sector" data-en="Specialized solutions by industry">Soluciones especializadas por sector</h2>
-        <p class="text-slate-400 text-base" data-es="Explora las aplicaciones operativas adaptadas a las necesidades reales de cada mercado." data-en="Explore operational applications tailored to real market needs.">Explora las aplicaciones operativas adaptadas a las necesidades reales de cada mercado.</p>
+        <span class="text-xs font-semibold tracking-wider text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full uppercase">PLATAFORMA MULTISECTORIAL</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white">Soluciones especializadas por sector</h2>
+        <p class="text-slate-400 text-base">Registra tus datos y prueba el entorno operativo en vivo de manera inmediata.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         
-        <!-- Tarjeta 1: CarWash -->
+        <!-- Tarjeta CarWash -->
         <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
               <i data-lucide="car" class="w-6 h-6"></i>
             </div>
             <h3 class="text-xl font-bold text-white">CarWash Pro Management</h3>
-            <p class="text-sm text-slate-300 leading-relaxed" data-es="Plataforma integral para centros de lavado automotriz con control de turnos, comisiones de personal, inventario y seguridad por inquilino." data-en="Comprehensive platform for car wash centers with shift control, staff commissions, inventory, and tenant-based security.">Plataforma integral para centros de lavado automotriz con control de turnos, comisiones de personal, inventario y seguridad por inquilino.</p>
+            <p class="text-sm text-slate-300 leading-relaxed">Plataforma integral para centros de lavado con control de turnos, comisiones e inventario protegido por inquilino.</p>
           </div>
-          <a href="https://exact-screenshot-six.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 text-sm font-semibold transition-all">
-            <span data-es="Probar Demo CarWash" data-en="Try CarWash Demo">Probar Demo CarWash</span>
+          <button onclick="openModal('CarWash')" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 text-sm font-semibold transition-all">
+            <span>Iniciar Demo CarWash</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
+          </button>
         </article>
 
-        <!-- Tarjeta 2: NailWorld -->
+        <!-- Tarjeta NailWorld -->
         <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
               <i data-lucide="sparkles" class="w-6 h-6"></i>
             </div>
             <h3 class="text-xl font-bold text-white">Nail World Studio</h3>
-            <p class="text-sm text-slate-300 leading-relaxed" data-es="Sistema optimizado para salones de belleza y estética, enfocado en agenda de citas, control de profesionales y gestión de ingresos." data-en="Optimized system for beauty and aesthetic salons, focused on appointment scheduling, staff control, and revenue management.">Sistema optimizado para salones de belleza y estética, enfocado en agenda de citas, control de profesionales y gestión de ingresos.</p>
+            <p class="text-sm text-slate-300 leading-relaxed">Sistema optimizado para salones de belleza enfocado en agenda de citas, profesionales y gestión de ingresos.</p>
           </div>
-          <a href="https://nail-world-app.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 text-sm font-semibold transition-all">
-            <span data-es="Probar Demo Nail World" data-en="Try Nail World Demo">Probar Demo Nail World</span>
+          <button onclick="openModal('NailWorld')" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/30 text-sm font-semibold transition-all">
+            <span>Iniciar Demo Nail World</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
+          </button>
         </article>
 
-        <!-- Tarjeta 3: MotoTaller / Próximo Módulo (Placeholder) -->
+        <!-- Tarjeta MotoTaller -->
         <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
@@ -210,81 +220,135 @@
             </div>
             <div class="flex items-center justify-between">
               <h3 class="text-xl font-bold text-white">MotoTaller & Servicios</h3>
-              <span class="px-2 py-0.5 text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 rounded" data-es="Próximamente" data-en="Coming Soon">Próximamente</span>
+              <span class="px-2 py-0.5 text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 rounded">Próximamente</span>
             </div>
-            <p class="text-sm text-slate-300 leading-relaxed" data-es="Módulo especializado en gestión de mantenimientos, historial por placa, control de repuestos y órdenes de servicio técnica." data-en="Specialized module for maintenance management, license plate history, parts control, and technical service orders.">Módulo especializado en gestión de mantenimientos, historial por placa, control de repuestos y órdenes de servicio técnica.</p>
+            <p class="text-sm text-slate-300 leading-relaxed">Módulo especializado en gestión de mantenimientos, historial por placa y órdenes de servicio técnico.</p>
           </div>
-          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20el%20m%C3%B3dulo%20MotoTaller." target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-300 hover:text-white border border-cyan-500/30 text-sm font-semibold transition-all">
-            <span data-es="Consultar este módulo" data-en="Inquire about this module">Consultar este módulo</span>
+          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20MotoTaller." target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-300 hover:text-white border border-cyan-500/30 text-sm font-semibold transition-all">
+            <span>Consultar este módulo</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
         </article>
 
       </div>
     </section>
-
-    <!-- Sección de Contacto Directo / WhatsApp -->
-    <section id="contacto" class="max-w-5xl mx-auto px-6 py-12">
-      <div class="glass-card rounded-3xl p-8 sm:p-12 text-center space-y-6 relative overflow-hidden">
-        <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        
-        <h2 class="text-2xl sm:text-3xl font-bold text-white" data-es="¿Listo para optimizar la gestión de tu negocio?" data-en="Ready to optimize your business management?">¿Listo para optimizar la gestión de tu negocio?</h2>
-        <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto" data-es="Contáctanos de forma inmediata para recibir asesoría técnica y evaluar una solución a la medida." data-en="Contact us immediately for technical advice and evaluate a tailored solution.">Contáctanos de forma inmediata para recibir asesoría técnica y evaluar una solución a la medida.</p>
-        
-        <div class="flex flex-wrap justify-center gap-4 pt-2">
-          <a href="https://wa.me/573176857844?text=Hola%20GabSoftX%2C%20quiero%20iniciar%20una%20consultor%C3%ADa." target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/25 flex items-center gap-2 transition-all">
-            <i data-lucide="message-circle" class="w-5 h-5"></i>
-            <span>Iniciar chat por WhatsApp</span>
-          </a>
-          <a href="mailto:contacto@gabsoftx.com" class="px-6 py-3.5 rounded-xl glass-card hover:bg-slate-800 text-slate-200 font-semibold text-sm flex items-center gap-2 transition-all">
-            <i data-lucide="mail" class="w-5 h-5"></i>
-            <span>Enviar correo electrónico</span>
-          </a>
-        </div>
-      </div>
-    </section>
   </main>
 
+  <!-- MODAL DE AUTO-ONBOARDING / REGISTRO PARA DEMO -->
+  <div id="demoModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-card rounded-2xl max-w-md w-full p-6 sm:p-8 space-y-6 relative border border-slate-700 shadow-2xl animate-in fade-in zoom-in-95">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div>
+        <h3 id="modalTitle" class="text-xl font-bold text-white">Configura tu Demo</h3>
+        <p class="text-xs text-slate-400 mt-1">Ingresa tus datos para registrar tu negocio temporalmente y darte acceso inmediato.</p>
+      </div>
+
+      <form id="onboardingForm" onsubmit="handleDemoSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Nombre del Negocio</label>
+          <input type="text" id="bizName" required placeholder="Ej. CarWash Express Pereira" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Tu Nombre Completo</label>
+          <input type="text" id="ownerName" required placeholder="Ej. Luis Usuga" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Teléfono o WhatsApp</label>
+          <input type="tel" id="ownerPhone" required placeholder="Ej. 3001234567" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none">
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
+          <span id="btnText">Crear cuenta y entrar al Demo</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-slate-950 py-10">
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-10 relative z-10">
     <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
       <div>
-        <span class="font-bold text-slate-200">GabSoftX</span> — <span data-es="Desarrollo de software y gestión operativa." data-en="Software development and operational management.">Desarrollo de software y gestión operativa.</span>
+        <span class="font-bold text-slate-200">GabSoftX</span> — Gestión Operativa SaaS.
       </div>
       <div>
-        &copy; <span id="current-year"></span> GabSoftX. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span>
+        &copy; <span id="current-year"></span> GabSoftX. Todos los derechos reservados.
       </div>
     </div>
   </footer>
 
-  <!-- Script de Interactividad (Idioma y Lucide Icons) -->
+  <!-- SCRIPTS DE CONFIGURACIÓN Y SUPABASE -->
   <script>
-    function switchLanguage(lang) {
-      const selectedLang = lang === "en" ? "en" : "es";
-      document.querySelectorAll("[data-es][data-en]").forEach(el => {
-        el.textContent = selectedLang === "en" ? el.dataset.en : el.dataset.es;
-      });
+    // Credenciales públicas de tu Supabase (Asegúrate de colocar las de tu proyecto en producción)
+    const SUPABASE_URL = "https://tudominio.supabase.co"; 
+    const SUPABASE_ANON_KEY = "tu-anon-key-publica";
+    
+    // Instancia del cliente de Supabase
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-      const btnEs = document.getElementById("btn-es");
-      const btnEn = document.getElementById("btn-en");
-      if(btnEs && btnEn) {
-        btnEs.className = selectedLang === "es" ? "font-bold text-blue-400 underline" : "text-slate-400 hover:text-white";
-        btnEn.className = selectedLang === "en" ? "font-bold text-blue-400 underline" : "text-slate-400 hover:text-white";
+    let selectedDemoType = 'CarWash';
+
+    function openModal(type) {
+      selectedDemoType = type;
+      document.getElementById('modalTitle').textContent = type === 'CarWash' ? 'Demo CarWash Pro Management' : 'Demo Nail World Studio';
+      document.getElementById('demoModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('demoModal').classList.add('hidden');
+    }
+
+    async function handleDemoSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      
+      const bizName = document.getElementById('bizName').value.trim();
+      const ownerName = document.getElementById('ownerName').value.trim();
+      const ownerPhone = document.getElementById('ownerPhone').value.trim();
+      const subdomain = 'demo-' + Math.random().toString(36.substring(2, 7));
+
+      btn.disabled = true;
+      btnText.textContent = 'Generando entorno seguro...';
+
+      try {
+        // Inserción automática en la tabla businesses de Supabase con estado inicial 'trial' (15 días)
+        const { data, error } = await supabaseClient
+          .from('businesses')
+          .insert({
+            name: bizName,
+            subdomain: subdomain,
+            owner_name: ownerName,
+            owner_phone: ownerPhone,
+            subscription_status: 'trial',
+            plan_type: 'mensual',
+            expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
+          })
+          .select()
+          .single();
+
+        if (error) throw error;
+
+        // Redirección automática al demo correspondiente con el ID del negocio creado
+        const targetUrl = selectedDemoType === 'CarWash' 
+          ? `https://exact-screenshot-six.vercel.app?business_id=${data.id}` 
+          : `https://nail-world-app.vercel.app?business_id=${data.id}`;
+
+        window.location.href = targetUrl;
+
+      } catch (err) {
+        console.error('Error al registrar el demo:', err);
+        alert('No se pudo inicializar el entorno. Por favor, intenta de nuevo o contacta por WhatsApp.');
+        btn.disabled = false;
+        btnText.textContent = 'Crear cuenta y entrar al Demo';
       }
-      document.documentElement.lang = selectedLang;
-      try { localStorage.setItem("gabsoftx-lang", selectedLang); } catch(e){}
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("btn-es")?.addEventListener("click", () => switchLanguage("es"));
-      document.getElementById("btn-en")?.addEventListener("click", () => switchLanguage("en"));
-      
-      const savedLang = localStorage.getItem("gabsoftx-lang") || "es";
-      switchLanguage(savedLang);
-
       const yearEl = document.getElementById("current-year");
       if(yearEl) yearEl.textContent = new Date().getFullYear();
-
       if(window.lucide) window.lucide.createIcons();
     });
   </script>
