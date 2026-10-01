@@ -349,163 +349,117 @@
     </div>
   </div>
 
-  <!-- MODAL DE POLÍTICA DE PRIVACIDAD -->
+<!-- ========================================== -->
+  <!-- MODALES LEGALES (PRIVACIDAD, TÉRMINOS, COOKIES) -->
+  <!-- ========================================== -->
+
+  <!-- 1. MODAL DE POLÍTICA DE PRIVACIDAD -->
   <div id="privacyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col relative border border-slate-700 shadow-2xl animate-in fade-in zoom-in-95">
-      
-      <!-- Botón de cierre -->
-      <button onclick="closePrivacyModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10">
+      <button type="button" onclick="closePrivacyModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
-
-      <!-- Cabecera del Modal -->
       <div class="px-6 py-5 sm:px-8 sm:py-6 border-b border-slate-800/80 shrink-0">
         <h3 class="text-xl font-bold text-white" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</h3>
         <p class="text-xs text-slate-400 mt-1" data-es="Última actualización: Septiembre 2026" data-en="Last updated: September 2026">Última actualización: Septiembre 2026</p>
       </div>
-
-      <!-- Contenido Legal con Scroll -->
       <div class="px-6 py-6 sm:px-8 sm:py-8 overflow-y-auto text-sm text-slate-300 space-y-5">
-        
         <div>
           <h4 class="text-white font-semibold mb-2">1. Información que recopilamos</h4>
           <p class="leading-relaxed">En GabSoftX recopilamos información personal únicamente cuando interactúas de forma directa con nuestros formularios de registro y auto-alta. Esto incluye tu nombre completo, número de teléfono (WhatsApp) y el nombre de tu negocio. No recolectamos información financiera ni tarjetas de crédito durante el periodo de demostración (Trial).</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">2. Uso de la información</h4>
           <p class="leading-relaxed">Los datos suministrados se utilizan exclusivamente para provisionar tu entorno de pruebas (Demo), crear el subdominio temporal de tu negocio en nuestra infraestructura y brindarte soporte técnico o comercial a través de los canales de contacto autorizados.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">3. Seguridad y Aislamiento de Datos</h4>
           <p class="leading-relaxed">Operamos bajo una estricta arquitectura Multi-Inquilino (Multi-Tenant). Implementamos políticas de seguridad de nivel de fila (Row Level Security) en nuestros servidores (Supabase) para garantizar matemáticamente que la información generada en tu instancia operativa sea inaccesible para otros usuarios o negocios en la plataforma.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">4. Retención y Eliminación</h4>
           <p class="leading-relaxed">Los entornos de prueba y sus datos asociados tienen una vigencia de 15 días. Finalizado este periodo sin una confirmación de suscripción, los registros operativos podrán ser depurados de nuestras bases de datos activas para optimización del sistema.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">5. Derechos del Titular</h4>
           <p class="leading-relaxed">Como titular de los datos, tienes derecho a conocer, actualizar, rectificar o solicitar la eliminación de tu información personal de nuestros servidores en cualquier momento, enviando una solicitud directa a <strong>info@gabsoftx.com</strong> o mediante nuestra línea de soporte por WhatsApp.</p>
         </div>
-
       </div>
-      
-      <!-- Footer del Modal -->
       <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
-        <button onclick="closePrivacyModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700">
-          Entendido
-        </button>
+        <button type="button" onclick="closePrivacyModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700" data-es="Entendido" data-en="Got it">Entendido</button>
       </div>
-
     </div>
   </div>
 
-<!-- MODAL DE TÉRMINOS Y CONDICIONES -->
+  <!-- 2. MODAL DE TÉRMINOS Y CONDICIONES -->
   <div id="termsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col relative border border-slate-700 shadow-2xl animate-in fade-in zoom-in-95">
-      
-      <!-- Botón de cierre -->
-      <button onclick="closeTermsModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10">
+      <button type="button" onclick="closeTermsModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
-
-      <!-- Cabecera del Modal -->
       <div class="px-6 py-5 sm:px-8 sm:py-6 border-b border-slate-800/80 shrink-0">
         <h3 class="text-xl font-bold text-white" data-es="Términos y Condiciones de Uso" data-en="Terms and Conditions of Use">Términos y Condiciones de Uso</h3>
         <p class="text-xs text-slate-400 mt-1" data-es="Última actualización: Septiembre 2026" data-en="Last updated: September 2026">Última actualización: Septiembre 2026</p>
       </div>
-
-      <!-- Contenido Legal con Scroll -->
       <div class="px-6 py-6 sm:px-8 sm:py-8 overflow-y-auto text-sm text-slate-300 space-y-5">
-        
         <div>
           <h4 class="text-white font-semibold mb-2">1. Aceptación del Servicio</h4>
           <p class="leading-relaxed">Al utilizar la funcionalidad de "Auto-alta" o acceder a los entornos de demostración de GabSoftX (CarWash Pro, Nail World, u otros), aceptas someterte a estos términos. Si representas a una empresa, declaras tener la autoridad legal para vincular a dicha entidad a estas condiciones.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">2. Naturaleza del Entorno de Prueba (Trial)</h4>
           <p class="leading-relaxed">El acceso otorgado mediante el auto-onboarding es estrictamente un entorno de evaluación temporal. La duración predeterminada de este periodo es de 15 días calendario. GabSoftX se reserva el derecho de suspender o revocar el acceso a instancias de prueba en cualquier momento si se detecta un uso abusivo de la infraestructura.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">3. Propiedad Intelectual</h4>
-          <p class="leading-relaxed">Todo el código fuente, diseño, arquitectura de base de datos (Supabase), algoritmos y metodologías operativas (incluyendo el modelo ADMIRA, si aplica) desplegados en la plataforma son propiedad intelectual exclusiva de GabSoftX. No está permitida la ingeniería inversa, copia o distribución comercial no autorizada.</p>
+          <p class="leading-relaxed">Todo el código fuente, diseño, arquitectura de base de datos (Supabase), algoritmos y metodologías operativas desplegados en la plataforma son propiedad intelectual exclusiva de GabSoftX. No está permitida la ingeniería inversa, copia o distribución comercial no autorizada.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">4. Limitación de Responsabilidad</h4>
           <p class="leading-relaxed">Los entornos de demostración se proporcionan "tal cual". Durante el periodo de prueba, GabSoftX no asume responsabilidad por pérdida de datos experimentales introducidos por el usuario, caídas del servicio de terceros, ni lucro cesante derivado del uso del software no licenciado para producción formal.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">5. Transición a Plan de Pago</h4>
-          <p class="leading-relaxed">Para preservar los datos ingresados durante el periodo de prueba y garantizar un Acuerdo de Nivel de Servicio (SLA) operativo, el inquilino debe formalizar su plan de suscripción comunicándose con nuestro equipo de consultoría antes del vencimiento del periodo de prueba.</p>
+          <p class="leading-relaxed">Para preservar los datos ingresados durante el periodo de prueba y garantizar un Acuerdo de Nivel de Servicio operativo, el inquilino debe formalizar su plan de suscripción comunicándose con nuestro equipo de consultoría antes del vencimiento del periodo de prueba.</p>
         </div>
-
       </div>
-      
-      <!-- MODAL DE POLÍTICA DE COOKIES -->
+      <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
+        <button type="button" onclick="closeTermsModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700" data-es="Aceptar y Cerrar" data-en="Accept and Close">Aceptar y Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. MODAL DE POLÍTICA DE COOKIES -->
   <div id="cookiesModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col relative border border-slate-700 shadow-2xl animate-in fade-in zoom-in-95">
-      
-      <!-- Botón de cierre -->
       <button type="button" onclick="closeCookiesModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
-
-      <!-- Cabecera del Modal -->
       <div class="px-6 py-5 sm:px-8 sm:py-6 border-b border-slate-800/80 shrink-0">
         <h3 class="text-xl font-bold text-white" data-es="Política de Cookies" data-en="Cookie Policy">Política de Cookies</h3>
         <p class="text-xs text-slate-400 mt-1" data-es="Última actualización: Septiembre 2026" data-en="Last updated: September 2026">Última actualización: Septiembre 2026</p>
       </div>
-
-      <!-- Contenido Legal con Scroll -->
       <div class="px-6 py-6 sm:px-8 sm:py-8 overflow-y-auto text-sm text-slate-300 space-y-5">
-        
         <div>
           <h4 class="text-white font-semibold mb-2">1. ¿Qué son las Cookies?</h4>
           <p class="leading-relaxed">Las cookies son pequeños archivos de texto que se almacenan en tu navegador o dispositivo cuando visitas nuestra landing page o interactúas con los entornos operativos de GabSoftX. Su propósito principal es recordar tus preferencias y asegurar el funcionamiento técnico de la plataforma.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">2. Cookies Estrictamente Necesarias</h4>
           <p class="leading-relaxed">Utilizamos cookies esenciales para el funcionamiento del sistema. Estas incluyen el manejo de tu sesión de usuario en Supabase (autenticación) y la gestión de la preferencia de idioma (Inglés/Español) que elegiste al navegar por nuestra página. Estas cookies no pueden desactivarse, ya que el software no funcionaría correctamente sin ellas.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">3. Cookies Analíticas y de Rendimiento</h4>
           <p class="leading-relaxed">Podemos emplear cookies de análisis de forma anónima para entender cómo los visitantes interactúan con nuestras demostraciones operativas (como CarWash Pro o Nail World). Esto nos ayuda a optimizar la velocidad de carga, la interfaz de usuario (UI) y la experiencia general (UX) del sistema Multi-Inquilino.</p>
         </div>
-
         <div>
           <h4 class="text-white font-semibold mb-2">4. Control y Eliminación</h4>
           <p class="leading-relaxed">Tienes el derecho y la capacidad de configurar tu navegador para rechazar o alertarte sobre estas cookies. Ten en cuenta que, si bloqueas las cookies de autenticación, no podrás ingresar a tu panel de control ni a los entornos de demostración (Trial) de forma segura.</p>
         </div>
-
       </div>
-      
-      <!-- Footer del Modal -->
       <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
-        <button type="button" onclick="closeCookiesModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700" data-es="Entendido" data-en="Got it">
-          Entendido
-        </button>
+        <button type="button" onclick="closeCookiesModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700" data-es="Entendido" data-en="Got it">Entendido</button>
       </div>
-
-    </div>
-  </div>
-
-      <!-- Footer del Modal -->
-      <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
-        <button onclick="closeTermsModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700" data-es="Aceptar y Cerrar" data-en="Accept and Close">
-          Aceptar y Cerrar
-        </button>
-      </div>
-
     </div>
   </div>
   
@@ -659,7 +613,7 @@
     function closeCookiesModal() {
       document.getElementById('cookiesModal').classList.add('hidden');
     }
-    
+
     // Cerrar modal con tecla Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !document.getElementById('demoModal').classList.contains('hidden')) {
