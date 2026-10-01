@@ -449,6 +449,56 @@
 
       </div>
       
+      <!-- MODAL DE POLÍTICA DE COOKIES -->
+  <div id="cookiesModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col relative border border-slate-700 shadow-2xl animate-in fade-in zoom-in-95">
+      
+      <!-- Botón de cierre -->
+      <button type="button" onclick="closeCookiesModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Cabecera del Modal -->
+      <div class="px-6 py-5 sm:px-8 sm:py-6 border-b border-slate-800/80 shrink-0">
+        <h3 class="text-xl font-bold text-white" data-es="Política de Cookies" data-en="Cookie Policy">Política de Cookies</h3>
+        <p class="text-xs text-slate-400 mt-1" data-es="Última actualización: Septiembre 2026" data-en="Last updated: September 2026">Última actualización: Septiembre 2026</p>
+      </div>
+
+      <!-- Contenido Legal con Scroll -->
+      <div class="px-6 py-6 sm:px-8 sm:py-8 overflow-y-auto text-sm text-slate-300 space-y-5">
+        
+        <div>
+          <h4 class="text-white font-semibold mb-2">1. ¿Qué son las Cookies?</h4>
+          <p class="leading-relaxed">Las cookies son pequeños archivos de texto que se almacenan en tu navegador o dispositivo cuando visitas nuestra landing page o interactúas con los entornos operativos de GabSoftX. Su propósito principal es recordar tus preferencias y asegurar el funcionamiento técnico de la plataforma.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">2. Cookies Estrictamente Necesarias</h4>
+          <p class="leading-relaxed">Utilizamos cookies esenciales para el funcionamiento del sistema. Estas incluyen el manejo de tu sesión de usuario en Supabase (autenticación) y la gestión de la preferencia de idioma (Inglés/Español) que elegiste al navegar por nuestra página. Estas cookies no pueden desactivarse, ya que el software no funcionaría correctamente sin ellas.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">3. Cookies Analíticas y de Rendimiento</h4>
+          <p class="leading-relaxed">Podemos emplear cookies de análisis de forma anónima para entender cómo los visitantes interactúan con nuestras demostraciones operativas (como CarWash Pro o Nail World). Esto nos ayuda a optimizar la velocidad de carga, la interfaz de usuario (UI) y la experiencia general (UX) del sistema Multi-Inquilino.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">4. Control y Eliminación</h4>
+          <p class="leading-relaxed">Tienes el derecho y la capacidad de configurar tu navegador para rechazar o alertarte sobre estas cookies. Ten en cuenta que, si bloqueas las cookies de autenticación, no podrás ingresar a tu panel de control ni a los entornos de demostración (Trial) de forma segura.</p>
+        </div>
+
+      </div>
+      
+      <!-- Footer del Modal -->
+      <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
+        <button type="button" onclick="closeCookiesModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700" data-es="Entendido" data-en="Got it">
+          Entendido
+        </button>
+      </div>
+
+    </div>
+  </div>
+
       <!-- Footer del Modal -->
       <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
         <button onclick="closeTermsModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700" data-es="Aceptar y Cerrar" data-en="Accept and Close">
@@ -490,8 +540,7 @@
           <ul class="space-y-2 text-xs text-slate-400">
             <li><button onclick="openPrivacyModal()" class="hover:text-white transition-colors text-left" data-es="Privacidad" data-en="Privacy">Privacidad</button></li>
             <li><button onclick="openTermsModal()" class="hover:text-white transition-colors text-left" data-es="Términos" data-en="Terms">Términos</button></li>
-            <li><a href="#" class="hover:text-white transition-colors" data-es="Cookies" data-en="Cookies">Cookies</a></li>
-          </ul>
+<li><button type="button" onclick="openCookiesModal()" class="hover:text-white transition-colors text-left" data-es="Cookies" data-en="Cookies">Cookies</button></li>          </ul>
         </div>
 
         <!-- Columna 4: Contacto -->
@@ -603,6 +652,14 @@
       document.getElementById('termsModal').classList.add('hidden');
     }
 
+    function openCookiesModal() {
+      document.getElementById('cookiesModal').classList.remove('hidden');
+    }
+
+    function closeCookiesModal() {
+      document.getElementById('cookiesModal').classList.add('hidden');
+    }
+    
     // Cerrar modal con tecla Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !document.getElementById('demoModal').classList.contains('hidden')) {
