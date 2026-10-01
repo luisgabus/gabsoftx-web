@@ -577,10 +577,10 @@
     const SUPABASE_URL = "https://qdnolqquqaumzssamgrj.supabase.co"; 
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyNjAxMzUsImV4cCI6MjEwNDgzNjEzNX0.8-A2EPBvCo8YJG8noYOweSq3MXGC0ntYEEL1VqrU6oo-anon-key-publica";
     
-  let supabaseClient = null;
+let supabaseClient = null;
 
-    // Inicialización segura de Supabase con validación de CDN
-    function initSupabase() {
+    // Inicializar Supabase de forma segura cuando el DOM y los scripts (defer) estén listos
+    window.addEventListener('DOMContentLoaded', () => {
       if (typeof window.supabase !== 'undefined' && SUPABASE_URL && SUPABASE_ANON_KEY) {
         try {
           supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -589,14 +589,13 @@
           console.error("Error al instanciar Supabase:", e);
         }
       } else {
-        console.warn("Esperando a que cargue la librería de Supabase...");
-        setTimeout(initSupabase, 200); // Reintenta en 200ms si el CDN viene lento
+        console.error("Supabase CDN no disponible o faltan credenciales.");
       }
-    }
+    });
 
     // Ejecutar al cargar la página
     initSupabase();
-    
+
     let selectedDemoType = 'CarWash';
     let generatedDemoUrl = '';
 
