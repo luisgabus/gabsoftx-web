@@ -310,12 +310,12 @@
             <p id="phoneError" class="hidden mt-1 text-xs text-red-400">Teléfono inválido. Debe ser 10 dígitos (ej. 3001234567)</p>
           </div>
 
-          <!-- Checkbox de privacidad -->
+<!-- Checkbox de privacidad -->
           <label class="flex items-start gap-2 text-xs text-slate-300 cursor-pointer">
             <input type="checkbox" id="privacyCheck" required class="mt-0.5 rounded bg-slate-800 border-slate-600 text-blue-600 focus:ring-blue-500 focus:ring-offset-0">
             <span>
               <span data-es="Acepto la " data-en="I accept the ">Acepto la </span>
-              <a href="#" class="text-blue-400 hover:text-blue-300 underline" data-es="política de privacidad" data-en="privacy policy">política de privacidad</a>
+              <button type="button" onclick="openPrivacyModal()" class="text-blue-400 hover:text-blue-300 underline focus:outline-none" data-es="política de privacidad" data-en="privacy policy">política de privacidad</button>
               <span data-es=" y el tratamiento de mis datos." data-en=" and data processing."> y el tratamiento de mis datos.</span>
             </span>
           </label>
