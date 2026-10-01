@@ -404,6 +404,61 @@
     </div>
   </div>
 
+<!-- MODAL DE TÉRMINOS Y CONDICIONES -->
+  <div id="termsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col relative border border-slate-700 shadow-2xl animate-in fade-in zoom-in-95">
+      
+      <!-- Botón de cierre -->
+      <button onclick="closeTermsModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Cabecera del Modal -->
+      <div class="px-6 py-5 sm:px-8 sm:py-6 border-b border-slate-800/80 shrink-0">
+        <h3 class="text-xl font-bold text-white" data-es="Términos y Condiciones de Uso" data-en="Terms and Conditions of Use">Términos y Condiciones de Uso</h3>
+        <p class="text-xs text-slate-400 mt-1" data-es="Última actualización: Septiembre 2026" data-en="Last updated: September 2026">Última actualización: Septiembre 2026</p>
+      </div>
+
+      <!-- Contenido Legal con Scroll -->
+      <div class="px-6 py-6 sm:px-8 sm:py-8 overflow-y-auto text-sm text-slate-300 space-y-5">
+        
+        <div>
+          <h4 class="text-white font-semibold mb-2">1. Aceptación del Servicio</h4>
+          <p class="leading-relaxed">Al utilizar la funcionalidad de "Auto-alta" o acceder a los entornos de demostración de GabSoftX (CarWash Pro, Nail World, u otros), aceptas someterte a estos términos. Si representas a una empresa, declaras tener la autoridad legal para vincular a dicha entidad a estas condiciones.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">2. Naturaleza del Entorno de Prueba (Trial)</h4>
+          <p class="leading-relaxed">El acceso otorgado mediante el auto-onboarding es estrictamente un entorno de evaluación temporal. La duración predeterminada de este periodo es de 15 días calendario. GabSoftX se reserva el derecho de suspender o revocar el acceso a instancias de prueba en cualquier momento si se detecta un uso abusivo de la infraestructura.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">3. Propiedad Intelectual</h4>
+          <p class="leading-relaxed">Todo el código fuente, diseño, arquitectura de base de datos (Supabase), algoritmos y metodologías operativas (incluyendo el modelo ADMIRA, si aplica) desplegados en la plataforma son propiedad intelectual exclusiva de GabSoftX. No está permitida la ingeniería inversa, copia o distribución comercial no autorizada.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">4. Limitación de Responsabilidad</h4>
+          <p class="leading-relaxed">Los entornos de demostración se proporcionan "tal cual". Durante el periodo de prueba, GabSoftX no asume responsabilidad por pérdida de datos experimentales introducidos por el usuario, caídas del servicio de terceros, ni lucro cesante derivado del uso del software no licenciado para producción formal.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-2">5. Transición a Plan de Pago</h4>
+          <p class="leading-relaxed">Para preservar los datos ingresados durante el periodo de prueba y garantizar un Acuerdo de Nivel de Servicio (SLA) operativo, el inquilino debe formalizar su plan de suscripción comunicándose con nuestro equipo de consultoría antes del vencimiento del periodo de prueba.</p>
+        </div>
+
+      </div>
+      
+      <!-- Footer del Modal -->
+      <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
+        <button onclick="closeTermsModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700" data-es="Aceptar y Cerrar" data-en="Accept and Close">
+          Aceptar y Cerrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+  
   <!-- Footer Expandido -->
   <footer class="border-t border-slate-800 bg-slate-900/50 py-12 relative z-10 backdrop-blur-sm">
     <div class="max-w-7xl mx-auto px-6">
@@ -433,8 +488,7 @@
         <div>
           <h4 class="font-bold text-white mb-3 text-sm" data-es="Legal" data-en="Legal">Legal</h4>
           <ul class="space-y-2 text-xs text-slate-400">
-<li><button onclick="openPrivacyModal()" class="hover:text-white transition-colors text-left" data-es="Privacidad" data-en="Privacy">Privacidad</button></li>            <li><a href="#" class="hover:text-white transition-colors" data-es="Términos" data-en="Terms">Términos</a></li>
-            <li><a href="#" class="hover:text-white transition-colors" data-es="Cookies" data-en="Cookies">Cookies</a></li>
+<li><button onclick="openTermsModal()" class="hover:text-white transition-colors text-left" data-es="Términos" data-en="Terms">Términos</button></li>            <li><a href="#" class="hover:text-white transition-colors" data-es="Cookies" data-en="Cookies">Cookies</a></li>
           </ul>
         </div>
 
@@ -537,6 +591,14 @@
 
     function closePrivacyModal() {
       document.getElementById('privacyModal').classList.add('hidden');
+    }
+
+    function openTermsModal() {
+      document.getElementById('termsModal').classList.remove('hidden');
+    }
+
+    function closeTermsModal() {
+      document.getElementById('termsModal').classList.add('hidden');
     }
     
     // Cerrar modal con tecla Escape
