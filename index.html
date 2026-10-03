@@ -130,7 +130,7 @@
           <button id="btn-en" type="button" class="text-slate-400 hover:text-white">EN</button>
         </div>
 
-<a href="#" class="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 hover:border-slate-600 transition-all">
+        <a href="#" class="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 hover:border-slate-600 transition-all">
           <i data-lucide="log-in" class="w-4 h-4 text-indigo-400"></i>
           <span data-es="Iniciar Sesión" data-en="Log In">Iniciar Sesión</span>
         </a>
@@ -161,7 +161,7 @@
             Centraliza procesos, gestiona suscripciones de inquilinos y supervisa métricas financieras y operativas en tiempo real.
           </p>
 
-<div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
             <button onclick="openModal('CarWash')" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-gradient-to-r from-blue-700 to-indigo-700 text-white font-medium text-sm text-center shadow-lg shadow-indigo-900/30 hover:scale-[1.02] active:scale-95 transition-all">
               <span data-es="Registra tu negocio (Auto-alta)" data-en="Register your business (Auto-setup)">Registra tu negocio (Auto-alta)</span>
             </button>
@@ -275,7 +275,7 @@
       </div>
     </section>
 
-<!-- Sección de Desarrollo a la Medida -->
+    <!-- Sección de Desarrollo a la Medida -->
     <section id="desarrollo-medida" class="max-w-7xl mx-auto px-6 py-8 pb-24 relative z-10">
       <div class="relative rounded-3xl glass-card overflow-hidden p-8 sm:p-12 border border-slate-700/50">
         <!-- Resplandor ambiental interno -->
@@ -320,7 +320,7 @@
   <!-- MODAL DE AUTO-ONBOARDING MEJORADO -->
   <div id="demoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-card rounded-2xl max-w-md w-full p-6 sm:p-8 space-y-6 relative border border-slate-600 shadow-2xl modal-animate-in">
-  
+ 
       <!-- Botón de cierre X -->
       <button type="button" onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10 focus:outline-none">
         <i data-lucide="x" class="w-5 h-5"></i>
@@ -354,7 +354,7 @@
             <p id="phoneError" class="hidden mt-1 text-xs text-red-400">Teléfono inválido. Debe ser 10 dígitos (ej. 3001234567)</p>
           </div>
 
-<!-- Checkbox de privacidad -->
+          <!-- Checkbox de privacidad -->
           <label class="flex items-start gap-2 text-xs text-slate-300 cursor-pointer">
             <input type="checkbox" id="privacyCheck" required class="mt-0.5 rounded bg-slate-800 border-slate-600 text-blue-600 focus:ring-blue-500 focus:ring-offset-0">
             <span>
@@ -393,7 +393,7 @@
     </div>
   </div>
 
-<!-- ========================================== -->
+  <!-- ========================================== -->
   <!-- MODALES LEGALES (PRIVACIDAD, TÉRMINOS, COOKIES) -->
   <!-- ========================================== -->
 
@@ -532,13 +532,14 @@
           </ul>
         </div>
 
-<!-- Columna 3: Legal -->
+        <!-- Columna 3: Legal -->
         <div>
           <h4 class="font-bold text-white mb-3 text-sm" data-es="Legal" data-en="Legal">Legal</h4>
           <ul class="space-y-2 text-xs text-slate-400">
             <li><button onclick="openPrivacyModal()" class="hover:text-white transition-colors text-left" data-es="Privacidad" data-en="Privacy">Privacidad</button></li>
             <li><button onclick="openTermsModal()" class="hover:text-white transition-colors text-left" data-es="Términos" data-en="Terms">Términos</button></li>
-<li><button type="button" onclick="openCookiesModal()" class="hover:text-white transition-colors text-left" data-es="Cookies" data-en="Cookies">Cookies</button></li>          </ul>
+            <li><button type="button" onclick="openCookiesModal()" class="hover:text-white transition-colors text-left" data-es="Cookies" data-en="Cookies">Cookies</button></li>
+          </ul>
         </div>
 
         <!-- Columna 4: Contacto -->
@@ -576,12 +577,11 @@
 
   <!-- SCRIPTS DE CONFIGURACIÓN Y SUPABASE -->
   <script>
-    // CONFIGURACIÓN: Reemplaza con tus credenciales reales
-// ==========================================
+    // ==========================================
     // CONFIGURACIÓN Y ESTADO GLOBAL DE SUPABASE
     // ==========================================
     const SUPABASE_URL = "https://qdnolqquqaumzssamgrj.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyMTgwODMsImV4cCI6MjA1Njc5NDA4M30.eyJpc3MiOiJz..."; // Mantén tu llave completa aquí
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyMTgwODMsImV4cCI6MjA1Njc5NDA4M30.eyJpc3MiOiJz...";
 
     let supabaseClient = null;
     let selectedDemoType = 'CarWash Pro';
@@ -643,7 +643,6 @@
 
     function closeModal() {
       document.getElementById('demoModal').classList.add('hidden');
-      // Volver al foco del botón que abrió el modal
       document.querySelector('button[onclick*="openModal"]')?.focus();
     }
 
@@ -678,7 +677,7 @@
       }
     });
 
-async function handleDemoSubmit(e) {
+    async function handleDemoSubmit(e) {
       e.preventDefault();
       
       const btn = document.getElementById('submitBtn');
@@ -727,7 +726,7 @@ async function handleDemoSubmit(e) {
       // Bloque de ejecución seguro
       try {
         if (!supabaseClient) {
-          throw new Error('credentials'); // Forzamos el error para que caiga en tu mensaje personalizado
+          throw new Error('credentials');
         }
 
         const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
@@ -749,45 +748,10 @@ async function handleDemoSubmit(e) {
           .select()
           .single();
 
-        if (error) throw error; // Si Supabase rechaza, enviamos el error al catch
+        if (error) throw error;
 
         console.log("Inserción confirmada por el servidor:", data);
         
-        if (btn) btn.disabled = false;
-        if (btnSpinner) btnSpinner.classList.add('hidden');
-        if (btnText) btnText.textContent = isEnglish ? 'Success!' : '¡Éxito!';
-        
-        alert("Registro exitoso. ID asignado: " + data.id);
-
-      } catch (err) {
-        console.error('Error al registrar el demo:', err);
-
-        let errorMessage = isEnglish
-            ? 'Could not initialize environment. Please try again in a few seconds.'
-            : 'No se pudo inicializar el entorno. Por favor, intenta de nuevo en unos segundos.';
-
-        // Integración de tus mensajes específicos
-        if (err.message?.includes('duplicate')) {
-            errorMessage = isEnglish
-                ? 'A demo with this name already exists. Try a different business name.'
-                : 'Ya existe una demo con este nombre. Intenta con otro nombre de negocio.';
-        } else if (err.message?.includes('credentials') || err.message?.includes('initialized')) {
-            errorMessage = isEnglish
-                ? 'Configuration error. Please contact support.'
-                : 'Error de configuración. Por favor, contacta al soporte.';
-        } else if (err.message) {
-            errorMessage = err.message; // Mensaje devuelto directamente por Supabase
-        }
-
-        if (generalErrorText) generalErrorText.textContent = errorMessage;
-        if (generalError) generalError.classList.remove('hidden');
-        
-        if (btn) btn.disabled = false;
-        if (btnSpinner) btnSpinner.classList.add('hidden');
-        if (btnText) btnText.textContent = isEnglish ? 'Create account and enter' : 'Crear cuenta y entrar';
-      }
-    }
-
         // Generar URL de la demo
         generatedDemoUrl = selectedDemoType === 'CarWash' 
           ? `https://exact-screenshot-six.vercel.app?business_id=${data.id}` 
@@ -807,11 +771,10 @@ async function handleDemoSubmit(e) {
         document.getElementById('stepSuccess').classList.remove('hidden');
         document.getElementById('demoUrl').textContent = generatedDemoUrl;
         
-// Configurar botón de redirección
+        // Configurar botón de redirección
         const redirectBtn = document.getElementById('redirectBtn');
         if (redirectBtn) {
           redirectBtn.onclick = () => {
-            // Track clic en redirección
             if (typeof gtag !== 'undefined') {
               gtag('event', 'demo_redirect', { 
                 demo_type: selectedDemoType,
@@ -819,29 +782,38 @@ async function handleDemoSubmit(e) {
               });
             }
             window.location.href = generatedDemoUrl;
-          }; // <-- Aquí se cierra correctamente la función del botón
-        }
-                
-        // Mensajes más específicos según el error
-        if (err.message?.includes('duplicate')) {
-          errorMessage = isEnglish 
-            ? 'A demo with this name already exists. Try a different business name.' 
-            : 'Ya existe una demo con este nombre. Intenta con otro nombre de negocio.';
-        } else if (err.message?.includes('credentials') || err.message?.includes('initialized')) {
-          errorMessage = isEnglish 
-            ? 'Configuration error. Please contact support.' 
-            : 'Error de configuración. Por favor, contacta al soporte.';
+          };
         }
 
-        generalErrorText.textContent = errorMessage;
-        generalError.classList.remove('hidden');
+        if (btn) btn.disabled = false;
+        if (btnSpinner) btnSpinner.classList.add('hidden');
+        if (btnText) btnText.textContent = isEnglish ? 'Success!' : '¡Éxito!';
+
+      } catch (err) {
+        console.error('Error al registrar el demo:', err);
+
+        let errorMessage = isEnglish
+            ? 'Could not initialize environment. Please try again in a few seconds.'
+            : 'No se pudo inicializar el entorno. Por favor, intenta de nuevo en unos segundos.';
+
+        if (err.message?.includes('duplicate')) {
+            errorMessage = isEnglish
+                ? 'A demo with this name already exists. Try a different business name.'
+                : 'Ya existe una demo con este nombre. Intenta con otro nombre de negocio.';
+        } else if (err.message?.includes('credentials') || err.message?.includes('initialized')) {
+            errorMessage = isEnglish
+                ? 'Configuration error. Please contact support.'
+                : 'Error de configuración. Por favor, contacta al soporte.';
+        } else if (err.message) {
+            errorMessage = err.message;
+        }
+
+        if (generalErrorText) generalErrorText.textContent = errorMessage;
+        if (generalError) generalError.classList.remove('hidden');
         
-        // Resetear estado del botón
-        btn.disabled = false;
-        btnSpinner.classList.add('hidden');
-        btnText.textContent = isEnglish 
-          ? 'Create account and log in' 
-          : 'Crear cuenta y entrar';
+        if (btn) btn.disabled = false;
+        if (btnSpinner) btnSpinner.classList.add('hidden');
+        if (btnText) btnText.textContent = isEnglish ? 'Create account and enter' : 'Crear cuenta y entrar';
       }
     }
 
@@ -894,7 +866,7 @@ async function handleDemoSubmit(e) {
       };
     });
 
-// ==========================================
+    // ==========================================
     // CONTROLADORES DE CIERRE DE MODALES (ESC)
     // ==========================================
     
@@ -922,8 +894,7 @@ async function handleDemoSubmit(e) {
         const cookies = document.getElementById('cookiesModal');
         if (cookies && !cookies.classList.contains('hidden')) closeCookiesModal();
       }
-    }
-
+    });
   </script>
 </body>
 </html>
