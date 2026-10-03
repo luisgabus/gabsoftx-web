@@ -678,7 +678,7 @@
       }
     });
 
-    async function handleDemoSubmit(e) {
+async function handleDemoSubmit(e) {
       e.preventDefault();
       
       const btn = document.getElementById('submitBtn');
@@ -698,7 +698,6 @@
       // Validaciones
       let hasError = false;
       
-      // Validar teléfono
       if (!isValidPhone(ownerPhone)) {
         phoneError.classList.remove('hidden');
         document.getElementById('ownerPhone').classList.add('border-red-500');
@@ -708,7 +707,6 @@
         document.getElementById('ownerPhone').classList.remove('border-red-500');
       }
 
-      // Validar privacidad
       if (!privacyCheck) {
         generalErrorText.textContent = isEnglish 
           ? 'You must accept the privacy policy to continue.' 
@@ -717,9 +715,7 @@
         hasError = true;
       }
 
-      if (hasError) {
-        return;
-      }
+      if (hasError) return;
 
       // Ocultar errores previos
       generalError.classList.add('hidden');
@@ -727,7 +723,7 @@
       // Track evento de submit
       if (typeof gtag !== 'undefined') {
         gtag('event', 'form_submit', { 
-          demo_type: selectedDemoType,
+          demo_type: typeof selectedDemoType !== 'undefined' ? selectedDemoType : 'CarWash',
           business_name: bizName,
           form_location: 'onboarding_modal'
         });
@@ -742,10 +738,14 @@
 
       try {
         if (!supabaseClient) {
-          throw new Error('Supabase client not initialized. Check your credentials.');
+          console.error("Fallo crítico: supabaseClient es null.");
+          throw new Error('Supabase client no inicializado. Revisa las credenciales.');
         }
 
         const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
+        const cleanPhone = ownerPhone.replace(/\D/g, '');
+        
+        console.log("Iniciando transmisión a Supabase...", { bizName, ownerName, cleanPhone, subdomain });
         
         const { data, error } = await supabaseClient
           .from('businesses')
@@ -753,7 +753,7 @@
             name: bizName,
             subdomain: subdomain,
             owner_name: ownerName,
-            owner_phone: ownerPhone.replace(/\D/g, ''),
+            owner_phone: cleanPhone,
             subscription_status: 'trial',
             plan_type: 'mensual',
             expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
@@ -762,19 +762,46 @@
           .single();
 
         if (error) {
-          console.error('Supabase error:', error);
+          console.error("Rechazo desde Supabase:", error);
           
-          // Track error de formulario
           if (typeof gtag !== 'undefined') {
             gtag('event', 'form_error', { 
               error_type: error.code || 'unknown',
               error_message: error.message,
-              demo_type: selectedDemoType
+              demo_type: typeof selectedDemoType !== 'undefined' ? selectedDemoType : 'CarWash'
             });
           }
-          
           throw error;
         }
+
+        console.log("Inserción confirmada por el servidor:", data);
+        
+        // Éxito: Restaurar UI y notificar
+        btn.disabled = false;
+        btnSpinner.classList.add('hidden');
+        btnText.textContent = isEnglish ? 'Success!' : '¡Éxito!';
+        
+        alert("Registro exitoso. ID asignado: " + data.id);
+        
+        // Aquí puedes descomentar el cierre del modal o la redirección
+        // closeModal();
+        // window.location.href = "TU_URL";
+
+      } catch (err) {
+        console.error("Colapso en la ejecución:", err);
+        
+        // Mostrar el error exacto en la interfaz
+        generalErrorText.textContent = err.message || (isEnglish 
+          ? 'An unexpected error occurred. Check the console.' 
+          : 'Ocurrió un error inesperado. Revisa la consola.');
+        generalError.classList.remove('hidden');
+        
+        // Restaurar botón
+        btn.disabled = false;
+        btnSpinner.classList.add('hidden');
+        btnText.textContent = isEnglish ? 'Create account and enter' : 'Crear cuenta y entrar';
+      }
+    }
 
         // Generar URL de la demo
         generatedDemoUrl = selectedDemoType === 'CarWash' 
