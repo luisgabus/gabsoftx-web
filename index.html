@@ -695,57 +695,45 @@ async function handleDemoSubmit(e) {
       
       const isEnglish = document.documentElement.lang === 'en';
 
-      // Validaciones
+      // Validaciones iniciales
       let hasError = false;
       
       if (!isValidPhone(ownerPhone)) {
-        phoneError.classList.remove('hidden');
+        if (phoneError) phoneError.classList.remove('hidden');
         document.getElementById('ownerPhone').classList.add('border-red-500');
         hasError = true;
       } else {
-        phoneError.classList.add('hidden');
+        if (phoneError) phoneError.classList.add('hidden');
         document.getElementById('ownerPhone').classList.remove('border-red-500');
       }
 
       if (!privacyCheck) {
-        generalErrorText.textContent = isEnglish 
+        if (generalErrorText) generalErrorText.textContent = isEnglish 
           ? 'You must accept the privacy policy to continue.' 
           : 'Debes aceptar la política de privacidad para continuar.';
-        generalError.classList.remove('hidden');
+        if (generalError) generalError.classList.remove('hidden');
         hasError = true;
       }
 
       if (hasError) return;
 
-      // Ocultar errores previos
-      generalError.classList.add('hidden');
+      if (generalError) generalError.classList.add('hidden');
       
-      // Track evento de submit
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'form_submit', { 
-          demo_type: typeof selectedDemoType !== 'undefined' ? selectedDemoType : 'CarWash',
-          business_name: bizName,
-          form_location: 'onboarding_modal'
-        });
-      }
-      
-      // Estado de loading
-      btn.disabled = true;
-      btnSpinner.classList.remove('hidden');
-      btnText.textContent = isEnglish 
-        ? 'Generating secure environment...' 
-        : 'Generando entorno seguro...';
+      // Estado de carga UI
+      if (btn) btn.disabled = true;
+      if (btnSpinner) btnSpinner.classList.remove('hidden');
+      if (btnText) btnText.textContent = isEnglish ? 'Generating secure environment...' : 'Generando entorno seguro...';
 
+      // Bloque de ejecución seguro
       try {
         if (!supabaseClient) {
-          console.error("Fallo crítico: supabaseClient es null.");
-          throw new Error('Supabase client no inicializado. Revisa las credenciales.');
+          throw new Error('credentials'); // Forzamos el error para que caiga en tu mensaje personalizado
         }
 
         const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
         const cleanPhone = ownerPhone.replace(/\D/g, '');
         
-        console.log("Iniciando transmisión a Supabase...", { bizName, ownerName, cleanPhone, subdomain });
+        console.log("Transmisión a Supabase iniciada...", { bizName, ownerName, cleanPhone, subdomain });
         
         const { data, error } = await supabaseClient
           .from('businesses')
@@ -761,45 +749,42 @@ async function handleDemoSubmit(e) {
           .select()
           .single();
 
-        if (error) {
-          console.error("Rechazo desde Supabase:", error);
-          
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'form_error', { 
-              error_type: error.code || 'unknown',
-              error_message: error.message,
-              demo_type: typeof selectedDemoType !== 'undefined' ? selectedDemoType : 'CarWash'
-            });
-          }
-          throw error;
-        }
+        if (error) throw error; // Si Supabase rechaza, enviamos el error al catch
 
         console.log("Inserción confirmada por el servidor:", data);
         
-        // Éxito: Restaurar UI y notificar
-        btn.disabled = false;
-        btnSpinner.classList.add('hidden');
-        btnText.textContent = isEnglish ? 'Success!' : '¡Éxito!';
+        if (btn) btn.disabled = false;
+        if (btnSpinner) btnSpinner.classList.add('hidden');
+        if (btnText) btnText.textContent = isEnglish ? 'Success!' : '¡Éxito!';
         
         alert("Registro exitoso. ID asignado: " + data.id);
-        
-        // Aquí puedes descomentar el cierre del modal o la redirección
-        // closeModal();
-        // window.location.href = "TU_URL";
 
       } catch (err) {
-        console.error("Colapso en la ejecución:", err);
+        console.error('Error al registrar el demo:', err);
+
+        let errorMessage = isEnglish
+            ? 'Could not initialize environment. Please try again in a few seconds.'
+            : 'No se pudo inicializar el entorno. Por favor, intenta de nuevo en unos segundos.';
+
+        // Integración de tus mensajes específicos
+        if (err.message?.includes('duplicate')) {
+            errorMessage = isEnglish
+                ? 'A demo with this name already exists. Try a different business name.'
+                : 'Ya existe una demo con este nombre. Intenta con otro nombre de negocio.';
+        } else if (err.message?.includes('credentials') || err.message?.includes('initialized')) {
+            errorMessage = isEnglish
+                ? 'Configuration error. Please contact support.'
+                : 'Error de configuración. Por favor, contacta al soporte.';
+        } else if (err.message) {
+            errorMessage = err.message; // Mensaje devuelto directamente por Supabase
+        }
+
+        if (generalErrorText) generalErrorText.textContent = errorMessage;
+        if (generalError) generalError.classList.remove('hidden');
         
-        // Mostrar el error exacto en la interfaz
-        generalErrorText.textContent = err.message || (isEnglish 
-          ? 'An unexpected error occurred. Check the console.' 
-          : 'Ocurrió un error inesperado. Revisa la consola.');
-        generalError.classList.remove('hidden');
-        
-        // Restaurar botón
-        btn.disabled = false;
-        btnSpinner.classList.add('hidden');
-        btnText.textContent = isEnglish ? 'Create account and enter' : 'Crear cuenta y entrar';
+        if (btn) btn.disabled = false;
+        if (btnSpinner) btnSpinner.classList.add('hidden');
+        if (btnText) btnText.textContent = isEnglish ? 'Create account and enter' : 'Crear cuenta y entrar';
       }
     }
 
