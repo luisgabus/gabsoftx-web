@@ -807,24 +807,21 @@ async function handleDemoSubmit(e) {
         document.getElementById('stepSuccess').classList.remove('hidden');
         document.getElementById('demoUrl').textContent = generatedDemoUrl;
         
-        // Configurar botón de redirección
+// Configurar botón de redirección
         const redirectBtn = document.getElementById('redirectBtn');
-        redirectBtn.onclick = () => {
-          // Track clic en redirección
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'demo_redirect', { 
-              demo_type: selectedDemoType,
-              demo_url: generatedDemoUrl
-            });
-          }
-          window.location.href = generatedDemoUrl;
-      } catch (err) {
-        console.error('Error al registrar el demo:', err);
-        
-        let errorMessage = isEnglish 
-          ? 'Could not initialize environment. Please try again in a few seconds.' 
-          : 'No se pudo inicializar el entorno. Por favor, intenta de nuevo en unos segundos.';
-        
+        if (redirectBtn) {
+          redirectBtn.onclick = () => {
+            // Track clic en redirección
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'demo_redirect', { 
+                demo_type: selectedDemoType,
+                demo_url: generatedDemoUrl
+              });
+            }
+            window.location.href = generatedDemoUrl;
+          }; // <-- Aquí se cierra correctamente la función del botón
+        }
+                
         // Mensajes más específicos según el error
         if (err.message?.includes('duplicate')) {
           errorMessage = isEnglish 
