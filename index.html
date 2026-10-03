@@ -886,6 +886,37 @@
         }, 50);
       };
     });
+
+// ==========================================
+    // CONTROLADORES DE CIERRE DE MODALES (ESC)
+    // ==========================================
+    
+    // 1. Asegurarnos de que la función de cerrar exista
+    function closeModal() {
+      const demoModal = document.getElementById('demoModal');
+      if (demoModal) {
+        demoModal.classList.add('hidden');
+      }
+    }
+
+    // 2. Escuchar la tecla ESC en todo el documento
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        // Cerrar modal de auto-alta
+        closeModal();
+        
+        // Cerrar modales legales si estuvieran abiertos
+        const privacy = document.getElementById('privacyModal');
+        if (privacy && !privacy.classList.contains('hidden')) closePrivacyModal();
+        
+        const terms = document.getElementById('termsModal');
+        if (terms && !terms.classList.contains('hidden')) closeTermsModal();
+        
+        const cookies = document.getElementById('cookiesModal');
+        if (cookies && !cookies.classList.contains('hidden')) closeCookiesModal();
+      }
+    });
+
   </script>
 </body>
 </html>
