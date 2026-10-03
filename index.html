@@ -574,12 +574,17 @@
   <!-- SCRIPTS DE CONFIGURACIÓN Y SUPABASE -->
   <script>
     // CONFIGURACIÓN: Reemplaza con tus credenciales reales
-    const SUPABASE_URL = "https://qdnolqquqaumzssamgrj.supabase.co"; 
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyNjAxMzUsImV4cCI6MjEwNDgzNjEzNX0.8-A2EPBvCo8YJG8noYOweSq3MXGC0ntYEEL1VqrU6oo-anon-key-publica";
-    
-let supabaseClient = null;
+// ==========================================
+    // CONFIGURACIÓN Y ESTADO GLOBAL DE SUPABASE
+    // ==========================================
+    const SUPABASE_URL = "https://qdnolqquqaumzssamgrj.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEyMTgwODMsImV4cCI6MjA1Njc5NDA4M30.eyJpc3MiOiJz..."; // Mantén tu llave completa aquí
 
-    // Inicializar Supabase de forma segura cuando el DOM y los scripts (defer) estén listos
+    let supabaseClient = null;
+    let selectedDemoType = 'CarWash Pro';
+    let generatedDemoUrl = '';
+
+    // Inicializar Supabase de forma segura al cargar la página
     window.addEventListener('DOMContentLoaded', () => {
       if (typeof window.supabase !== 'undefined' && SUPABASE_URL && SUPABASE_ANON_KEY) {
         try {
