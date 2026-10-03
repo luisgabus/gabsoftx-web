@@ -319,7 +319,9 @@
   <!-- MODAL DE AUTO-ONBOARDING MEJORADO -->
   <div id="demoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-card rounded-2xl max-w-md w-full p-6 sm:p-8 space-y-6 relative border border-slate-600 shadow-2xl modal-animate-in">
-      <button onclick="closeModal()" aria-label="Cerrar modal" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+  
+      <!-- Botón de cierre X -->
+      <button type="button" onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10 focus:outline-none">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
@@ -597,9 +599,6 @@
         console.error("Supabase CDN no disponible o faltan credenciales.");
       }
     });
-
-    // Ejecutar al cargar la página
-    initSupabase();
 
     // Validación de teléfono (Colombia: 10 dígitos, inicia con 3)
     function isValidPhone(phone) {
