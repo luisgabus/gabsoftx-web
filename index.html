@@ -371,27 +371,30 @@
         </form>
       </div>
 
-      <!-- Paso 2: Éxito y redirección -->
-      <div id="stepSuccess" class="hidden text-center space-y-4">
-        <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto">
-          <i data-lucide="check" class="w-8 h-8 text-emerald-400"></i>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold text-white" data-es="¡Entorno creado con éxito!" data-en="Environment created successfully!">¡Entorno creado con éxito!</h3>
-          <p class="text-xs text-slate-300 mt-1" data-es="Tu demo está lista. Aquí tienes tu enlace de acceso:" data-en="Your demo is ready. Here is your access link:">Tu demo está lista. Aquí tienes tu enlace de acceso:</p>
-        </div>
-        <div class="bg-slate-800/80 border border-slate-600 rounded-lg p-3">
-          <p class="text-xs text-slate-400 mb-1" data-es="URL de acceso" data-en="Access URL">URL de acceso</p>
-          <code id="demoUrl" class="text-sm text-blue-300 font-mono break-all"></code>
-        </div>
-        <button id="redirectBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
-          <i data-lucide="external-link" class="w-4 h-4"></i>
-          <span data-es="Ir a mi demo" data-en="Go to my demo">Ir a mi demo</span>
-        </button>
-        <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white transition-colors" data-es="Cerrar" data-en="Close">Cerrar</button>
-      </div>
-    </div>
+<!-- Paso 2: Éxito y redirección -->
+<div id="stepSuccess" class="hidden text-center space-y-4">
+  <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto">
+    <i data-lucide="check" class="w-8 h-8 text-emerald-400"></i>
   </div>
+  <div>
+    <h3 class="text-xl font-bold text-white" data-es="¡Entorno creado con éxito!" data-en="Environment created successfully!">¡Entorno creado con éxito!</h3>
+    <p class="text-xs text-slate-300 mt-1" data-es="Tu demo está lista. Ya puedes ingresar o compartir el acceso." data-en="Your demo is ready. You can now enter or share access.">Tu demo está lista. Ya puedes ingresar o compartir el acceso.</p>
+  </div>
+
+  <!-- Botón Principal: Ir a mi demo (convertido en etiqueta <a> para abrir la URL correctamente) -->
+  <a id="redirectBtn" href="#" target="_blank" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
+    <i data-lucide="external-link" class="w-4 h-4"></i>
+    <span data-es="Ir a mi demo" data-en="Go to my demo">Ir a mi demo</span>
+  </a>
+
+  <!-- Botón Secundario: Copiar enlace de acceso -->
+  <button id="btnCopyLink" onclick="copyDemoLink()" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium rounded-xl flex items-center justify-center gap-2 transition-colors text-sm">
+    <i data-lucide="copy" class="w-4 h-4 text-slate-400"></i>
+    <span id="copyText" data-es="Copiar enlace de acceso" data-en="Copy access link">Copiar enlace de acceso</span>
+  </button>
+
+  <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white transition-colors" data-es="Cerrar" data-en="Close">Cerrar</button>
+</div>
 
   <!-- ========================================== -->
   <!-- MODALES LEGALES (PRIVACIDAD, TÉRMINOS, COOKIES) -->
