@@ -775,15 +775,16 @@ function openModal(type) {
         
         const { data, error } = await supabaseClient
           .from('businesses')
-          .insert({
-            name: bizName,
-            subdomain: subdomain,
-            owner_name: ownerName,
-            owner_phone: cleanPhone,
-            subscription_status: 'trial',
-            plan_type: 'mensual',
-            expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
-          })
+.insert({
+  name: bizName,
+  subdomain: subdomain,
+  owner_name: ownerName,
+  owner_phone: cleanPhone,
+  subscription_status: 'trial',
+  plan_type: 'mensual',
+  demo_selected: formDemoType, // La nueva vía de información
+  expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
+})
           .select()
           .single();
 
