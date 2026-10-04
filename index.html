@@ -219,7 +219,7 @@
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
         <span class="text-xs font-semibold tracking-wider text-blue-300 bg-blue-500/10 border border-blue-500/30 px-3 py-1 rounded-full uppercase" data-es="PLATAFORMA MULTISECTORIAL" data-en="MULTI-INDUSTRY PLATFORM">PLATAFORMA MULTISECTORIAL</span>
         <h2 class="text-3xl sm:text-4xl font-bold text-white" data-es="Soluciones especializadas por sector" data-en="Specialized solutions by industry">Soluciones especializadas por sector</h2>
-        <p class="text-slate-300 text-base" data-es="Explora y prueba directamente el entorno operativo de nuestras plataformas." data-en="Explore and test the operational environment of our platforms directly.">Explora y prueba directamente el entorno operativo de nuestras plataformas.</p>
+        <p class="text-slate-300 text-base" data-es="Explora y prueba directamente el entorno operativo de nuestras platforms." data-en="Explore and test the operational environment of our platforms directly.">Explora y prueba directamente el entorno operativo de nuestras plataformas.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -371,30 +371,32 @@
         </form>
       </div>
 
-<!-- Paso 2: Éxito y redirección -->
-<div id="stepSuccess" class="hidden text-center space-y-4">
-  <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto">
-    <i data-lucide="check" class="w-8 h-8 text-emerald-400"></i>
+      <!-- Paso 2: Éxito y redirección -->
+      <div id="stepSuccess" class="hidden text-center space-y-4">
+        <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto">
+          <i data-lucide="check" class="w-8 h-8 text-emerald-400"></i>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-white" data-es="¡Entorno creado con éxito!" data-en="Environment created successfully!">¡Entorno creado con éxito!</h3>
+          <p class="text-xs text-slate-300 mt-1" data-es="Tu demo está lista. Ya puedes ingresar o compartir el acceso." data-en="Your demo is ready. You can now enter or share access.">Tu demo está lista. Ya puedes ingresar o compartir el acceso.</p>
+        </div>
+
+        <!-- Botón Principal: Ir a mi demo (convertido en etiqueta <a> para abrir la URL correctamente) -->
+        <a id="redirectBtn" href="#" target="_blank" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+          <span data-es="Ir a mi demo" data-en="Go to my demo">Ir a mi demo</span>
+        </a>
+
+        <!-- Botón Secundario: Copiar enlace de acceso -->
+        <button id="btnCopyLink" onclick="copyDemoLink()" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium rounded-xl flex items-center justify-center gap-2 transition-colors text-sm">
+          <i data-lucide="copy" class="w-4 h-4 text-slate-400"></i>
+          <span id="copyText" data-es="Copiar enlace de acceso" data-en="Copy access link">Copiar enlace de acceso</span>
+        </button>
+
+        <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white transition-colors" data-es="Cerrar" data-en="Close">Cerrar</button>
+      </div>
+    </div>
   </div>
-  <div>
-    <h3 class="text-xl font-bold text-white" data-es="¡Entorno creado con éxito!" data-en="Environment created successfully!">¡Entorno creado con éxito!</h3>
-    <p class="text-xs text-slate-300 mt-1" data-es="Tu demo está lista. Ya puedes ingresar o compartir el acceso." data-en="Your demo is ready. You can now enter or share access.">Tu demo está lista. Ya puedes ingresar o compartir el acceso.</p>
-  </div>
-
-  <!-- Botón Principal: Ir a mi demo (convertido en etiqueta <a> para abrir la URL correctamente) -->
-  <a id="redirectBtn" href="#" target="_blank" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
-    <i data-lucide="external-link" class="w-4 h-4"></i>
-    <span data-es="Ir a mi demo" data-en="Go to my demo">Ir a mi demo</span>
-  </a>
-
-  <!-- Botón Secundario: Copiar enlace de acceso -->
-  <button id="btnCopyLink" onclick="copyDemoLink()" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium rounded-xl flex items-center justify-center gap-2 transition-colors text-sm">
-    <i data-lucide="copy" class="w-4 h-4 text-slate-400"></i>
-    <span id="copyText" data-es="Copiar enlace de acceso" data-en="Copy access link">Copiar enlace de acceso</span>
-  </button>
-
-  <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white transition-colors" data-es="Cerrar" data-en="Close">Cerrar</button>
-</div>
 
   <!-- ========================================== -->
   <!-- MODALES LEGALES (PRIVACIDAD, TÉRMINOS, COOKIES) -->
@@ -772,11 +774,13 @@
         // Mostrar paso de éxito
         document.getElementById('stepForm').classList.add('hidden');
         document.getElementById('stepSuccess').classList.remove('hidden');
-        document.getElementById('demoUrl').textContent = generatedDemoUrl;
         
-        // Configurar botón de redirección
+        // Configurar botón de redirección (Ahora es una etiqueta <a>)
         const redirectBtn = document.getElementById('redirectBtn');
         if (redirectBtn) {
+          redirectBtn.href = generatedDemoUrl; // Asignamos la URL al href
+          
+          // Mantenemos únicamente el tracking analítico en el clic
           redirectBtn.onclick = () => {
             if (typeof gtag !== 'undefined') {
               gtag('event', 'demo_redirect', { 
@@ -784,7 +788,6 @@
                 demo_url: generatedDemoUrl
               });
             }
-            window.location.href = generatedDemoUrl;
           };
         }
 
@@ -818,6 +821,30 @@
         if (btnSpinner) btnSpinner.classList.add('hidden');
         if (btnText) btnText.textContent = isEnglish ? 'Create account and enter' : 'Crear cuenta y entrar';
       }
+    }
+
+    function copyDemoLink() {
+      if (!generatedDemoUrl) return;
+
+      navigator.clipboard.writeText(generatedDemoUrl).then(() => {
+        const copyTextSpan = document.getElementById("copyText");
+        const copyButton = document.getElementById("btnCopyLink");
+        const originalText = copyTextSpan.textContent;
+
+        // Cambiar apariencia a verde (éxito)
+        copyTextSpan.textContent = "¡Enlace copiado!";
+        copyButton.classList.remove("bg-slate-800", "hover:bg-slate-700", "border-slate-700");
+        copyButton.classList.add("bg-emerald-600/20", "border-emerald-500/50", "text-emerald-300");
+
+        // Restaurar después de 2.5 segundos
+        setTimeout(() => {
+          copyTextSpan.textContent = originalText;
+          copyButton.classList.remove("bg-emerald-600/20", "border-emerald-500/50", "text-emerald-300");
+          copyButton.classList.add("bg-slate-800", "hover:bg-slate-700", "border-slate-700");
+        }, 2500);
+      }).catch(err => {
+        console.error("Error al copiar al portapapeles: ", err);
+      });
     }
 
     function switchLanguage(lang) {
