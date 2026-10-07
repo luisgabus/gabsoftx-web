@@ -130,10 +130,10 @@
           <button id="btn-en" type="button" class="text-slate-400 hover:text-white">EN</button>
         </div>
 
-<a href="javascript:void(0)" onclick="openLoginModal()" class="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 hover:border-slate-600 transition-all cursor-pointer">
-  <i data-lucide="log-in" class="w-4 h-4 text-indigo-400"></i>
-  <span data-es="Iniciar Sesión" data-en="Log In">Iniciar Sesión</span>
-</a>
+        <a href="javascript:void(0)" onclick="openLoginModal()" class="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 hover:border-slate-600 transition-all cursor-pointer">
+          <i data-lucide="log-in" class="w-4 h-4 text-indigo-400"></i>
+          <span data-es="Iniciar Sesión" data-en="Log In">Iniciar Sesión</span>
+        </a>
       </div>
     </div>
   </nav>
@@ -342,28 +342,28 @@
         <form id="onboardingForm" onsubmit="handleDemoSubmit(event)" class="space-y-4">
           <div>
             <!-- Selector de Entorno a Probar -->
-<div class="mb-5">
-  <label class="block text-xs font-medium text-slate-300 mb-2" data-es="Selecciona el entorno a probar" data-en="Select the environment to test">Selecciona el entorno a probar</label>
-  <div class="grid grid-cols-2 gap-3">
-    <!-- Opción CarWash -->
-    <label class="relative cursor-pointer group">
-      <input type="radio" name="demoType" value="CarWash" class="peer sr-only" checked>
-      <div class="p-3 rounded-xl border border-slate-700 bg-slate-800/40 peer-checked:bg-blue-600/20 peer-checked:border-blue-500 hover:bg-slate-700/60 transition-all flex flex-col items-center text-center">
-        <i data-lucide="car" class="w-5 h-5 mb-1.5 text-blue-400 group-hover:scale-110 transition-transform"></i>
-        <span class="text-xs font-semibold text-slate-300 peer-checked:text-white">CarWash Pro</span>
-      </div>
-    </label>
-    
-    <!-- Opción NailWorld -->
-    <label class="relative cursor-pointer group">
-      <input type="radio" name="demoType" value="NailWorld" class="peer sr-only">
-      <div class="p-3 rounded-xl border border-slate-700 bg-slate-800/40 peer-checked:bg-indigo-600/20 peer-checked:border-indigo-500 hover:bg-slate-700/60 transition-all flex flex-col items-center text-center">
-        <i data-lucide="sparkles" class="w-5 h-5 mb-1.5 text-indigo-400 group-hover:scale-110 transition-transform"></i>
-        <span class="text-xs font-semibold text-slate-300 peer-checked:text-white">Nail World</span>
-      </div>
-    </label>
-  </div>
-</div>
+            <div class="mb-5">
+              <label class="block text-xs font-medium text-slate-300 mb-2" data-es="Selecciona el entorno a probar" data-en="Select the environment to test">Selecciona el entorno a probar</label>
+              <div class="grid grid-cols-2 gap-3">
+                <!-- Opción CarWash -->
+                <label class="relative cursor-pointer group">
+                  <input type="radio" name="demoType" value="CarWash" class="peer sr-only" checked>
+                  <div class="p-3 rounded-xl border border-slate-700 bg-slate-800/40 peer-checked:bg-blue-600/20 peer-checked:border-blue-500 hover:bg-slate-700/60 transition-all flex flex-col items-center text-center">
+                    <i data-lucide="car" class="w-5 h-5 mb-1.5 text-blue-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-semibold text-slate-300 peer-checked:text-white">CarWash Pro</span>
+                  </div>
+                </label>
+                
+                <!-- Opción NailWorld -->
+                <label class="relative cursor-pointer group">
+                  <input type="radio" name="demoType" value="NailWorld" class="peer sr-only">
+                  <div class="p-3 rounded-xl border border-slate-700 bg-slate-800/40 peer-checked:bg-indigo-600/20 peer-checked:border-indigo-500 hover:bg-slate-700/60 transition-all flex flex-col items-center text-center">
+                    <i data-lucide="sparkles" class="w-5 h-5 mb-1.5 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-semibold text-slate-300 peer-checked:text-white">Nail World</span>
+                  </div>
+                </label>
+              </div>
+            </div>
             <label class="block text-xs font-medium text-slate-300 mb-1" for="bizName" data-es="Nombre del Negocio" data-en="Business Name">Nombre del Negocio</label>
             <input type="text" id="bizName" required placeholder="Ej. CarWash Express Pereira" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none placeholder-slate-500">
           </div>
@@ -404,7 +404,7 @@
           <p class="text-xs text-slate-300 mt-1" data-es="Tu demo está lista. Ya puedes ingresar o compartir el acceso." data-en="Your demo is ready. You can now enter or share access.">Tu demo está lista. Ya puedes ingresar o compartir el acceso.</p>
         </div>
 
-        <!-- Botón Principal: Ir a mi demo (convertido en etiqueta <a> para abrir la URL correctamente) -->
+        <!-- Botón Principal: Ir a mi demo -->
         <a id="redirectBtn" href="#" target="_blank" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
           <i data-lucide="external-link" class="w-4 h-4"></i>
           <span data-es="Ir a mi demo" data-en="Go to my demo">Ir a mi demo</span>
@@ -526,7 +526,7 @@
         </div>
         <div>
           <h4 class="text-white font-semibold mb-2">4. Control y Eliminación</h4>
-          <p class="leading-relaxed">Tienes el derecho y la capacidad de configurar tu navegador para rechazar o alertarte sobre estas cookies. Ten en cuenta que, si bloqueas las cookies de autenticación, no podrás ingresar a tu panel de control ni a los entornos de demostración (Trial) de forma segura.</p>
+          <p class="leading-relaxed">Tienes el derecho y la capacidad de configur tu navegador para rechazar o alertarte sobre estas cookies. Ten en cuenta que, si bloqueas las cookies de autenticación, no podrás ingresar a tu panel de control ni a los entornos de demostración (Trial) de forma segura.</p>
         </div>
       </div>
       <div class="px-6 py-4 border-t border-slate-800/80 bg-slate-900/50 rounded-b-2xl shrink-0">
@@ -603,7 +603,61 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS DE CONFIGURACIÓN Y SUPABASE -->
+  <!-- Modal de Iniciar Sesión (Ecosistema) -->
+  <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div class="relative w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl text-white">
+      <!-- Botón Cerrar -->
+      <button type="button" onclick="closeLoginModal()" class="absolute top-5 right-5 p-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-800 transition-colors">
+        ✕
+      </button>
+
+      <h2 class="text-2xl font-bold mb-1 text-center">Acceso al Ecosistema</h2>
+      <p class="text-slate-400 text-sm text-center mb-6">
+        Selecciona tu plataforma e ingresa el identificador de tu negocio
+      </p>
+
+      <!-- Selector de Aplicación -->
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        <button type="button" id="btnAppCarWash" class="p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/20">
+          <span class="text-xl">🚗</span>
+          <span class="text-xs font-semibold">CarWash Pro</span>
+        </button>
+
+        <button type="button" id="btnAppNailWorld" class="p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600">
+          <span class="text-xl">✨</span>
+          <span class="text-xs font-semibold">Nail World</span>
+        </button>
+      </div>
+
+      <!-- Formulario -->
+      <form id="landingLoginForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-2">
+            Nombre o Código de tu Negocio
+          </label>
+          <input
+            type="text"
+            id="businessInput"
+            placeholder="Ej: Carclean o LAV01"
+            class="w-full px-4 py-3.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm transition-all"
+            required
+          />
+        </div>
+
+        <p id="modalErrorMsg" class="hidden text-red-400 text-xs font-medium animate-pulse"></p>
+
+        <button
+          type="submit"
+          id="submitAccessBtn"
+          class="w-full py-4 rounded-xl font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2"
+        >
+          <span>Ingresar a CarWash Pro</span> →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- UNICO SCRIPT PRINCIPAL UNIFICADO -->
   <script>
     // ==========================================
     // CONFIGURACIÓN Y ESTADO GLOBAL DE SUPABASE
@@ -611,9 +665,13 @@
     const SUPABASE_URL = "https://pdtrnsfcurcjxzshlphm.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ";
 
+    const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
+    const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
+
     let supabaseClient = null;
     let selectedDemoType = 'CarWash Pro';
     let generatedDemoUrl = '';
+    let selectedApp = 'CarWash';
 
     // Inicializar Supabase de forma segura al cargar la página
     window.addEventListener('DOMContentLoaded', () => {
@@ -629,49 +687,170 @@
       }
     });
 
+    // ==========================================
+    // FUNCIONES DEL MODAL DE ACCESO (ECOSISTEMA)
+    // ==========================================
+    window.openLoginModal = function() {
+      const modal = document.getElementById('loginModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    };
+
+    window.closeLoginModal = function() {
+      const modal = document.getElementById('loginModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    };
+
+    // Configuración de eventos del modal de Acceso
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnCarWash = document.getElementById('btnAppCarWash');
+      const btnNailWorld = document.getElementById('btnAppNailWorld');
+      const loginForm = document.getElementById('landingLoginForm');
+      const businessInput = document.getElementById('businessInput');
+      const errorMsg = document.getElementById('modalErrorMsg');
+      const submitBtn = document.getElementById('submitAccessBtn');
+
+      if (btnCarWash && btnNailWorld) {
+        btnCarWash.addEventListener('click', () => {
+          selectedApp = 'CarWash';
+          btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/20";
+          btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
+          if (businessInput) businessInput.placeholder = "Ej: Carclean o LAV01";
+          if (submitBtn) {
+            submitBtn.innerHTML = "<span>Ingresar a CarWash Pro</span> →";
+            submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2";
+          }
+          if (errorMsg) errorMsg.classList.add('hidden');
+        });
+
+        btnNailWorld.addEventListener('click', () => {
+          selectedApp = 'NailWorld';
+          btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-purple-600/20 border-purple-500 text-white shadow-lg shadow-purple-500/20";
+          btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
+          if (businessInput) businessInput.placeholder = "Ej: NailCuba";
+          if (submitBtn) {
+            submitBtn.innerHTML = "<span>Ingresar a Nail World</span> →";
+            submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2";
+          }
+          if (errorMsg) errorMsg.classList.add('hidden');
+        });
+      }
+
+      if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const query = businessInput ? businessInput.value.trim() : '';
+          if (!query) return;
+
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Verificando...";
+          }
+          if (errorMsg) errorMsg.classList.add('hidden');
+
+          try {
+            const response = await fetch(
+              `${SUPABASE_URL}/rest/v1/businesses?or=(codigo.ilike.${query},name.ilike.${query})&limit=1`,
+              {
+                headers: {
+                  'apikey': SUPABASE_ANON_KEY,
+                  'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+              }
+            );
+
+            const data = await response.json();
+
+            if (!data || data.length === 0) {
+              showError('No encontramos ningún negocio registrado con ese nombre o código.');
+              return;
+            }
+
+            const biz = data[0];
+
+            if (biz.demo_selected && biz.demo_selected !== selectedApp) {
+              const appCorrecta = biz.demo_selected === 'CarWash' ? 'CarWash Pro' : 'Nail World';
+              showError(`Este negocio pertenece a ${appCorrecta}. Cambia la plataforma seleccionada arriba.`);
+              return;
+            }
+
+            const targetBaseUrl = selectedApp === 'CarWash' ? URL_CARWASH : URL_NAILWORLD;
+            window.location.href = `${targetBaseUrl}/?business_id=${biz.id}`;
+
+          } catch (err) {
+            showError('Error de red al verificar el negocio. Intenta nuevamente.');
+          } finally {
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        });
+      }
+
+      function showError(msg) {
+        if (errorMsg) {
+          errorMsg.innerText = msg;
+          errorMsg.classList.remove('hidden');
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = selectedApp === 'CarWash' 
+            ? "<span>Ingresar a CarWash Pro</span> →" 
+            : "<span>Ingresar a Nail World</span> →";
+        }
+      }
+    });
+
+    // ==========================================
+    // FUNCIONES ORIGINALES (AUTO-ALTA Y LEGALES)
+    // ==========================================
+
     // Validación de teléfono (Colombia: 10 dígitos, inicia con 3)
     function isValidPhone(phone) {
       const cleanPhone = phone.replace(/\D/g, '');
       return /^3\d{9}$/.test(cleanPhone);
     }
 
-function openModal(type) {
-  selectedDemoType = type;
-  const title = document.getElementById('modalTitle');
-  const isEnglish = document.documentElement.lang === 'en';
-  
-  // Cambiar el título según la selección
-  if (type === 'CarWash') {
-    title.textContent = isEnglish ? 'CarWash Pro Auto-setup' : 'Auto-alta CarWash Pro';
-  } else {
-    title.textContent = isEnglish ? 'Nail World Auto-setup' : 'Auto-alta Nail World';
-  }
+    function openModal(type) {
+      selectedDemoType = type;
+      const title = document.getElementById('modalTitle');
+      const isEnglish = document.documentElement.lang === 'en';
+      
+      // Cambiar el título según la selección
+      if (type === 'CarWash') {
+        title.textContent = isEnglish ? 'CarWash Pro Auto-setup' : 'Auto-alta CarWash Pro';
+      } else {
+        title.textContent = isEnglish ? 'Nail World Auto-setup' : 'Auto-alta Nail World';
+      }
 
-  // Pre-seleccionar visualmente el radio button correcto en el formulario
-  const radioBtn = document.querySelector(`input[name="demoType"][value="${type}"]`);
-  if (radioBtn) radioBtn.checked = true;
-  
-  // Track evento de apertura
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'modal_open', { demo_type: type, page_location: window.location.href });
-  }
-  
-  // Resetear estado del modal
-  document.getElementById('stepForm').classList.remove('hidden');
-  document.getElementById('stepSuccess').classList.add('hidden');
-  document.getElementById('generalError').classList.add('hidden');
-  
-  // OJO: Resetear el formulario borra la selección del radio, por lo que reasignamos:
-  document.getElementById('onboardingForm').reset();
-  if (radioBtn) radioBtn.checked = true; 
-  
-  const modal = document.getElementById('demoModal');
-  modal.classList.remove('hidden');
-  
-  setTimeout(() => {
-    document.getElementById('bizName').focus();
-  }, 100);
-}
+      // Pre-seleccionar visualmente el radio button correcto en el formulario
+      const radioBtn = document.querySelector(`input[name="demoType"][value="${type}"]`);
+      if (radioBtn) radioBtn.checked = true;
+      
+      // Track evento de apertura
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'modal_open', { demo_type: type, page_location: window.location.href });
+      }
+      
+      // Resetear estado del modal
+      document.getElementById('stepForm').classList.remove('hidden');
+      document.getElementById('stepSuccess').classList.add('hidden');
+      document.getElementById('generalError').classList.add('hidden');
+      
+      // OJO: Resetear el formulario borra la selección del radio, por lo que reasignamos:
+      document.getElementById('onboardingForm').reset();
+      if (radioBtn) radioBtn.checked = true; 
+      
+      const modal = document.getElementById('demoModal');
+      modal.classList.remove('hidden');
+      
+      setTimeout(() => {
+        document.getElementById('bizName').focus();
+      }, 100);
+    }
 
     function closeModal() {
       document.getElementById('demoModal').classList.add('hidden');
@@ -701,13 +880,6 @@ function openModal(type) {
     function closeCookiesModal() {
       document.getElementById('cookiesModal').classList.add('hidden');
     }
-
-    // Cerrar modal con tecla Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !document.getElementById('demoModal').classList.contains('hidden')) {
-        closeModal();
-      }
-    });
 
     async function handleDemoSubmit(e) {
       e.preventDefault();
@@ -764,35 +936,32 @@ function openModal(type) {
         const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
         const cleanPhone = ownerPhone.replace(/\D/g, '');
         
-        // --- NUEVO: Capturar el tipo de demo seleccionado en el formulario ---
+        // --- Capturar el tipo de demo seleccionado en el formulario ---
         const formDemoType = document.querySelector('input[name="demoType"]:checked').value;
         selectedDemoType = formDemoType; 
-        // ----------------------------------------------------------------------
 
-        console.log("Transmisión a Supabase iniciada...", { bizName, ownerName, cleanPhone, subdomain });
-        
         console.log("Transmisión a Supabase iniciada...", { bizName, ownerName, cleanPhone, subdomain });
         
         const { data, error } = await supabaseClient
           .from('businesses')
-.insert({
-  name: bizName,
-  subdomain: subdomain,
-  owner_name: ownerName,
-  owner_phone: cleanPhone,
-  subscription_status: 'trial',
-  plan_type: 'mensual',
-  demo_selected: formDemoType, // La nueva vía de información
-  expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
-})
+          .insert({
+            name: bizName,
+            subdomain: subdomain,
+            owner_name: ownerName,
+            owner_phone: cleanPhone,
+            subscription_status: 'trial',
+            plan_type: 'mensual',
+            demo_selected: formDemoType, // La nueva vía de información
+            expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
+          })
           .select()
           .single();
 
-if (error) throw error;
+        if (error) throw error;
 
         console.log("Inserción confirmada por el servidor:", data);
         
-        // --- NUEVO: Generar URL dinámica basada en la selección ---
+        // --- Generar URL dinámica basada en la selección ---
         generatedDemoUrl = formDemoType === 'CarWash' 
           ? `https://exact-screenshot-six.vercel.app?business_id=${data.id}` 
           : `https://nail-world-app.vercel.app?business_id=${data.id}`;
@@ -935,20 +1104,17 @@ if (error) throw error;
     // CONTROLADORES DE CIERRE DE MODALES (ESC)
     // ==========================================
     
-    // 1. Asegurarnos de que la función de cerrar exista
-    function closeModal() {
-      const demoModal = document.getElementById('demoModal');
-      if (demoModal) {
-        demoModal.classList.add('hidden');
-      }
-    }
-
     // 2. Escuchar la tecla ESC en todo el documento
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         // Cerrar modal de auto-alta
-        closeModal();
+        const demoModal = document.getElementById('demoModal');
+        if (demoModal && !demoModal.classList.contains('hidden')) demoModal.classList.add('hidden');
         
+        // Cerrar modal de acceso (Ecosistema)
+        const loginModal = document.getElementById('loginModal');
+        if (loginModal && !loginModal.classList.contains('hidden')) window.closeLoginModal();
+
         // Cerrar modales legales si estuvieran abiertos
         const privacy = document.getElementById('privacyModal');
         if (privacy && !privacy.classList.contains('hidden')) closePrivacyModal();
@@ -961,253 +1127,5 @@ if (error) throw error;
       }
     });
   </script>
-
-<!-- Modal de Iniciar Sesión -->
-<div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-  <div class="relative w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl text-white">
-    <!-- Botón Cerrar -->
-    <button id="closeModalBtn" class="absolute top-5 right-5 p-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-800 transition-colors">
-      ✕
-    </button>
-
-    <h2 class="text-2xl font-bold mb-1 text-center">Acceso al Ecosistema</h2>
-    <p class="text-slate-400 text-sm text-center mb-6">
-      Selecciona tu plataforma e ingresa el identificador de tu negocio
-    </p>
-
-    <!-- Selector de Aplicación -->
-    <div class="grid grid-cols-2 gap-3 mb-6">
-      <button type="button" id="btnAppCarWash" class="p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/20">
-        <span class="text-xl">🚗</span>
-        <span class="text-xs font-semibold">CarWash Pro</span>
-      </button>
-
-      <button type="button" id="btnAppNailWorld" class="p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600">
-        <span class="text-xl">✨</span>
-        <span class="text-xs font-semibold">Nail World</span>
-      </button>
-    </div>
-
-    <!-- Formulario -->
-    <form id="landingLoginForm" class="space-y-4">
-      <div>
-        <label class="block text-xs font-medium text-slate-400 mb-2">
-          Nombre o Código de tu Negocio
-        </label>
-        <input
-          type="text"
-          id="businessInput"
-          placeholder="Ej: Carclean o LAV01"
-          class="w-full px-4 py-3.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm transition-all"
-          required
-        />
-      </div>
-
-      <p id="modalErrorMsg" class="hidden text-red-400 text-xs font-medium animate-pulse"></p>
-
-      <button
-        type="submit"
-        id="submitAccessBtn"
-        class="w-full py-4 rounded-xl font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2"
-      >
-        <span>Ingresar a CarWash Pro</span> →
-      </button>
-    </form>
-  </div>
-</div>
-
-<!-- Modal de Iniciar Sesión (Ecosistema) -->
-<div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-  <div class="relative w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl text-white">
-    <!-- Botón Cerrar -->
-    <button type="button" onclick="closeLoginModal()" class="absolute top-5 right-5 p-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-800 transition-colors">
-      ✕
-    </button>
-
-    <h2 class="text-2xl font-bold mb-1 text-center">Acceso al Ecosistema</h2>
-    <p class="text-slate-400 text-sm text-center mb-6">
-      Selecciona tu plataforma e ingresa el identificador de tu negocio
-    </p>
-
-    <!-- Selector de Aplicación -->
-    <div class="grid grid-cols-2 gap-3 mb-6">
-      <button type="button" id="btnAppCarWash" class="p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/20">
-        <span class="text-xl">🚗</span>
-        <span class="text-xs font-semibold">CarWash Pro</span>
-      </button>
-
-      <button type="button" id="btnAppNailWorld" class="p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600">
-        <span class="text-xl">✨</span>
-        <span class="text-xs font-semibold">Nail World</span>
-      </button>
-    </div>
-
-    <!-- Formulario -->
-    <form id="landingLoginForm" class="space-y-4">
-      <div>
-        <label class="block text-xs font-medium text-slate-400 mb-2">
-          Nombre o Código de tu Negocio
-        </label>
-        <input
-          type="text"
-          id="businessInput"
-          placeholder="Ej: Carclean o LAV01"
-          class="w-full px-4 py-3.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm transition-all"
-          required
-        />
-      </div>
-
-      <p id="modalErrorMsg" class="hidden text-red-400 text-xs font-medium animate-pulse"></p>
-
-      <button
-        type="submit"
-        id="submitAccessBtn"
-        class="w-full py-4 rounded-xl font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2"
-      >
-        <span>Ingresar a CarWash Pro</span> →
-      </button>
-    </form>
-  </div>
-</div>
-
-<!-- Modal de Iniciar Sesión (Paso 2) -->
-  <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-    ... (el HTML del modal que ya pegaste) ...
-  </div>
-
-  <!-- Paso 3: Script de control e integración con Supabase -->
-  <script>
-    // Configuración de URLs y Supabase
-
-  // Reutilizamos la configuración de Supabase previamente declarada
-  // o le asignamos un nombre único a las URLs si no estaban definidas
-  if (typeof SUPABASE_URL === 'undefined') {
-    var SUPABASE_URL = 'https://pdtrnsfcurcjxzshlphm.supabase.co';
-  }
-  if (typeof SUPABASE_ANON_KEY === 'undefined') {
-    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiI...'; // Tu clave anon
-  }
-
-  const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
-  const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
-
-  let selectedApp = 'CarWash';
-
-  // 1. Funciones globales de apertura y cierre para el HTML
-  window.openLoginModal = function() {
-    const modal = document.getElementById('loginModal');
-    if (modal) {
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-  };
-
-  window.closeLoginModal = function() {
-    const modal = document.getElementById('loginModal');
-    if (modal) {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-  };
-
-    // 2. Control de la interfaz y envío del formulario
-    document.addEventListener('DOMContentLoaded', () => {
-      const btnCarWash = document.getElementById('btnAppCarWash');
-      const btnNailWorld = document.getElementById('btnAppNailWorld');
-      const loginForm = document.getElementById('landingLoginForm');
-      const businessInput = document.getElementById('businessInput');
-      const errorMsg = document.getElementById('modalErrorMsg');
-      const submitBtn = document.getElementById('submitAccessBtn');
-
-      if (btnCarWash && btnNailWorld) {
-        btnCarWash.addEventListener('click', () => {
-          selectedApp = 'CarWash';
-          btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/20";
-          btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
-          if (businessInput) businessInput.placeholder = "Ej: Carclean o LAV01";
-          if (submitBtn) {
-            submitBtn.innerHTML = "<span>Ingresar a CarWash Pro</span> →";
-            submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2";
-          }
-          if (errorMsg) errorMsg.classList.add('hidden');
-        });
-
-        btnNailWorld.addEventListener('click', () => {
-          selectedApp = 'NailWorld';
-          btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-purple-600/20 border-purple-500 text-white shadow-lg shadow-purple-500/20";
-          btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
-          if (businessInput) businessInput.placeholder = "Ej: NailCuba";
-          if (submitBtn) {
-            submitBtn.innerHTML = "<span>Ingresar a Nail World</span> →";
-            submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2";
-          }
-          if (errorMsg) errorMsg.classList.add('hidden');
-        });
-      }
-
-      if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const query = businessInput ? businessInput.value.trim() : '';
-          if (!query) return;
-
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Verificando...";
-          }
-          if (errorMsg) errorMsg.classList.add('hidden');
-
-          try {
-            const response = await fetch(
-              `${SUPABASE_URL}/rest/v1/businesses?or=(codigo.ilike.${query},name.ilike.${query})&limit=1`,
-              {
-                headers: {
-                  'apikey': SUPABASE_ANON_KEY,
-                  'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-                }
-              }
-            );
-
-            const data = await response.json();
-
-            if (!data || data.length === 0) {
-              showError('No encontramos ningún negocio registrado con ese nombre o código.');
-              return;
-            }
-
-            const biz = data[0];
-
-            if (biz.demo_selected && biz.demo_selected !== selectedApp) {
-              const appCorrecta = biz.demo_selected === 'CarWash' ? 'CarWash Pro' : 'Nail World';
-              showError(`Este negocio pertenece a ${appCorrecta}. Cambia la plataforma seleccionada arriba.`);
-              return;
-            }
-
-            const targetBaseUrl = selectedApp === 'CarWash' ? URL_CARWASH : URL_NAILWORLD;
-            window.location.href = `${targetBaseUrl}/?business_id=${biz.id}`;
-
-          } catch (err) {
-            showError('Error de red al verificar el negocio. Intenta nuevamente.');
-          } finally {
-            if (submitBtn) submitBtn.disabled = false;
-          }
-        });
-      }
-
-      function showError(msg) {
-        if (errorMsg) {
-          errorMsg.innerText = msg;
-          errorMsg.classList.remove('hidden');
-        }
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = selectedApp === 'CarWash' 
-            ? "<span>Ingresar a CarWash Pro</span> →" 
-            : "<span>Ingresar a Nail World</span> →";
-        }
-      }
-    });
-  </script>
-
 </body>
 </html>
