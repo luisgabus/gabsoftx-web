@@ -1078,30 +1078,37 @@ if (error) throw error;
   <!-- Paso 3: Script de control e integración con Supabase -->
   <script>
     // Configuración de URLs y Supabase
-    const SUPABASE_URL = 'https://pdtrnsfcurcjxzshlphm.supabase.co'; // <--- REEMPLAZA CON TU URL
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ';                // <--- REEMPLAZA CON TU ANON_KEY
+<script>
+  // Reutilizamos la configuración de Supabase previamente declarada
+  // o le asignamos un nombre único a las URLs si no estaban definidas
+  if (typeof SUPABASE_URL === 'undefined') {
+    var SUPABASE_URL = 'https://pdtrnsfcurcjxzshlphm.supabase.co';
+  }
+  if (typeof SUPABASE_ANON_KEY === 'undefined') {
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiI...'; // Tu clave anon
+  }
 
-    const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
-    const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
+  const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
+  const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
 
-    let selectedApp = 'CarWash';
+  let selectedApp = 'CarWash';
 
-    // 1. Funciones globales de apertura y cierre para el HTML
-    window.openLoginModal = function() {
-      const modal = document.getElementById('loginModal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-    };
+  // 1. Funciones globales de apertura y cierre para el HTML
+  window.openLoginModal = function() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+  };
 
-    window.closeLoginModal = function() {
-      const modal = document.getElementById('loginModal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-    };
+  window.closeLoginModal = function() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  };
 
     // 2. Control de la interfaz y envío del formulario
     document.addEventListener('DOMContentLoaded', () => {
