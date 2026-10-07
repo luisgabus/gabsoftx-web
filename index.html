@@ -780,7 +780,19 @@
             }
 
             const targetBaseUrl = selectedApp === 'CarWash' ? URL_CARWASH : URL_NAILWORLD;
-            window.location.href = `${targetBaseUrl}/?business_id=${biz.id}`;
+
+            // --- NUEVO: Limpieza total del estado antes de salir de la página ---
+        if (businessInput) businessInput.value = ''; // Borramos lo que el usuario escribió
+        if (submitBtn) {
+          submitBtn.disabled = false; // Reactivamos el botón
+          // Restauramos el texto original según la app seleccionada
+          submitBtn.innerHTML = selectedApp === 'CarWash' 
+            ? "<span>Ingresar a CarWash Pro</span> →" 
+            : "<span>Ingresar a Nail World</span> →";
+        }
+        window.closeLoginModal(); // Cerramos la ventana flotante
+        // ------------------------------------------------------------------- 
+             window.location.href = `${targetBaseUrl}/?business_id=${biz.id}`;
 
           } catch (err) {
             showError('Error de red al verificar el negocio. Intenta nuevamente.');
