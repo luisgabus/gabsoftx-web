@@ -1070,5 +1070,137 @@ if (error) throw error;
   </div>
 </div>
 
+<!-- Modal de Iniciar Sesión (Paso 2) -->
+  <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    ... (el HTML del modal que ya pegaste) ...
+  </div>
+
+  <!-- Paso 3: Script de control e integración con Supabase -->
+  <script>
+    // Configuración de URLs y Supabase
+    const SUPABASE_URL = 'https://pdtrnsfcurcjxzshlphm.supabase.co'; // <--- REEMPLAZA CON TU URL
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ';                // <--- REEMPLAZA CON TU ANON_KEY
+
+    const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
+    const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
+
+    let selectedApp = 'CarWash';
+
+    // 1. Funciones globales de apertura y cierre para el HTML
+    window.openLoginModal = function() {
+      const modal = document.getElementById('loginModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    };
+
+    window.closeLoginModal = function() {
+      const modal = document.getElementById('loginModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    };
+
+    // 2. Control de la interfaz y envío del formulario
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnCarWash = document.getElementById('btnAppCarWash');
+      const btnNailWorld = document.getElementById('btnAppNailWorld');
+      const loginForm = document.getElementById('landingLoginForm');
+      const businessInput = document.getElementById('businessInput');
+      const errorMsg = document.getElementById('modalErrorMsg');
+      const submitBtn = document.getElementById('submitAccessBtn');
+
+      if (btnCarWash && btnNailWorld) {
+        btnCarWash.addEventListener('click', () => {
+          selectedApp = 'CarWash';
+          btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/20";
+          btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
+          if (businessInput) businessInput.placeholder = "Ej: Carclean o LAV01";
+          if (submitBtn) {
+            submitBtn.innerHTML = "<span>Ingresar a CarWash Pro</span> →";
+            submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2";
+          }
+          if (errorMsg) errorMsg.classList.add('hidden');
+        });
+
+        btnNailWorld.addEventListener('click', () => {
+          selectedApp = 'NailWorld';
+          btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-purple-600/20 border-purple-500 text-white shadow-lg shadow-purple-500/20";
+          btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
+          if (businessInput) businessInput.placeholder = "Ej: NailCuba";
+          if (submitBtn) {
+            submitBtn.innerHTML = "<span>Ingresar a Nail World</span> →";
+            submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2";
+          }
+          if (errorMsg) errorMsg.classList.add('hidden');
+        });
+      }
+
+      if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const query = businessInput ? businessInput.value.trim() : '';
+          if (!query) return;
+
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Verificando...";
+          }
+          if (errorMsg) errorMsg.classList.add('hidden');
+
+          try {
+            const response = await fetch(
+              `${SUPABASE_URL}/rest/v1/businesses?or=(codigo.ilike.${query},name.ilike.${query})&limit=1`,
+              {
+                headers: {
+                  'apikey': SUPABASE_ANON_KEY,
+                  'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+              }
+            );
+
+            const data = await response.json();
+
+            if (!data || data.length === 0) {
+              showError('No encontramos ningún negocio registrado con ese nombre o código.');
+              return;
+            }
+
+            const biz = data[0];
+
+            if (biz.demo_selected && biz.demo_selected !== selectedApp) {
+              const appCorrecta = biz.demo_selected === 'CarWash' ? 'CarWash Pro' : 'Nail World';
+              showError(`Este negocio pertenece a ${appCorrecta}. Cambia la plataforma seleccionada arriba.`);
+              return;
+            }
+
+            const targetBaseUrl = selectedApp === 'CarWash' ? URL_CARWASH : URL_NAILWORLD;
+            window.location.href = `${targetBaseUrl}/?business_id=${biz.id}`;
+
+          } catch (err) {
+            showError('Error de red al verificar el negocio. Intenta nuevamente.');
+          } finally {
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        });
+      }
+
+      function showError(msg) {
+        if (errorMsg) {
+          errorMsg.innerText = msg;
+          errorMsg.classList.remove('hidden');
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = selectedApp === 'CarWash' 
+            ? "<span>Ingresar a CarWash Pro</span> →" 
+            : "<span>Ingresar a Nail World</span> →";
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
