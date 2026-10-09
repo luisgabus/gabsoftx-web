@@ -322,7 +322,7 @@
             </div>
             <div>
               <label class="block text-xs font-medium text-slate-300 mb-1">Tu Nombre Completo</label>
-              <input type="text" id="ownerName" placeholder="Ej. Luis Usuga" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none placeholder-slate-500">
+              <input type="text" id="ownerName" placeholder="Ej. Julio Perez" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none placeholder-slate-500">
             </div>
             <div>
               <label class="block text-xs font-medium text-slate-300 mb-1">Teléfono o WhatsApp</label>
@@ -482,6 +482,77 @@
           authBtn.disabled = false;
           if (authText) authText.textContent = "Continuar con Google";
         }
+      }
+    }
+
+async function handleManualSubmit(e) {
+      e.preventDefault();
+      
+      const btn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnSpinner = document.getElementById('btnSpinner');
+      const generalError = document.getElementById('generalError');
+      
+      const bizName = document.getElementById('bizName').value.trim();
+      const ownerName = document.getElementById('ownerName').value.trim();
+      const ownerPhone = document.getElementById('ownerPhone').value.trim();
+      const privacyCheck = document.getElementById('privacyCheck').checked;
+      
+      if (!bizName || !ownerName || !ownerPhone) {
+        document.getElementById('generalErrorText').textContent = 'Por favor completa todos los campos del formulario manual.';
+        generalError.classList.remove('hidden');
+        return;
+      }
+
+      if (!privacyCheck) {
+        document.getElementById('generalErrorText').textContent = 'Debes aceptar los términos y privacidad para continuar.';
+        generalError.classList.remove('hidden');
+        return;
+      }
+
+      generalError.classList.add('hidden');
+      btn.disabled = true;
+      btnSpinner.classList.remove('hidden');
+      btnText.textContent = 'Generando...';
+
+      try {
+        if (!supabaseClient) throw new Error('credentials');
+        const formDemoType = document.querySelector('input[name="demoType"]:checked').value;
+        const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
+        const cleanPhone = ownerPhone.replace(/\D/g, '');
+
+        const { data, error } = await supabaseClient
+          .from('businesses')
+          .insert({
+            name: bizName,
+            subdomain: subdomain,
+            owner_name: ownerName,
+            owner_phone: cleanPhone,
+            subscription_status: 'trial',
+            plan_type: 'mensual',
+            demo_selected: formDemoType,
+            expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
+          })
+          .select()
+          .single();
+
+        if (error) throw error;
+
+        const generatedDemoUrl = formDemoType === 'CarWash' 
+          ? `${URL_CARWASH}?business_id=${data.id}` 
+          : `${URL_NAILWORLD}?business_id=${data.id}`;
+
+        document.getElementById('stepForm').classList.add('hidden');
+        document.getElementById('stepSuccess').classList.remove('hidden');
+        document.getElementById('redirectBtn').href = generatedDemoUrl;
+
+      } catch (err) {
+        document.getElementById('generalErrorText').textContent = 'Error al registrar el demo. Puede que el nombre ya exista.';
+        generalError.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btnSpinner.classList.add('hidden');
+        btnText.textContent = 'Crear cuenta manualmente';
       }
     }
 
