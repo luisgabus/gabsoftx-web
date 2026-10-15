@@ -254,7 +254,7 @@
     </section>
   </main>
 
-<!-- MODAL DE AUTO-ONBOARDING HÍBRIDO -->
+  <!-- MODAL DE AUTO-ONBOARDING HÍBRIDO -->
   <div id="demoModal" role="dialog" aria-modal="true" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden overflow-y-auto">
     <div class="glass-card rounded-2xl max-w-md w-full p-6 sm:p-8 relative border border-slate-600 shadow-2xl modal-animate-in my-8">
       <button type="button" onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-900/50 rounded-full p-1 transition-colors z-10 focus:outline-none">
@@ -356,6 +356,35 @@
         </a>
         <button onclick="closeModal()" class="text-xs text-slate-400 hover:text-white transition-colors">Cerrar</button>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE ACCESO MANUAL (ECOSISTEMA) -->
+  <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div class="relative w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl text-white">
+      <button type="button" onclick="closeLoginModal()" class="absolute top-5 right-5 p-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-800 transition-colors">✕</button>
+      <h2 class="text-2xl font-bold mb-1 text-center">Acceso al Ecosistema</h2>
+      <p class="text-slate-400 text-sm text-center mb-6">Selecciona tu plataforma e ingresa el identificador de tu negocio</p>
+
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        <button type="button" id="btnAppCarWash" class="p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/20">
+          <span class="text-xl">🚗</span><span class="text-xs font-semibold">CarWash Pro</span>
+        </button>
+        <button type="button" id="btnAppNailWorld" class="p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600">
+          <span class="text-xl">✨</span><span class="text-xs font-semibold">Nail World</span>
+        </button>
+      </div>
+
+      <form id="landingLoginForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-2">Nombre o Código de tu Negocio</label>
+          <input type="text" id="businessInput" placeholder="Ej: Carclean o LAV01" class="w-full px-4 py-3.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm transition-all" required />
+        </div>
+        <p id="modalErrorMsg" class="hidden text-red-400 text-xs font-medium animate-pulse"></p>
+        <button type="submit" id="submitAccessBtn" class="w-full py-4 rounded-xl font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg flex items-center justify-center gap-2">
+          <span>Ingresar a CarWash Pro</span> →
+        </button>
+      </form>
     </div>
   </div>
 
@@ -485,7 +514,8 @@
       }
     }
 
-async function handleManualSubmit(e) {
+    // 4. FUNCIÓN: REGISTRO MANUAL HÍBRIDO
+    async function handleManualSubmit(e) {
       e.preventDefault();
       
       const btn = document.getElementById('submitBtn');
@@ -539,8 +569,8 @@ async function handleManualSubmit(e) {
         if (error) throw error;
 
         const generatedDemoUrl = formDemoType === 'CarWash' 
-          ? `${URL_CARWASH}?business_id=${data.id}` 
-          : `${URL_NAILWORLD}?business_id=${data.id}`;
+          ? `${URL_CARWASH}/?business_id=${data.id}` 
+          : `${URL_NAILWORLD}/?business_id=${data.id}`;
 
         document.getElementById('stepForm').classList.add('hidden');
         document.getElementById('stepSuccess').classList.remove('hidden');
@@ -556,7 +586,7 @@ async function handleManualSubmit(e) {
       }
     }
 
-    // 4. FUNCIONES ORIGINALES DEL MODAL DE ACCESO MANUAL (ID)
+    // 5. FUNCIONES ORIGINALES DEL MODAL DE ACCESO MANUAL (ID)
     window.openLoginModal = function() {
       const modal = document.getElementById('loginModal');
       if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
@@ -656,7 +686,7 @@ async function handleManualSubmit(e) {
       }
     });
 
-    // 5. UTILIDADES (MODALES DE ALTA Y LEGALES)
+    // 6. UTILIDADES (MODALES DE ALTA Y LEGALES)
     function openModal(type) {
       const radioBtn = document.querySelector(`input[name="demoType"][value="${type}"]`);
       if (radioBtn) radioBtn.checked = true;
