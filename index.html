@@ -172,9 +172,10 @@
             <h3 class="text-xl font-bold text-white">CarWash Pro Management</h3>
             <p class="text-sm text-slate-300 leading-relaxed">Plataforma integral para centros de lavado con control de turnos, comisiones e inventario protegido.</p>
           </div>
-          <button onclick="openModal('CarWash')" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-200 hover:text-white border border-blue-500/40 text-sm font-semibold transition-all">
+          <!-- CAMBIO APLICADO: Enlace directo al demo de CarWash -->
+          <a href="https://exact-screenshot-six.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-200 hover:text-white border border-blue-500/40 text-sm font-semibold transition-all">
             <span>Explorar Demo CarWash</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </button>
+          </a>
         </article>
 
         <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
@@ -183,9 +184,10 @@
             <h3 class="text-xl font-bold text-white">Nail World Studio</h3>
             <p class="text-sm text-slate-300 leading-relaxed">Sistema optimizado para salones de belleza enfocado en agenda de citas, profesionales y gestión de ingresos.</p>
           </div>
-          <button onclick="openModal('NailWorld')" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-200 hover:text-white border border-indigo-500/40 text-sm font-semibold transition-all">
+          <!-- CAMBIO APLICADO: Enlace directo al demo de Nail World -->
+          <a href="https://nail-world-app.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-200 hover:text-white border border-indigo-500/40 text-sm font-semibold transition-all">
             <span>Explorar Demo Nail World</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </button>
+          </a>
         </article>
 
         <article class="glass-card rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
@@ -360,17 +362,17 @@
     // 1. CONFIGURACIÓN DOBLE (El Enrutador)
     
     // Credenciales CarWash (⚠️ IMPORTANTE: Pon la URL y la llave real de tu proyecto CarWash aquí)
-    const CARWASH_DB_URL = "https://pdtrnsfcurcjxzshlphm.supabase.co"; 
+    const CARWASH_DB_URL = "https://[TU-URL-DE-CARWASH].supabase.co"; 
     const CARWASH_DB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ";
     const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
 
     // Credenciales Nail World
-    const NAILWORLD_DB_URL = "https://qdnolqquqaumzssamgrj.supabase.co";
+    const NAILWORLD_DB_URL = "https://pdtrnsfcurcjxzshlphm.supabase.co";
     const NAILWORLD_DB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyNjAxMzUsImV4cCI6MjEwNDgzNjEzNX0.8-A2EPBvCo8YJG8noYOweSq3MXGC0ntYEEL1VqrU6oo";
     const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
 
     let selectedApp = 'CarWash'; 
-    let supabaseClient = null; // <- CLAVE: Inicializamos el cliente vacío para que el enrutador lo llene
+    let supabaseClient = null; 
 
     // 2. INICIALIZACIÓN Y CEREBRO EN LAS SOMBRAS (INTERCEPTOR GOOGLE)
     window.addEventListener('DOMContentLoaded', () => {
@@ -414,7 +416,7 @@
                       subdomain: subdomain,
                       owner_name: userFullName,
                       owner_phone: '0000000000',
-                      access_password: 'Auto-' + generatedId, // Para prevenir que la DB rechace por campo nulo
+                      access_password: 'Auto-' + generatedId, 
                       subscription_status: 'trial',
                       plan_type: 'mensual',
                       demo_selected: pendingApp
