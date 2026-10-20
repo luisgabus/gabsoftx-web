@@ -7,7 +7,6 @@
   <meta name="description" content="GabSoftX centraliza el control de ingresos, la gestión de equipos y la analítica operativa en tiempo real para negocios modernos.">
   <meta name="theme-color" content="#0B1120">
   
-  <!-- SEO: Open Graph & Twitter Cards -->
   <meta property="og:title" content="GabSoftX | Gestión Operativa y SaaS Multi-Inquilino">
   <meta property="og:description" content="Centraliza procesos, gestiona suscripciones de inquilinos y supervisa métricas financieras y operativas en tiempo real.">
   <meta property="og:type" content="website">
@@ -16,28 +15,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://gabsoftx.com">
 
-  <!-- Optimización de carga de fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX', {
-      page_title: 'GabSoftX Landing Page',
-      page_location: window.location.href
-    });
-  </script>
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 
   <style>
@@ -101,16 +84,10 @@
       </a>
 
       <div class="flex items-center gap-4 sm:gap-6">
-        <a href="#soluciones" class="hidden sm:inline-block text-sm font-medium text-slate-300 hover:text-white transition-colors" data-es="Ecosistema" data-en="Ecosystem">Ecosistema</a>
-        <div class="flex items-center gap-1.5 rounded-full border border-slate-700 bg-slate-800/80 px-3 py-1 text-xs font-semibold">
-          <i data-lucide="globe" class="h-3.5 w-3.5 text-blue-400"></i>
-          <button id="btn-es" type="button" class="font-bold text-blue-400 underline">ES</button>
-          <span class="text-slate-600">/</span>
-          <button id="btn-en" type="button" class="text-slate-400 hover:text-white">EN</button>
-        </div>
+        <a href="#soluciones" class="hidden sm:inline-block text-sm font-medium text-slate-300 hover:text-white transition-colors">Ecosistema</a>
         <a href="javascript:void(0)" onclick="openLoginModal()" class="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 hover:border-slate-600 transition-all cursor-pointer">
           <i data-lucide="log-in" class="w-4 h-4 text-indigo-400"></i>
-          <span data-es="Iniciar Sesión" data-en="Log In">Iniciar Sesión</span>
+          <span>Iniciar Sesión</span>
         </a>
       </div>
     </div>
@@ -123,23 +100,23 @@
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
           <div class="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-blue-900/50 px-4 py-1.5 text-xs font-medium text-blue-200 backdrop-blur-sm">
             <span class="h-2 w-2 rounded-full bg-blue-400 animate-pulse"></span>
-            <span data-es="Plataforma SaaS Multi-Inquilino de Alto Rendimiento" data-en="High-Performance Multi-Tenant SaaS Platform">Plataforma SaaS Multi-Inquilino de Alto Rendimiento</span>
+            <span>Plataforma SaaS Multi-Inquilino de Alto Rendimiento</span>
           </div>
           <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-            <span data-es="Controla toda tu operación" data-en="Control your entire operation">Controla toda tu operación</span><br>
-            <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent" data-es="con visibilidad absoluta." data-en="with absolute visibility.">con visibilidad absoluta.</span>
+            <span>Controla toda tu operación</span><br>
+            <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent">con visibilidad absoluta.</span>
           </h1>
-          <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed" data-es="Centraliza procesos, gestiona suscripciones de inquilinos y supervisa métricas financieras y operativas en tiempo real." data-en="Centralize processes, manage tenant subscriptions, and supervise financial and operational metrics in real time.">
+          <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
             Centraliza procesos, gestiona suscripciones de inquilinos y supervisa métricas financieras y operativas en tiempo real.
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
             <button onclick="openModal('CarWash')" class="w-full sm:w-auto px-6 py-3 rounded-lg bg-gradient-to-r from-blue-700 to-indigo-700 text-white font-medium text-sm text-center shadow-lg shadow-indigo-900/30 hover:scale-[1.02] active:scale-95 transition-all">
-              <span data-es="Registra tu negocio (Auto-alta)" data-en="Register your business (Auto-setup)">Registra tu negocio (Auto-alta)</span>
+              <span>Registra tu negocio (Auto-alta)</span>
             </button>
           </div>
           <div class="flex items-center justify-center lg:justify-start gap-6 pt-2 text-xs text-slate-400">
-            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> <span data-es="Auto-alta con Google" data-en="Instant Auto-setup via Google">Auto-alta con Google</span></span>
-            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> <span data-es="Sin tarjeta de crédito" data-en="No credit card required">Sin tarjeta de crédito</span></span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> <span>Auto-alta con Google</span></span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> <span>Sin tarjeta de crédito</span></span>
           </div>
         </div>
 
@@ -153,22 +130,22 @@
                   <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
                   <span class="ml-2 font-mono text-xs text-slate-300">superadmin.gabsoftx.app</span>
                 </div>
-                <span class="px-2 py-0.5 text-[10px] font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded" data-es="Sistema Activo" data-en="System Active">Sistema Activo</span>
+                <span class="px-2 py-0.5 text-[10px] font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded">Sistema Activo</span>
               </div>
               <div class="grid grid-cols-2 gap-3">
                 <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-xl">
-                  <p class="text-xs text-slate-400" data-es="Negocios Activos" data-en="Active Businesses">Negocios Activos</p>
-                  <p class="text-xl font-bold text-white mt-1">12 <span class="text-xs font-normal text-emerald-400" data-es="100% Operativos" data-en="100% Operational">100% Operativos</span></p>
+                  <p class="text-xs text-slate-400">Negocios Activos</p>
+                  <p class="text-xl font-bold text-white mt-1">12 <span class="text-xs font-normal text-emerald-400">100% Operativos</span></p>
                 </div>
                 <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-xl">
-                  <p class="text-xs text-slate-400" data-es="Ingresos Mensuales" data-en="Monthly Revenue">Ingresos Mensuales</p>
+                  <p class="text-xs text-slate-400">Ingresos Mensuales</p>
                   <p class="text-xl font-bold text-white mt-1">$360.000</p>
                 </div>
               </div>
               <div class="bg-slate-800/80 border border-slate-700/80 p-4 rounded-xl space-y-3">
                 <div class="flex justify-between text-xs font-medium">
                   <span class="text-slate-200">Seguridad RLS & Kill Switch</span>
-                  <span class="text-emerald-300" data-es="Óptimo" data-en="Optimal">Óptimo</span>
+                  <span class="text-emerald-300">Óptimo</span>
                 </div>
                 <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
                   <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-full w-full"></div>
@@ -183,9 +160,9 @@
     <!-- Soluciones -->
     <section id="soluciones" class="max-w-7xl mx-auto px-6 pt-10 pb-12">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <span class="text-xs font-semibold tracking-wider text-blue-300 bg-blue-500/10 border border-blue-500/30 px-3 py-1 rounded-full uppercase" data-es="PLATAFORMA MULTISECTORIAL" data-en="MULTI-INDUSTRY PLATFORM">PLATAFORMA MULTISECTORIAL</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-white" data-es="Soluciones especializadas por sector" data-en="Specialized solutions by industry">Soluciones especializadas por sector</h2>
-        <p class="text-slate-300 text-base" data-es="Explora y prueba directamente el entorno operativo de nuestras platforms." data-en="Explore and test the operational environment of our platforms directly.">Explora y prueba directamente el entorno operativo de nuestras plataformas.</p>
+        <span class="text-xs font-semibold tracking-wider text-blue-300 bg-blue-500/10 border border-blue-500/30 px-3 py-1 rounded-full uppercase">PLATAFORMA MULTISECTORIAL</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white">Soluciones especializadas por sector</h2>
+        <p class="text-slate-300 text-base">Explora y prueba directamente el entorno operativo de nuestras plataformas.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -193,10 +170,10 @@
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-300"><i data-lucide="car" class="w-6 h-6"></i></div>
             <h3 class="text-xl font-bold text-white">CarWash Pro Management</h3>
-            <p class="text-sm text-slate-300 leading-relaxed" data-es="Plataforma integral para centros de lavado con control de turnos, comisiones e inventario protegido." data-en="Comprehensive platform for car wash centers with shift control, commissions, and tenant-protected inventory.">Plataforma integral para centros de lavado con control de turnos, comisiones e inventario protegido.</p>
+            <p class="text-sm text-slate-300 leading-relaxed">Plataforma integral para centros de lavado con control de turnos, comisiones e inventario protegido.</p>
           </div>
           <button onclick="openModal('CarWash')" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-200 hover:text-white border border-blue-500/40 text-sm font-semibold transition-all">
-            <span data-es="Explorar Demo CarWash" data-en="Explore CarWash Demo">Explorar Demo CarWash</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Explorar Demo CarWash</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </article>
 
@@ -204,10 +181,10 @@
           <div class="space-y-4">
             <div class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
             <h3 class="text-xl font-bold text-white">Nail World Studio</h3>
-            <p class="text-sm text-slate-300 leading-relaxed" data-es="Sistema optimizado para salones de belleza enfocado en agenda de citas, profesionales y gestión de ingresos." data-en="Optimized system for beauty salons focused on appointment scheduling, professionals, and revenue management.">Sistema optimizado para salones de belleza enfocado en agenda de citas, profesionales y gestión de ingresos.</p>
+            <p class="text-sm text-slate-300 leading-relaxed">Sistema optimizado para salones de belleza enfocado en agenda de citas, profesionales y gestión de ingresos.</p>
           </div>
           <button onclick="openModal('NailWorld')" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-200 hover:text-white border border-indigo-500/40 text-sm font-semibold transition-all">
-            <span data-es="Explorar Demo Nail World" data-en="Explore Nail World Demo">Explorar Demo Nail World</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Explorar Demo Nail World</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </article>
 
@@ -216,40 +193,14 @@
             <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-300"><i data-lucide="wrench" class="w-6 h-6"></i></div>
             <div class="flex items-center justify-between">
               <h3 class="text-xl font-bold text-white">MotoTaller & Servicios</h3>
-              <span class="px-2 py-0.5 text-[10px] font-semibold text-cyan-300 bg-cyan-500/10 border border-cyan-500/30 rounded" data-es="Próximamente" data-en="Coming Soon">Próximamente</span>
+              <span class="px-2 py-0.5 text-[10px] font-semibold text-cyan-300 bg-cyan-500/10 border border-cyan-500/30 rounded">Próximamente</span>
             </div>
-            <p class="text-sm text-slate-300 leading-relaxed" data-es="Módulo especializado en gestión de mantenimientos, historial por placa y órdenes de servicio técnico." data-en="Specialized module for maintenance management, license plate history, and technical service orders.">Módulo especializado en gestión de mantenimientos, historial por placa y órdenes de servicio técnico.</p>
+            <p class="text-sm text-slate-300 leading-relaxed">Módulo especializado en gestión de mantenimientos, historial por placa y órdenes de servicio técnico.</p>
           </div>
           <a href="https://wa.me/573176857844" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-200 hover:text-white border border-cyan-500/40 text-sm font-semibold transition-all">
-            <span data-es="Consultar este módulo" data-en="Inquire about this module">Consultar este módulo</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Consultar este módulo</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
         </article>
-      </div>
-    </section>
-
-    <!-- Desarrollo a la medida -->
-    <section id="desarrollo-medida" class="max-w-7xl mx-auto px-6 py-8 pb-24 relative z-10">
-      <div class="relative rounded-3xl glass-card overflow-hidden p-8 sm:p-12 border border-slate-700/50">
-        <div class="absolute -top-24 -right-24 w-96 h-96 bg-indigo-600/20 blur-[100px] pointer-events-none"></div>
-        <div class="flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
-          <div class="max-w-2xl space-y-5 text-center md:text-left">
-            <div class="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-950/40 px-3 py-1 text-xs font-medium text-indigo-300">
-              <i data-lucide="code-2" class="w-4 h-4"></i><span data-es="Software a la Medida" data-en="Custom Software">Software a la Medida</span>
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-              <span data-es="¿Tu negocio requiere reglas únicas?" data-en="Does your business require unique rules?">¿Tu negocio requiere reglas únicas?</span>
-            </h2>
-            <p class="text-slate-300 text-base leading-relaxed" data-es="No te adaptes al software, hacemos que nuestra tecnología se adapte a ti..." data-en="Don't adapt to the software, we make our technology adapt to you...">
-              No te adaptes al software, hacemos que nuestra tecnología se adapte a ti. Diseñamos, desarrollamos e implementamos ecosistemas SaaS exclusivos para la lógica operativa de tu empresa.
-            </p>
-          </div>
-          <div class="shrink-0 w-full md:w-auto mt-4 md:mt-0">
-            <a href="https://wa.me/573176857844" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full md:w-auto px-8 py-4 rounded-xl bg-slate-100 hover:bg-white text-slate-900 font-bold shadow-lg hover:scale-105 active:scale-95 transition-all">
-              <i data-lucide="message-square-plus" class="w-5 h-5"></i>
-              <span data-es="Cotizar mi App" data-en="Quote my App">Cotizar mi App</span>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   </main>
@@ -381,7 +332,7 @@
         </button>
       </div>
 
-<form id="landingLoginForm" class="space-y-4">
+      <form id="landingLoginForm" class="space-y-4">
         <div>
           <label class="block text-xs font-medium text-slate-400 mb-2">Nombre o Código de tu Negocio</label>
           <input type="text" id="businessInput" placeholder="Ej: Carclean o LAV01" class="w-full px-4 py-3.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 text-sm transition-all" required />
@@ -398,18 +349,18 @@
     </div>
   </div>
 
-  <!-- Modales Legales (Ocultos por defecto) -->
+  <!-- Modales Legales -->
   <div id="privacyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden"><div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-slate-700"><div class="px-6 py-5 border-b border-slate-800"><h3 class="text-xl font-bold text-white">Política de Privacidad</h3></div><div class="px-6 py-6 overflow-y-auto text-sm text-slate-300 space-y-4"><p>Tus datos están protegidos por Supabase Auth y Google Cloud. No vendemos ni compartimos tu información.</p></div><div class="px-6 py-4 border-t border-slate-800 bg-slate-900/50"><button onclick="closePrivacyModal()" class="w-full px-6 py-2.5 rounded-lg bg-slate-800 text-white font-medium border border-slate-700">Cerrar</button></div></div></div>
   <div id="termsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden"><div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-slate-700"><div class="px-6 py-5 border-b border-slate-800"><h3 class="text-xl font-bold text-white">Términos y Condiciones</h3></div><div class="px-6 py-6 overflow-y-auto text-sm text-slate-300 space-y-4"><p>La plataforma es para uso de evaluación comercial (15 días de Trial). GabSoftX posee todos los derechos de propiedad intelectual.</p></div><div class="px-6 py-4 border-t border-slate-800 bg-slate-900/50"><button onclick="closeTermsModal()" class="w-full px-6 py-2.5 rounded-lg bg-slate-800 text-white font-medium border border-slate-700">Cerrar</button></div></div></div>
   <div id="cookiesModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden"><div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-slate-700"><div class="px-6 py-5 border-b border-slate-800"><h3 class="text-xl font-bold text-white">Cookies</h3></div><div class="px-6 py-6 overflow-y-auto text-sm text-slate-300 space-y-4"><p>Usamos cookies esenciales para mantener tu sesión segura con Google Auth.</p></div><div class="px-6 py-4 border-t border-slate-800 bg-slate-900/50"><button onclick="closeCookiesModal()" class="w-full px-6 py-2.5 rounded-lg bg-slate-800 text-white font-medium border border-slate-700">Cerrar</button></div></div></div>
 
- <!-- UNICO SCRIPT PRINCIPAL UNIFICADO -->
+  <!-- SCRIPT PRINCIPAL CORREGIDO -->
   <script>
     
     // 1. CONFIGURACIÓN DOBLE (El Enrutador)
     
-    // Credenciales CarWash (Reemplaza con los datos reales de CarWash)
-    const CARWASH_DB_URL = "https://pdtrnsfcurcjxzshlphm.supabase.co"; 
+    // Credenciales CarWash (⚠️ IMPORTANTE: Pon la URL y la llave real de tu proyecto CarWash aquí)
+    const CARWASH_DB_URL = "https://[TU-URL-DE-CARWASH].supabase.co"; 
     const CARWASH_DB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ";
     const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
 
@@ -418,20 +369,21 @@
     const NAILWORLD_DB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyNjAxMzUsImV4cCI6MjEwNDgzNjEzNX0.8-A2EPBvCo8YJG8noYOweSq3MXGC0ntYEEL1VqrU6oo";
     const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
 
-    let selectedApp = 'CarWash'; // Sigue siendo tu valor por defecto
+    let selectedApp = 'CarWash'; 
+    let supabaseClient = null; // <- CLAVE: Inicializamos el cliente vacío para que el enrutador lo llene
 
     // 2. INICIALIZACIÓN Y CEREBRO EN LAS SOMBRAS (INTERCEPTOR GOOGLE)
     window.addEventListener('DOMContentLoaded', () => {
       if (typeof window.supabase !== 'undefined') {
         try {
-supabaseClient = supabase.createClient(CARWASH_DB_URL, CARWASH_DB_KEY);          
+          supabaseClient = supabase.createClient(CARWASH_DB_URL, CARWASH_DB_KEY);
+          
           // Escuchar cambios de sesión al volver de Google
           supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session) {
               const pendingApp = localStorage.getItem('pendingDemoType');
               
               if (pendingApp) {
-                // Bloqueamos la pantalla con un Loading hermoso para que el usuario sepa que está cargando
                 const overlay = document.createElement('div');
                 overlay.className = "fixed inset-0 bg-slate-900/95 z-[9999] flex flex-col items-center justify-center text-white backdrop-blur-sm";
                 overlay.innerHTML = `
@@ -442,31 +394,36 @@ supabaseClient = supabase.createClient(CARWASH_DB_URL, CARWASH_DB_KEY);
                 document.body.appendChild(overlay);
                 if (window.lucide) window.lucide.createIcons();
 
-                localStorage.removeItem('pendingDemoType'); // Limpiamos la intención
+                localStorage.removeItem('pendingDemoType');
                 
-                // Extraer nombre de Google
+                // [NUEVO] ENRUTADOR INTERNO: Cambiamos de base de datos antes de hacer el guardado
+                const targetUrl = pendingApp === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
+                const targetKey = pendingApp === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
+                supabaseClient = supabase.createClient(targetUrl, targetKey);
+                
                 const userFullName = session.user.user_metadata.full_name || session.user.email.split('@')[0];
                 const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
+                const generatedId = (pendingApp === 'CarWash' ? 'CW-' : 'NW-') + Math.random().toString(36).substring(2, 8).toUpperCase();
 
                 try {
                   const { data, error } = await supabaseClient
                     .from('businesses')
                     .insert({
+                      id: generatedId,
                       name: `Negocio de ${userFullName}`, 
                       subdomain: subdomain,
                       owner_name: userFullName,
-                      owner_phone: '0000000000', // Campo genérico, validado por auth
+                      owner_phone: '0000000000',
+                      access_password: 'Auto-' + generatedId, // Para prevenir que la DB rechace por campo nulo
                       subscription_status: 'trial',
                       plan_type: 'mensual',
-                      demo_selected: pendingApp,
-                      expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
+                      demo_selected: pendingApp
                     })
                     .select()
                     .single();
 
                   if (error) throw error;
 
-                  // Teletransporte directo a la App
                   const targetBaseUrl = pendingApp === 'CarWash' ? URL_CARWASH : URL_NAILWORLD;
                   window.location.href = `${targetBaseUrl}/?business_id=${data.id}`;
 
@@ -476,7 +433,7 @@ supabaseClient = supabase.createClient(CARWASH_DB_URL, CARWASH_DB_KEY);
                     <div class="bg-slate-800 p-8 rounded-2xl max-w-sm text-center border border-slate-700">
                       <i data-lucide="alert-circle" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
                       <h2 class="text-xl font-bold mb-2">Error de Sincronización</h2>
-                      <p class="text-sm text-slate-400 mb-6">Tu identidad fue validada, pero hubo un error generando tu negocio (quizás ya existe). Intenta recargar.</p>
+                      <p class="text-sm text-slate-400 mb-6">Tu identidad fue validada, pero hubo un error generando tu negocio. Intenta de nuevo.</p>
                       <button onclick="window.location.reload()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold w-full">Recargar página</button>
                     </div>
                   `;
@@ -497,41 +454,26 @@ supabaseClient = supabase.createClient(CARWASH_DB_URL, CARWASH_DB_KEY);
       const authText = document.getElementById('googleAuthText');
       const generalError = document.getElementById('generalError');
       
-// 1. Guardar la elección del usuario (CarWash o NailWorld)
       const formDemoType = document.querySelector('input[name="demoType"]:checked').value;
       localStorage.setItem('pendingDemoType', formDemoType);
 
-      // 2. Actualizar la interfaz (UX)
       if (generalError) generalError.classList.add('hidden');
       if (authBtn) {
         authBtn.disabled = true;
         if (authText) authText.textContent = "Conectando...";
       }
 
-      // 3. ENRUTADOR DINÁMICO: Asignar credenciales según la elección
+      // [ENRUTADOR] Asignar la conexión correcta a la variable global
       const targetUrl = formDemoType === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
       const targetKey = formDemoType === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
-      
-      // Creamos el cliente apuntando a la base de datos correcta
-      const supabaseClient = supabase.createClient(targetUrl, targetKey);
+      supabaseClient = supabase.createClient(targetUrl, targetKey);
 
-      // 4. Iniciar la inserción
       try {
-
         if (!supabaseClient) throw new Error('credentials');
-        
-        // Generamos el ID automático compatible para Nail World y Car Wash
-        const generatedId = (formDemoType === 'CarWash' ? 'CW-' : 'NW-') + Math.random().toString(36).substring(2, 8).toUpperCase();
-        const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
-        const cleanPhone = ownerPhone.replace(/\D/g, '');
-
-
-        // location.origin + location.pathname nos asegura volver a la landing sin basura en la URL
         const { error } = await supabaseClient.auth.signInWithOAuth({
           provider: 'google',
           options: { redirectTo: window.location.origin + window.location.pathname }
         });
-
         if (error) throw error;
       } catch (err) {
         if (generalError) {
@@ -546,8 +488,7 @@ supabaseClient = supabase.createClient(CARWASH_DB_URL, CARWASH_DB_KEY);
     }
 
     // 4. FUNCIÓN: REGISTRO MANUAL HÍBRIDO
-
-async function handleManualSubmit(e) {
+    async function handleManualSubmit(e) {
       e.preventDefault();
       
       const btn = document.getElementById('submitBtn');
@@ -579,23 +520,31 @@ async function handleManualSubmit(e) {
       btnText.textContent = 'Generando...';
 
       try {
-        if (!supabaseClient) throw new Error('credentials');
         const formDemoType = document.querySelector('input[name="demoType"]:checked').value;
+        
+        // [ENRUTADOR] Asignar la conexión correcta antes de guardar
+        const targetUrl = formDemoType === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
+        const targetKey = formDemoType === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
+        supabaseClient = supabase.createClient(targetUrl, targetKey);
+
+        if (!supabaseClient) throw new Error('credentials');
+        
         const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
         const cleanPhone = ownerPhone.replace(/\D/g, '');
+        const generatedId = (formDemoType === 'CarWash' ? 'CW-' : 'NW-') + Math.random().toString(36).substring(2, 8).toUpperCase();
 
         const { data, error } = await supabaseClient
           .from('businesses')
           .insert({
+            id: generatedId,
             name: bizName,
             subdomain: subdomain,
             owner_name: ownerName,
             owner_phone: cleanPhone,
-            access_password: ownerPassword, // Nueva instrucción de seguridad
+            access_password: ownerPassword,
             subscription_status: 'trial',
             plan_type: 'mensual',
-            demo_selected: formDemoType,
-            expiration_date: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
+            demo_selected: formDemoType
           })
           .select()
           .single();
@@ -611,7 +560,8 @@ async function handleManualSubmit(e) {
         document.getElementById('redirectBtn').href = generatedDemoUrl;
 
       } catch (err) {
-        document.getElementById('generalErrorText').textContent = 'Error al registrar el demo. Puede que el nombre ya exista.';
+        console.error(err);
+        document.getElementById('generalErrorText').textContent = 'Error al registrar el demo. Intenta nuevamente.';
         generalError.classList.remove('hidden');
       } finally {
         btn.disabled = false;
@@ -656,7 +606,7 @@ async function handleManualSubmit(e) {
           selectedApp = 'NailWorld';
           btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-purple-600/20 border-purple-500 text-white shadow-lg shadow-purple-500/20";
           btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
-          if (businessInput) businessInput.placeholder = "Ej: NailCuba";
+          if (businessInput) businessInput.placeholder = "Ej: Nail Cuba";
           if (submitBtn) {
             submitBtn.innerHTML = "<span>Ingresar a Nail World</span> →";
             submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all shadow-lg flex items-center justify-center gap-2";
@@ -665,7 +615,7 @@ async function handleManualSubmit(e) {
         });
       }
 
-if (loginForm) {
+      if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
           e.preventDefault();
           const query = businessInput ? businessInput.value.trim() : '';
@@ -677,19 +627,26 @@ if (loginForm) {
           if (errorMsg) errorMsg.classList.add('hidden');
 
           try {
-            // El cruce matricial: Exige que el nombre o código coincida, Y que la contraseña sea exactamente igual
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/businesses?or=(codigo.ilike.${query},name.ilike.${query})&access_password=eq.${encodeURIComponent(pwd)}&limit=1`, {
-              headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
-            });
-
-            const data = await response.json();
+            // [ENRUTADOR LOGIN] Asignamos las credenciales según la selección del usuario
+            const targetUrl = selectedApp === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
+            const targetKey = selectedApp === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
             
-            if (!data || data.length === 0) {
+            // Creamos una conexión limpia usando supabase-js en lugar del viejo fetch quemado
+            supabaseClient = supabase.createClient(targetUrl, targetKey);
+
+            const { data: biz, error: dbError } = await supabaseClient
+              .from('businesses')
+              .select('*')
+              .or(`id.ilike."${query}",name.ilike."${query}"`)
+              .eq('access_password', pwd)
+              .limit(1)
+              .maybeSingle();
+            
+            if (dbError || !biz) {
               showError('Credenciales incorrectas. Verifica el código de tu negocio y la contraseña.');
               return;
             }
 
-            const biz = data[0];
             if (biz.demo_selected && biz.demo_selected !== selectedApp) {
               const appCorrecta = biz.demo_selected === 'CarWash' ? 'CarWash Pro' : 'Nail World';
               showError(`Este negocio pertenece a ${appCorrecta}. Cambia la plataforma seleccionada arriba.`);
@@ -698,7 +655,6 @@ if (loginForm) {
 
             const targetBaseUrl = selectedApp === 'CarWash' ? URL_CARWASH : URL_NAILWORLD;
 
-            // Limpieza del estado para no dejar rastros (Back-Forward Cache Fix)
             if (businessInput) businessInput.value = '';
             const passInput = document.getElementById('loginPasswordInput');
             if (passInput) passInput.value = '';
@@ -711,6 +667,7 @@ if (loginForm) {
 
             window.location.href = `${targetBaseUrl}/?business_id=${biz.id}`;
           } catch (err) {
+            console.error(err);
             showError('Error de red al verificar el negocio. Intenta nuevamente.');
           } finally {
             if (submitBtn) submitBtn.disabled = false;
@@ -751,7 +708,6 @@ if (loginForm) {
       }
     });
 
-    // Inicializar Iconos Lucide
     document.addEventListener("DOMContentLoaded", () => {
       if(window.lucide) window.lucide.createIcons();
     });
