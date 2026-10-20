@@ -424,8 +424,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       if (typeof window.supabase !== 'undefined') {
         try {
-          supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-          
+supabaseClient = supabase.createClient(CARWASH_DB_URL, CARWASH_DB_KEY);          
           // Escuchar cambios de sesión al volver de Google
           supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session) {
