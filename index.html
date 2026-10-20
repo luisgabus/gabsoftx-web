@@ -403,16 +403,22 @@
   <div id="termsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden"><div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-slate-700"><div class="px-6 py-5 border-b border-slate-800"><h3 class="text-xl font-bold text-white">Términos y Condiciones</h3></div><div class="px-6 py-6 overflow-y-auto text-sm text-slate-300 space-y-4"><p>La plataforma es para uso de evaluación comercial (15 días de Trial). GabSoftX posee todos los derechos de propiedad intelectual.</p></div><div class="px-6 py-4 border-t border-slate-800 bg-slate-900/50"><button onclick="closeTermsModal()" class="w-full px-6 py-2.5 rounded-lg bg-slate-800 text-white font-medium border border-slate-700">Cerrar</button></div></div></div>
   <div id="cookiesModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden"><div class="glass-card rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col border border-slate-700"><div class="px-6 py-5 border-b border-slate-800"><h3 class="text-xl font-bold text-white">Cookies</h3></div><div class="px-6 py-6 overflow-y-auto text-sm text-slate-300 space-y-4"><p>Usamos cookies esenciales para mantener tu sesión segura con Google Auth.</p></div><div class="px-6 py-4 border-t border-slate-800 bg-slate-900/50"><button onclick="closeCookiesModal()" class="w-full px-6 py-2.5 rounded-lg bg-slate-800 text-white font-medium border border-slate-700">Cerrar</button></div></div></div>
 
-  <!-- UNICO SCRIPT PRINCIPAL UNIFICADO -->
+ <!-- UNICO SCRIPT PRINCIPAL UNIFICADO -->
   <script>
-    // 1. CONFIGURACIÓN
-    const SUPABASE_URL = "https://pdtrnsfcurcjxzshlphm.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ";
+    
+    // 1. CONFIGURACIÓN DOBLE (El Enrutador)
+    
+    // Credenciales CarWash (Reemplaza con los datos reales de CarWash)
+    const CARWASH_DB_URL = "https://pdtrnsfcurcjxzshlphm.supabase.co"; 
+    const CARWASH_DB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ";
     const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
+
+    // Credenciales Nail World
+    const NAILWORLD_DB_URL = "https://pdtrnsfcurcjxzshlphm.supabase.co";
+    const NAILWORLD_DB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyNjAxMzUsImV4cCI6MjEwNDgzNjEzNX0.8-A2EPBvCo8YJG8noYOweSq3MXGC0ntYEEL1VqrU6oo";
     const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
 
-    let supabaseClient = null;
-    let selectedApp = 'CarWash';
+    let selectedApp = 'CarWash'; // Sigue siendo tu valor por defecto
 
     // 2. INICIALIZACIÓN Y CEREBRO EN LAS SOMBRAS (INTERCEPTOR GOOGLE)
     window.addEventListener('DOMContentLoaded', () => {
