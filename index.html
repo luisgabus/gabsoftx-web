@@ -498,18 +498,34 @@
       const authText = document.getElementById('googleAuthText');
       const generalError = document.getElementById('generalError');
       
-      // Guardar la elección del usuario (CarWash o NailWorld)
+// 1. Guardar la elección del usuario (CarWash o NailWorld)
       const formDemoType = document.querySelector('input[name="demoType"]:checked').value;
       localStorage.setItem('pendingDemoType', formDemoType);
 
+      // 2. Actualizar la interfaz (UX)
       if (generalError) generalError.classList.add('hidden');
       if (authBtn) {
         authBtn.disabled = true;
         if (authText) authText.textContent = "Conectando...";
       }
 
+      // 3. ENRUTADOR DINÁMICO: Asignar credenciales según la elección
+      const targetUrl = formDemoType === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
+      const targetKey = formDemoType === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
+      
+      // Creamos el cliente apuntando a la base de datos correcta
+      const supabaseClient = supabase.createClient(targetUrl, targetKey);
+
+      // 4. Iniciar la inserción
       try {
+        
         if (!supabaseClient) throw new Error('credentials');
+        
+        // Generamos el ID automático compatible para Nail World y Car Wash
+        const generatedId = (formDemoType === 'CarWash' ? 'CW-' : 'NW-') + Math.random().toString(36).substring(2, 8).toUpperCase();
+        const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
+        const cleanPhone = ownerPhone.replace(/\D/g, '');
+
 
         // location.origin + location.pathname nos asegura volver a la landing sin basura en la URL
         const { error } = await supabaseClient.auth.signInWithOAuth({
