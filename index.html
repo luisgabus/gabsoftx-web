@@ -268,7 +268,7 @@
           </div>
 
           <!-- Vía 2: Formulario Manual -->
-          <form id="onboardingForm" onsubmit="handleManualSubmit(event)" class="space-y-4">
+ <form id="onboardingForm" onsubmit="handleManualSubmit(event)" class="space-y-4">
             <div>
               <label class="block text-xs font-medium text-slate-300 mb-1">Nombre del Negocio:</label>
               <input type="text" id="bizName" placeholder="Ej. CarWash Express Pereira" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none placeholder-slate-500">
@@ -276,6 +276,10 @@
             <div>
               <label class="block text-xs font-medium text-slate-300 mb-1">Tu Nombre Completo:</label>
               <input type="text" id="ownerName" placeholder="Ej. Julio Perez" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none placeholder-slate-500">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Correo Electrónico:</label>
+              <input type="email" id="ownerEmail" placeholder="Ej. julio@empresa.com" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 outline-none placeholder-slate-500">
             </div>
             <div class="grid grid-cols-2 gap-3">
               <div>
@@ -295,7 +299,7 @@
 
             <button type="submit" id="submitBtn" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 border border-slate-600">
               <i data-lucide="loader-2" id="btnSpinner" class="w-4 h-4 animate-spin hidden"></i>
-              <span id="btnText">Crear cuenta manualmente</span>
+              <span id="btnText">Crear cuenta segura</span>
             </button>
           </form>
          </div>
@@ -490,7 +494,7 @@
     }
 
     // 4. FUNCIÓN: REGISTRO MANUAL HÍBRIDO
-    async function handleManualSubmit(e) {
+async function handleManualSubmit(e) {
       e.preventDefault();
       
       const btn = document.getElementById('submitBtn');
@@ -500,12 +504,13 @@
       
       const bizName = document.getElementById('bizName').value.trim();
       const ownerName = document.getElementById('ownerName').value.trim();
+      const ownerEmail = document.getElementById('ownerEmail').value.trim();
       const ownerPhone = document.getElementById('ownerPhone').value.trim();
       const ownerPassword = document.getElementById('ownerPassword').value.trim();
       const privacyCheck = document.getElementById('privacyCheck').checked;
       
-      if (!bizName || !ownerName || !ownerPhone || !ownerPassword) {
-        document.getElementById('generalErrorText').textContent = 'Por favor completa todos los campos, incluyendo la contraseña.';
+      if (!bizName || !ownerName || !ownerEmail || !ownerPhone || !ownerPassword) {
+        document.getElementById('generalErrorText').textContent = 'Por favor completa todos los campos, incluyendo el correo y la contraseña.';
         generalError.classList.remove('hidden');
         return;
       }
@@ -519,18 +524,27 @@
       generalError.classList.add('hidden');
       btn.disabled = true;
       btnSpinner.classList.remove('hidden');
-      btnText.textContent = 'Generando...';
+      btnText.textContent = 'Aprovisionando ecosistema...';
 
       try {
         const formDemoType = document.querySelector('input[name="demoType"]:checked').value;
-        
-        // [ENRUTADOR] Asignar la conexión correcta antes de guardar
         const targetUrl = formDemoType === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
         const targetKey = formDemoType === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
         supabaseClient = supabase.createClient(targetUrl, targetKey);
 
-        if (!supabaseClient) throw new Error('credentials');
-        
+        // PASO 1: Crear la identidad criptográfica en Supabase Auth
+        const { data: authData, error: authError } = await supabaseClient.auth.signUp({
+          email: ownerEmail,
+          password: ownerPassword,
+          options: { data: { full_name: ownerName } }
+        });
+
+        if (authError) throw new Error(authError.message || 'Error en autenticación');
+        if (!authData.user) throw new Error('No se pudo generar el token de usuario');
+
+        const authUserId = authData.user.id;
+
+        // PASO 2: Crear el negocio enlazado al token seguro
         const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
         const cleanPhone = ownerPhone.replace(/\D/g, '');
         const generatedId = (formDemoType === 'CarWash' ? 'CW-' : 'NW-') + Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -543,10 +557,11 @@
             subdomain: subdomain,
             owner_name: ownerName,
             owner_phone: cleanPhone,
-            access_password: ownerPassword,
+            access_password: ownerPassword, // A futuro lo quitaremos, por ahora lo dejamos por compatibilidad
             subscription_status: 'trial',
             plan_type: 'mensual',
-            demo_selected: formDemoType
+            demo_selected: formDemoType,
+            owner_auth_id: authUserId // <-- AQUÍ ESTÁ EL CANDADO MAESTRO
           })
           .select()
           .single();
@@ -563,15 +578,15 @@
 
       } catch (err) {
         console.error(err);
-        document.getElementById('generalErrorText').textContent = 'Error al registrar el demo. Intenta nuevamente.';
+        document.getElementById('generalErrorText').textContent = 'Error al registrar: ' + (err.message || 'Intenta nuevamente.');
         generalError.classList.remove('hidden');
       } finally {
         btn.disabled = false;
         btnSpinner.classList.add('hidden');
-        btnText.textContent = 'Crear cuenta manualmente';
+        btnText.textContent = 'Crear cuenta segura';
       }
     }
-
+    
     // 5. FUNCIONES ORIGINALES DEL MODAL DE ACCESO MANUAL (ID)
     window.openLoginModal = function() {
       const modal = document.getElementById('loginModal');
