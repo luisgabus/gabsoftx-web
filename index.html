@@ -401,20 +401,24 @@
                 const userFullName = session.user.user_metadata.full_name || session.user.email.split('@')[0];
                 const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
                 const generatedId = (pendingApp === 'CarWash' ? 'CW-' : 'NW-') + Math.random().toString(36).substring(2, 8).toUpperCase();
+const fechaExpiracion = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString();
 
                 try {
-                  const { data, error } = await supabaseClient
-                    .from('businesses')
-                    .insert({
-                      id: generatedId,
-                      name: `Negocio de ${userFullName}`, 
-                      subdomain: subdomain,
-                      owner_name: userFullName,
-                      owner_phone: '0000000000',
-                      access_password: 'Auto-' + generatedId, 
-                      subscription_status: 'trial',
-                      plan_type: 'mensual',
-                      demo_selected: pendingApp
+              const { data, error } = await supabaseClient
+  .from('businesses')
+  .insert({
+    id: generatedId,
+    name: bizName, // o `Negocio de ${userFullName}` en Google
+    subdomain: subdomain,
+    owner_name: ownerName,
+    owner_phone: cleanPhone,
+    access_password: ownerPassword,
+    subscription_status: 'trial',
+    plan_type: 'mensual',
+    demo_selected: formDemoType, // o pendingApp en Google
+    owner_auth_id: authUserId,
+    // 2. Agrega esta línea exacta para guardar la fecha:
+    expiration_date: fechaExpiracion
                     })
                     .select()
                     .single();
@@ -638,7 +642,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       if(window.lucide) window.lucide.createIcons();
     });
-    
+
   </script>
 </body>
 </html>
