@@ -360,17 +360,15 @@
     
     // 1. CONFIGURACIÓN DOBLE (El Enrutador)
     
-    // Credenciales CarWash (⚠️ IMPORTANTE: Pon la URL y la llave real de tu proyecto CarWash aquí)
+// 1. CONFIGURACIÓN DOBLE (El Enrutador)
     const CARWASH_DB_URL = "https://pdtrnsfcurcjxzshlphm.supabase.co"; 
     const CARWASH_DB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBkdHJuc2ZjdXJjanh6c2hscGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYzMTEwNDAsImV4cCI6MjEwMTg4NzA0MH0.yJR0hDVBCfIzo4igjf7gX8BLdJg4aBtv91hVG5BX9NQ";
     const URL_CARWASH = 'https://exact-screenshot-six.vercel.app';
 
-    // Credenciales Nail World
     const NAILWORLD_DB_URL = "https://qdnolqquqaumzssamgrj.supabase.co";
     const NAILWORLD_DB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbm9scXF1cWF1bXpzc2FtZ3JqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyNjAxMzUsImV4cCI6MjEwNDgzNjEzNX0.8-A2EPBvCo8YJG8noYOweSq3MXGC0ntYEEL1VqrU6oo";
     const URL_NAILWORLD = 'https://nail-world-app.vercel.app';
 
-    let selectedApp = 'CarWash'; 
     let supabaseClient = null; 
 
     // 2. INICIALIZACIÓN Y CEREBRO EN LAS SOMBRAS (INTERCEPTOR GOOGLE)
@@ -379,7 +377,6 @@
         try {
           supabaseClient = supabase.createClient(CARWASH_DB_URL, CARWASH_DB_KEY);
           
-          // Escuchar cambios de sesión al volver de Google
           supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session) {
               const pendingApp = localStorage.getItem('pendingDemoType');
@@ -397,7 +394,6 @@
 
                 localStorage.removeItem('pendingDemoType');
                 
-                // [NUEVO] ENRUTADOR INTERNO: Cambiamos de base de datos antes de hacer el guardado
                 const targetUrl = pendingApp === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
                 const targetKey = pendingApp === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
                 supabaseClient = supabase.createClient(targetUrl, targetKey);
@@ -464,7 +460,6 @@
         if (authText) authText.textContent = "Conectando...";
       }
 
-      // [ENRUTADOR] Asignar la conexión correcta a la variable global
       const targetUrl = formDemoType === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
       const targetKey = formDemoType === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
       supabaseClient = supabase.createClient(targetUrl, targetKey);
@@ -489,7 +484,7 @@
     }
 
     // 4. FUNCIÓN: REGISTRO MANUAL HÍBRIDO
-async function handleManualSubmit(e) {
+    async function handleManualSubmit(e) {
       e.preventDefault();
       
       const btn = document.getElementById('submitBtn');
@@ -505,7 +500,7 @@ async function handleManualSubmit(e) {
       const privacyCheck = document.getElementById('privacyCheck').checked;
       
       if (!bizName || !ownerName || !ownerEmail || !ownerPhone || !ownerPassword) {
-        document.getElementById('generalErrorText').textContent = 'Por favor completa todos los campos, incluyendo el correo y la contraseña.';
+        document.getElementById('generalErrorText').textContent = 'Por favor completa todos los campos.';
         generalError.classList.remove('hidden');
         return;
       }
@@ -527,7 +522,6 @@ async function handleManualSubmit(e) {
         const targetKey = formDemoType === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
         supabaseClient = supabase.createClient(targetUrl, targetKey);
 
-        // PASO 1: Crear la identidad criptográfica en Supabase Auth
         const { data: authData, error: authError } = await supabaseClient.auth.signUp({
           email: ownerEmail,
           password: ownerPassword,
@@ -538,8 +532,6 @@ async function handleManualSubmit(e) {
         if (!authData.user) throw new Error('No se pudo generar el token de usuario');
 
         const authUserId = authData.user.id;
-
-        // PASO 2: Crear el negocio enlazado al token seguro
         const subdomain = 'demo-' + Math.random().toString(36).substring(2, 7);
         const cleanPhone = ownerPhone.replace(/\D/g, '');
         const generatedId = (formDemoType === 'CarWash' ? 'CW-' : 'NW-') + Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -552,11 +544,11 @@ async function handleManualSubmit(e) {
             subdomain: subdomain,
             owner_name: ownerName,
             owner_phone: cleanPhone,
-            access_password: ownerPassword, // A futuro lo quitaremos, por ahora lo dejamos por compatibilidad
+            access_password: ownerPassword, 
             subscription_status: 'trial',
             plan_type: 'mensual',
             demo_selected: formDemoType,
-            owner_auth_id: authUserId // <-- AQUÍ ESTÁ EL CANDADO MAESTRO
+            owner_auth_id: authUserId 
           })
           .select()
           .single();
@@ -582,7 +574,7 @@ async function handleManualSubmit(e) {
       }
     }
     
-    // 5. FUNCIONES ORIGINALES DEL MODAL DE ACCESO MANUAL (ID)
+    // 5. APERTURA Y CIERRE DEL MODAL ENRUTADOR
     window.openLoginModal = function() {
       const modal = document.getElementById('loginModal');
       if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
@@ -593,110 +585,33 @@ async function handleManualSubmit(e) {
       if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
     };
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const btnCarWash = document.getElementById('btnAppCarWash');
-      const btnNailWorld = document.getElementById('btnAppNailWorld');
-      const loginForm = document.getElementById('landingLoginForm');
-      const businessInput = document.getElementById('businessInput');
-      const errorMsg = document.getElementById('modalErrorMsg');
-      const submitBtn = document.getElementById('submitAccessBtn');
+    // 6. ENRUTAMIENTO HACIA LAS APPS REACT
+    window.selectLoginApp = function(app) {
+      const btnCarWash = document.getElementById('loginAppCarWash');
+      const btnNailWorld = document.getElementById('loginAppNailWorld');
+      const redirectBtn = document.getElementById('loginRedirectBtn');
 
-      if (btnCarWash && btnNailWorld) {
-        btnCarWash.addEventListener('click', () => {
-          selectedApp = 'CarWash';
-          btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/20";
-          btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
-          if (businessInput) businessInput.placeholder = "Ej: Carclean o LAV01";
-          if (submitBtn) {
-            submitBtn.innerHTML = "<span>Ingresar a CarWash Pro</span> →";
-            submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg flex items-center justify-center gap-2";
-          }
-          if (errorMsg) errorMsg.classList.add('hidden');
-        });
+      btnCarWash.classList.remove('border-blue-500', 'bg-slate-800');
+      btnCarWash.classList.add('border-slate-700', 'bg-slate-800');
+      btnNailWorld.classList.remove('border-rose-500', 'bg-slate-800');
+      btnNailWorld.classList.add('border-slate-700', 'bg-slate-800');
 
-        btnNailWorld.addEventListener('click', () => {
-          selectedApp = 'NailWorld';
-          btnNailWorld.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-purple-600/20 border-purple-500 text-white shadow-lg shadow-purple-500/20";
-          btnCarWash.className = "p-4 rounded-2xl border flex flex-col items-center gap-2 transition-all bg-slate-800/50 border-slate-700/60 text-slate-400 hover:border-slate-600";
-          if (businessInput) businessInput.placeholder = "Ej: Nail Cuba";
-          if (submitBtn) {
-            submitBtn.innerHTML = "<span>Ingresar a Nail World</span> →";
-            submitBtn.className = "w-full py-4 rounded-xl font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all shadow-lg flex items-center justify-center gap-2";
-          }
-          if (errorMsg) errorMsg.classList.add('hidden');
-        });
+      redirectBtn.classList.remove('pointer-events-none', 'bg-slate-800', 'text-slate-500');
+
+      if (app === 'CarWash') {
+        btnCarWash.classList.add('border-blue-500');
+        redirectBtn.textContent = 'Ir a CarWash Pro →';
+        redirectBtn.href = URL_CARWASH; 
+        redirectBtn.className = "w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-center block transition-all shadow-lg shadow-blue-900/20";
+      } else {
+        btnNailWorld.classList.add('border-rose-500');
+        redirectBtn.textContent = 'Ir a Nail World →';
+        redirectBtn.href = URL_NAILWORLD; 
+        redirectBtn.className = "w-full py-4 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-semibold text-center block transition-all shadow-lg shadow-rose-900/20";
       }
+    }
 
-      if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const query = businessInput ? businessInput.value.trim() : '';
-          const pwd = document.getElementById('loginPasswordInput') ? document.getElementById('loginPasswordInput').value.trim() : '';
-          
-          if (!query || !pwd) return;
-
-          if (submitBtn) { submitBtn.disabled = true; submitBtn.innerText = "Verificando..."; }
-          if (errorMsg) errorMsg.classList.add('hidden');
-
-          try {
-            // [ENRUTADOR LOGIN] Asignamos las credenciales según la selección del usuario
-            const targetUrl = selectedApp === 'CarWash' ? CARWASH_DB_URL : NAILWORLD_DB_URL;
-            const targetKey = selectedApp === 'CarWash' ? CARWASH_DB_KEY : NAILWORLD_DB_KEY;
-            
-            // Creamos una conexión limpia usando supabase-js en lugar del viejo fetch quemado
-            supabaseClient = supabase.createClient(targetUrl, targetKey);
-
-            const { data: biz, error: dbError } = await supabaseClient
-              .from('businesses')
-              .select('*')
-              .or(`id.ilike."${query}",name.ilike."${query}"`)
-              .eq('access_password', pwd)
-              .limit(1)
-              .maybeSingle();
-            
-            if (dbError || !biz) {
-              showError('Credenciales incorrectas. Verifica el código de tu negocio y la contraseña.');
-              return;
-            }
-
-            if (biz.demo_selected && biz.demo_selected !== selectedApp) {
-              const appCorrecta = biz.demo_selected === 'CarWash' ? 'CarWash Pro' : 'Nail World';
-              showError(`Este negocio pertenece a ${appCorrecta}. Cambia la plataforma seleccionada arriba.`);
-              return;
-            }
-
-            const targetBaseUrl = selectedApp === 'CarWash' ? URL_CARWASH : URL_NAILWORLD;
-
-            if (businessInput) businessInput.value = '';
-            const passInput = document.getElementById('loginPasswordInput');
-            if (passInput) passInput.value = '';
-            
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = selectedApp === 'CarWash' ? "<span>Ingresar a CarWash Pro</span> →" : "<span>Ingresar a Nail World</span> →";
-            }
-            window.closeLoginModal();
-
-            window.location.href = `${targetBaseUrl}/?business_id=${biz.id}`;
-          } catch (err) {
-            console.error(err);
-            showError('Error de red al verificar el negocio. Intenta nuevamente.');
-          } finally {
-            if (submitBtn) submitBtn.disabled = false;
-          }
-        });
-      }
-
-      function showError(msg) {
-        if (errorMsg) { errorMsg.innerText = msg; errorMsg.classList.remove('hidden'); }
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = selectedApp === 'CarWash' ? "<span>Ingresar a CarWash Pro</span> →" : "<span>Ingresar a Nail World</span> →";
-        }
-      }
-    });
-
-    // 6. UTILIDADES (MODALES DE ALTA Y LEGALES)
+    // 7. UTILIDADES (MODALES DE ALTA Y LEGALES)
     function openModal(type) {
       const radioBtn = document.querySelector(`input[name="demoType"][value="${type}"]`);
       if (radioBtn) radioBtn.checked = true;
@@ -707,36 +622,8 @@ async function handleManualSubmit(e) {
     function closePrivacyModal() { document.getElementById('privacyModal').classList.add('hidden'); }
     function openTermsModal() { document.getElementById('termsModal').classList.remove('hidden'); }
     function closeTermsModal() { document.getElementById('termsModal').classList.add('hidden'); }
-function openCookiesModal() { document.getElementById('cookiesModal').classList.remove('hidden'); }
+    function openCookiesModal() { document.getElementById('cookiesModal').classList.remove('hidden'); }
     function closeCookiesModal() { document.getElementById('cookiesModal').classList.add('hidden'); }
-
-    // Función de enrutamiento para el Ecosistema
-    function selectLoginApp(app) {
-      const btnCarWash = document.getElementById('loginAppCarWash');
-      const btnNailWorld = document.getElementById('loginAppNailWorld');
-      const redirectBtn = document.getElementById('loginRedirectBtn');
-
-      // Reiniciar estilos
-      btnCarWash.classList.remove('border-blue-500', 'bg-slate-800');
-      btnCarWash.classList.add('border-slate-700', 'bg-slate-800');
-      btnNailWorld.classList.remove('border-rose-500', 'bg-slate-800');
-      btnNailWorld.classList.add('border-slate-700', 'bg-slate-800');
-
-      // Activar botón
-      redirectBtn.classList.remove('pointer-events-none', 'bg-slate-800', 'text-slate-500');
-
-      if (app === 'CarWash') {
-        btnCarWash.classList.add('border-blue-500');
-        redirectBtn.textContent = 'Ir a CarWash Pro →';
-        redirectBtn.href = 'https://pdtrnsfcurcjxzshlphm.vercel.app'; // <-- COLOCA TU URL AQUÍ
-        redirectBtn.className = "w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-center block transition-all shadow-lg shadow-blue-900/20";
-      } else {
-        btnNailWorld.classList.add('border-rose-500');
-        redirectBtn.textContent = 'Ir a Nail World →';
-        redirectBtn.href = 'https://qdnolqquqaumzssamgrj.vercel.app'; // <-- COLOCA TU URL AQUÍ
-        redirectBtn.className = "w-full py-4 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-semibold text-center block transition-all shadow-lg shadow-rose-900/20";
-      }
-    }
 
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
@@ -751,6 +638,7 @@ function openCookiesModal() { document.getElementById('cookiesModal').classList.
     document.addEventListener("DOMContentLoaded", () => {
       if(window.lucide) window.lucide.createIcons();
     });
+    
   </script>
 </body>
 </html>
