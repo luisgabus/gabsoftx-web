@@ -417,7 +417,6 @@ const fechaExpiracion = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOStr
     plan_type: 'mensual',
     demo_selected: formDemoType, // o pendingApp en Google
     owner_auth_id: authUserId,
-    // 2. Agrega esta línea exacta para guardar la fecha:
     expiration_date: fechaExpiracion
                     })
                     .select()
